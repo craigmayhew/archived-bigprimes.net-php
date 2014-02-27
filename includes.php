@@ -39,10 +39,6 @@ if($database->connected){
         }
     }
     $rss = new rss();
-    //new session instance
-    ////NOTED OUT BECAUSE IT WAS ONLY USED FOR WHEN WE RAN THE GRID PROCESSING
-    //$session = new sessions($config['site']['name']);
-    //$session->start();
     $sumOfDigits = new sumOfDigits($primes,$database);
 }
 ?>
