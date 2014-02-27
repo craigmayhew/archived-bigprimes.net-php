@@ -85,7 +85,7 @@ if ($_SERVER['PHP_SELF'] == '/archive/prime.php'){
 <table cellpadding="0" cellspacing="0" border="0" width="100%" class="text">
  <tr>
   <td align="left" valign="top" colspan="2">
-	<a href="/index.php"><img src="/title.gif" alt="BigPrimes.net" /></a>
+	<a href="/index.php"><img src="/imgs/title.gif" alt="BigPrimes.net" /></a>
   </td>
  </tr>
  <tr>
