@@ -306,13 +306,16 @@ if ($number > 0){
 		//this function converts a number in the form of a string to egyptian numerals
 		$numerals = "";
 		$length = strlen($n);
-		$array[0] = array("<img src='/egyptnumbers/1.gif' alt=\"\" />","<img src='/egyptnumbers/2.gif' alt=\"\" />","<img src='/egyptnumbers/3.gif' alt=\"\" />","<img src='/egyptnumbers/4.gif' alt=\"\" />","<img src='/egyptnumbers/5.gif' alt=\"\" />","<img src='/egyptnumbers/6.gif' alt=\"\" />","<img src='/egyptnumbers/7.gif' alt=\"\" />","<img src='/egyptnumbers/8.gif' alt=\"\" />","<img src='/egyptnumbers/9.gif' alt=\"\" />");//units
-		$array[1] = array("<img src='/egyptnumbers/10.gif' alt=\"\" />","<img src='/egyptnumbers/20.gif' alt=\"\" />","<img src='/egyptnumbers/30.gif' alt=\"\" />","<img src='/egyptnumbers/40.gif' alt=\"\" />","<img src='/egyptnumbers/50.gif' alt=\"\" />","<img src='/egyptnumbers/60.gif' alt=\"\" />","<img src='/egyptnumbers/70.gif' alt=\"\" />","<img src='/egyptnumbers/80.gif' alt=\"\" />","<img src='/egyptnumbers/90.gif' alt=\"\" />");//tens
-		$array[2] = array("<img src='/egyptnumbers/100.gif' alt=\"\" />","<img src='/egyptnumbers/200.gif' alt=\"\" />","<img src='/egyptnumbers/300.gif' alt=\"\" />","<img src='/egyptnumbers/400.gif' alt=\"\" />","<img src='/egyptnumbers/500.gif' alt=\"\" />","<img src='/egyptnumbers/600.gif' alt=\"\" />","<img src='/egyptnumbers/700.gif' alt=\"\" />","<img src='/egyptnumbers/800.gif' alt=\"\" />","<img src='/egyptnumbers/900.gif' alt=\"\" />");//hundreds
-		$array[3] = array("<img src='/egyptnumbers/1000.gif' alt=\"\" />","<img src='/egyptnumbers/2000.gif' alt=\"\" />","<img src='/egyptnumbers/3000.gif' alt=\"\" />","<img src='/egyptnumbers/4000.gif' alt=\"\" />","<img src='/egyptnumbers/5000.gif' alt=\"\" />","<img src='/egyptnumbers/6000.gif' alt=\"\" />","<img src='/egyptnumbers/7000.gif' alt=\"\" />","<img src='/egyptnumbers/8000.gif' alt=\"\" />","<img src='/egyptnumbers/9000.gif' alt=\"\" />");//THOUSANDS
-		$array[4] = array("<img src='/egyptnumbers/10000.gif' alt=\"\" />","<img src='/egyptnumbers/20000.gif' alt=\"\" />","<img src='/egyptnumbers/30000.gif' alt=\"\" />","<img src='/egyptnumbers/40000.gif' alt=\"\" />","<img src='/egyptnumbers/50000.gif' alt=\"\" />","<img src='/egyptnumbers/60000.gif' alt=\"\" />","<img src='/egyptnumbers/70000.gif' alt=\"\" />","<img src='/egyptnumbers/80000.gif' alt=\"\" />","<img src='/egyptnumbers/90000.gif' alt=\"\" />");//TEN THOUSANDS
-		$array[5] = array("<img src='/egyptnumbers/100000.gif' alt=\"\" />","<img src='/egyptnumbers/200000.gif' alt=\"\" />","<img src='/egyptnumbers/300000.gif' alt=\"\" />","<img src='/egyptnumbers/400000.gif' alt=\"\" />","<img src='/egyptnumbers/500000.gif' alt=\"\" />","<img src='/egyptnumbers/600000.gif' alt=\"\" />","<img src='/egyptnumbers/700000.gif' alt=\"\" />","<img src='/egyptnumbers/800000.gif' alt=\"\" />","<img src='/egyptnumbers/900000.gif' alt=\"\" />");//HUNDRED THOUSANDS
-		$array[6] = array("<img src='/egyptnumbers/1000000.gif' alt=\"\" />","<img src='/egyptnumbers/2000000.gif' alt=\"\" />","<img src='/egyptnumbers/3000000.gif' alt=\"\" />","<img src='/egyptnumbers/4000000.gif' alt=\"\" />","<img src='/egyptnumbers/5000000.gif' alt=\"\" />","<img src='/egyptnumbers/6000000.gif' alt=\"\" />","<img src='/egyptnumbers/7000000.gif' alt=\"\" />","<img src='/egyptnumbers/8000000.gif' alt=\"\" />","<img src='/egyptnumbers/9000000.gif' alt=\"\" />");//millions
+		$array = array();
+		for($i=1;$i<10;$i++){
+			$array[0][] = '<img src="/imgs/egyptnumbers/'.$i.'.gif" alt="'.$i.'" />';
+			$array[1][] = '<img src="/imgs/egyptnumbers/'.$i.'0.gif" alt="'.$i.'0" />';
+			$array[2][] = '<img src="/imgs/egyptnumbers/'.$i.'00.gif" alt="'.$i.'00" />';
+			$array[3][] = '<img src="/imgs/egyptnumbers/'.$i.'000.gif" alt="'.$i.'000" />';
+			$array[4][] = '<img src="/imgs/egyptnumbers/'.$i.'0000.gif" alt="'.$i.'0000" />';
+			$array[5][] = '<img src="/imgs/egyptnumbers/'.$i.'00000.gif" alt="'.$i.'00000" />';
+			$array[6][] = '<img src="/imgs/egyptnumbers/'.$i.'000000.gif" alt="'.$i.'000000" />';
+		}
 		for ($i=0; $i<$length; $i++){
                     if(isset($array[$i][(substr($n,-($i+1),1)-1)])){
 			$numerals = $array[$i][(substr($n,-($i+1),1)-1)].$numerals;
