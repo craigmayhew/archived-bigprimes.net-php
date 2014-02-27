@@ -1,0 +1,66 @@
+.text {
+ font-family: 'Lucida Grande',Tahoma,Verdana,Helvetica,sans-serif;
+ font-size: 12px;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+.link {
+ font-family: 'Lucida Grande',Tahoma,Verdana,Helvetica,sans-serif;
+ font-size: 12px;
+ font-weight: normal;
+ color: #009999;
+ text-decoration: none;
+}
+a:hover.link {
+ color: #004400;
+}
+.a {
+ font-family: 'Lucida Grande',Tahoma,Verdana,Helvetica,sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ color: #000000;
+ text-decoration: none;
+}
+a.sidebarlink, a:visited.sidebarlink {
+ font-family: 'Lucida Grande',Tahoma,Verdana,Helvetica,sans-serif;
+ font-size: 11px;
+ font-weight: normal;
+ color: #111111;
+ line-height: 17px;
+ margin-left: 14px;
+ margin-right: 8px;
+}
+a:hover.sidebarlink {
+ color: #009999;
+}
+.sidebartitle{
+ font-family: 'Lucida Grande',Tahoma,Verdana,Helvetica,sans-serif;
+ font-size: 14px;
+ font-weight: normal;
+ color: #111111;
+}
+.title {
+ font-family: 'Lucida Grande',Tahoma,Verdana,Helvetica,sans-serif;
+ font-size: 18px;
+ font-weight: bold;
+ color: #000000;
+ text-decoration: none;
+}
+table{
+	border-collapse:collapse;
+}
+img {
+	border: 0;
+}
+h1{font-size: 18px;}
+.table td{border:1px solid #000000}
+/*used in primes.php*/
+.primeTableCell {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.sumOfDigits thead{font-weight: bold;}
+.sumOfDigits td{padding:2px;}
