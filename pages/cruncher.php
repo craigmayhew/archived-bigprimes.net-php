@@ -389,46 +389,9 @@ if ($number > 0){
                 echo 'This number is not in our database (Therfore I\'m unable to check for primality).<br />';
             }elseif ($is_prime !== false){
                 echo 'It is the '.stndrd($is_prime).' prime number.<br />';
-                //mysql_query('INSERT INTO numberCache (number,isPrime) VALUES (\''.$number.'\',1)');
             }else{
                 echo 'It is not a prime number.<br />';
-                //mysql_query('INSERT INTO numberCache (number,isPrime) VALUES (\''.$number.'\',0)');
             }
-			/*$dcCheck = mysql_result(mysql_query('SELECT count(*) FROM prime_numbers WHERE number='.$number),0);
-			if ($dcCheck == 1){
-				$nthPrime = mysql_result(mysql_query('SELECT id FROM prime_numbers WHERE number='.$number),0);
-				echo 'It is the ',stndrd($nthPrime),' prime number.<br />';
-			}else{
-				$cacheCheck = mysql_result(mysql_query('SELECT count(*) FROM numberCache WHERE number='.$number),0);
-				if ($cacheCheck == 1){
-					$check = mysql_result(mysql_query('SELECT isPrime FROM numberCache WHERE number='.$number),0);
-					if ($check == 1){
-						echo 'It is a prime number.<br />';
-					}else{
-						echo 'It is not a prime number.<br />';
-					}
-				}else{
-					if (prob_prime($number) == true){
-						if ($num_len<=$max_len_prime){
-							$is_prime = $primes->checkPrime($number);
-							if ($is_prime !== false){
-								echo 'It is a prime number.<br />';
-								//mysql_query('INSERT INTO numberCache (number,isPrime) VALUES (\''.$number.'\',1)');
-                            }elseif($is_prime===null){
-                                echo 'This prime number is not in out database.';
-							}else{
-								echo 'It is not a prime number.<br />';
-								//mysql_query('INSERT INTO numberCache (number,isPrime) VALUES (\''.$number.'\',0)');
-							}
-						}else{
-							echo 'Numbers larger than ',$max_len_prime,' digits are not checked for primality<br />';
-						}
-					}else{
-						echo 'It is not a prime number.<br />';
-						mysql_query('INSERT INTO numberCache (number,isPrime) VALUES (\''.$number.'\',0)');
-					}
-				}
-			}*/
 			//mersenne prime or not?
 			if ($num_len <= strlen($array_mersenne[(count($array_mersenne)-1)])){
 				$mersenne = is_mersenne_prime($number,$array_mersenne);
@@ -641,35 +604,3 @@ if ($number > 0){
 	</form>
 	</td></tr></table></div>";
 }
-/*
-<table width='580'  border='1' cellspacing='0' cellpadding='2' bgcolor='#FFDD99'><tr><td>
-<div align='center'>
-Random Numbers:
-<br /><br />
-<?php
-$length_max = 50;
-$length = 0;
-$i = 0;
-$string = "";
-$randythingy = pow(10,(rand(1,6)+2));
-while ($length < $length_max){
-	$num = rand(1,$randythingy);
-	if ($length_max >= strlen($num) + $length){
-		$chicken ++;
-		$length += strlen($num);
-		$string .= " &nbsp; <a href='index2.php?number=".$num."' class='mlink'>".$num."</a>";
-	}
-	$i++;
-	if ($i > 1000){
-		break 1;
-	} elseif ($chicken == 9){
-		break 1;
-	}
-}
-echo substr($string,8);
-?>
-</div>
-</td></tr></table>
-*/
-
-?>
