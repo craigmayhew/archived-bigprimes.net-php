@@ -622,7 +622,7 @@ if ($number > 0){
 	<br /><br />
 	
 	Please type your number here:
-	<form name=\"crunchy\" action='".buildUrl($_GET)."' method='get' target='_top'>
+	<form name=\"crunchy\" action='".buildUrl($_GET,0,$config)."' method='get' target='_top'>
 	<table width='200' border='0' cellspacing='0' cellpadding='2'>
 	  <tr>
 		<td><textarea name='number' cols='85' rows='10' onkeydown=\"if (event.keyCode == 13){document.location='".$url->cruncher()."'+crunchy.number.value+'/'}\">".$number."</textarea></td>

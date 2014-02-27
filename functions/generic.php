@@ -207,8 +207,7 @@ function fieldTypeString($table,$name){
 }
 
 //build_url(array("page"=>"world/city/place"))
-function buildUrl($vars_in=false,$driver=0){
-	global $config;
+function buildUrl($vars_in=false,$driver=0,$config){
 	if($driver===0)
 	{	$file = "index.php";
 	}
