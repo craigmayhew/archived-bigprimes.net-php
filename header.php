@@ -132,7 +132,6 @@ window.google_analytics_uacct = "UA-6215762-7";
 				//<a class="sidebarlink" href="donate.php">Donate</a><br />
                 ?>
                 <a class="sidebarlink" href="<?php echo $url->u(array('contact_us'))?>">Contact Us</a><br />
-			        <a class="sidebarlink" href="<?php echo $url->u(array('forum'))?>">Forum</a><br />	
                                 <a class="sidebarlink" href="<?php echo $url->u(array('faq'))?>">FAQ</a><br />
 			</td>
 		</tr>
