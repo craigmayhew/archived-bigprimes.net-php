@@ -34,23 +34,6 @@ echo
   "<td align=\"right\">".$db_size." GB</td>".
  "</tr>".
 "</table>".
-//"<br><br>".
-//"<span class=\"title\">Web Traffic Stats</span>".
 "<br><br>";
-/*
-mysql_select_db('stats', $connection);
-$domain_id = mysql_result(mysql_query("SELECT id FROM stats_lookup_domain WHERE domain='www.bigprimes.net'"),0);
-echo
-"<table cellpadding=\"2\" cellspacing=\"0\" border=\"1\" class=\"text\" bgcolor=\"#e0faed\" bordercolor=\"#444444\">".
- "<tr>".
-  "<td align=\"left\" width=\"200\">Number of Page Views</td>".
-  "<td align=\"right\" width=\"200\">".mysql_result(mysql_query("SELECT count(*) FROM stats WHERE domain=".$domain_id),0)."</td>".
- "</tr>".
- "<tr>".
-  "<td align=\"left\">Number of Visitors</td>".
-  "<td align=\"right\">".mysql_result(mysql_query("SELECT count(DISTINCT(ip)) FROM stats WHERE domain=".$domain_id),0)."</td>".
- "</tr>".
-"</table>";
-mysql_select_db('prime_research', $connection);
-*/
+
 require_once("footer.php");?>
