@@ -1,34 +1,5 @@
 <?php require_once('header.php');
 
-function illion($number,$dp=0){
-    $len = strlen($number);
-    if ($len <= 6){
-        $return = $number;
-    }elseif ($len == 7){
-        $decStart = 1;
-        $number = substr($number,0,($decStart+$dp)).'.'.substr($number,1,1);
-        $end = ' million';
-    }elseif ($len == 8){
-        $decStart = 2;
-        $number = substr($number,0,($decStart+$dp)).'.'.substr($number,2,1);
-        $end = ' million';
-    }elseif ($len == 9){
-        $decStart = 3;
-        $number = substr($number,0,($decStart+$dp));
-        $end = ' million';
-    }elseif ($len < 12){
-        $decStart = ($len-9);
-        $number = substr($number,0,($decStart+$dp));
-        $end = ' billion';
-    }elseif ($len < 15){
-        $decStart = ($len-12);
-        $number = substr($number,0,($decStart+$dp));
-        $end = ' trillion';
-    }
-    $number = substr($number,0,$decStart).'.'.substr($number,$decStart).$end;
-    return $number;
-}
-
 echo
 '<h1>Prime Numbers</h1>',
 'We currently have ',

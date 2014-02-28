@@ -112,6 +112,11 @@ function randThousand() {
 
 // Returns an integer in -10^9 .. 10^9
 // with log distribution
+/*// example of usage
+for ($i = 0; $i < 20; $i++) {
+ $num = makeLogRand();
+ echo "<br>$num: ".convertNum($num);
+}*/
 function makeLogRand() {
   $sign = mt_rand(0,1)*2 - 1;
   $val = randThousand() * 1000000
@@ -122,9 +127,32 @@ function makeLogRand() {
   return $sign * (int) ($val * pow(10.0, $scale));
 }
 
-/*// example of usage
-for ($i = 0; $i < 20; $i++) {
- $num = makeLogRand();
- echo "<br>$num: ".convertNum($num);
-}*/
+function illion($number,$dp=0){
+    $len = strlen($number);
+    if ($len <= 6){
+        $return = $number;
+    }elseif ($len == 7){
+        $decStart = 1;
+        $number = substr($number,0,($decStart+$dp)).'.'.substr($number,1,1);
+        $end = ' million';
+    }elseif ($len == 8){
+        $decStart = 2;
+        $number = substr($number,0,($decStart+$dp)).'.'.substr($number,2,1);
+        $end = ' million';
+    }elseif ($len == 9){
+        $decStart = 3;
+        $number = substr($number,0,($decStart+$dp));
+        $end = ' million';
+    }elseif ($len < 12){
+        $decStart = ($len-9);
+        $number = substr($number,0,($decStart+$dp));
+        $end = ' billion';
+    }elseif ($len < 15){
+        $decStart = ($len-12);
+        $number = substr($number,0,($decStart+$dp));
+        $end = ' trillion';
+    }
+    $number = substr($number,0,$decStart).'.'.substr($number,$decStart).$end;
+    return $number;
+}
 ?>
