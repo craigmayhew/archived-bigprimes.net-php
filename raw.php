@@ -1,5 +1,7 @@
 <?php
 ob_start("ob_gzhandler");
+ini_set('open_basedir',getcwd());
+
 //load the config array
 require_once('config/site.config.php');
 

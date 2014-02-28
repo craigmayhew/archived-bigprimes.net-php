@@ -3,6 +3,8 @@ Options +FollowSymlinks
 RewriteEngine on
 RewriteBase /
 
+open_basedir = /srv/bigprimes.net/public/htdocs/
+
 #Add the slash to the end of url
 RewriteCond %{REQUEST_FILENAME} !-f
 #RewriteCond !(.*)/(.*).(.*)
