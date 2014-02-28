@@ -1,5 +1,5 @@
 <?php
-$num = isset($_GET['num'])?$_GET['num']:0;
+$num = isset($_GET['num'])?(int)$_GET['num']:0;
 if ($num < 1){
 	$num = 1;
 }

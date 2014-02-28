@@ -2,7 +2,7 @@
 
 //variables
 require_once 'variables.php';
-$number = isset($_GET['number'])?$_GET['number']:false;
+$number = isset($_GET['number'])?(int)$_GET['number']:false;
 if ($number > 0){
 	function prob_prime ($num){
 		if ($num == 2 OR $num == 3){
