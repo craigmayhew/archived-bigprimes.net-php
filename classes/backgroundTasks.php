@@ -1,5 +1,6 @@
 <?php
 class backgroundTasks{
+    public $database;
     /**
     * Sets a back ground task to running/not running
     * 
@@ -7,13 +8,12 @@ class backgroundTasks{
     * @param boolean $running Ture to set the task running and false to set the task not running. defaults to true.
     */
     public function setTaskRunning($task,$running=true){
-        global $database;
         if($running==true){
             $running = 1;
         }else{
             $running = 0;
         }
-        $database->update(array('running'=>$running),'backgroundTasks',"task='$task'");
+        $this->database->update(array('running'=>$running),'backgroundTasks',"task='$task'");
     }
     /**
     * Checks to see if a task is running
@@ -22,8 +22,7 @@ class backgroundTasks{
     * @return bool True if task is running and false if the task is not running.
     */
     public function isRunning($task){
-        global $database;
-        $c = $database->count('backgroundTasks',"task='$task' AND running=1");
+        $c = $this->database->count('backgroundTasks',"task='$task' AND running=1");
         if($c){
             return true;
         }else{
