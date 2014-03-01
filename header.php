@@ -95,7 +95,7 @@ if ($_SERVER['PHP_SELF'] == '/archive/prime.php'){
 		<tr>
 			<td valign="top">
 				<a class="sidebarlink" href="<?php echo $url->u()?>">Home</a><br />
-                <a class="sidebarlink" href="<?php echo $url->u(array('contact_us'))?>">Contact Us</a><br />
+                <a class="sidebarlink" href="<?php echo $url->u(array('contactus'))?>">Contact Us</a><br />
                                 <a class="sidebarlink" href="<?php echo $url->u(array('faq'))?>">FAQ</a><br />
 			</td>
 		</tr>
@@ -129,7 +129,7 @@ if ($_SERVER['PHP_SELF'] == '/archive/prime.php'){
 				<a class="sidebarlink" href="<?php echo $url->u(array('archive/fermat'))?>">Fermat Archive</a><br />
 				<a class="sidebarlink" href="<?php echo $url->u(array('archive/perfect'))?>">Perfect Archive</a><br />
 				<a class="sidebarlink" href="<?php echo $url->u(array('archive/fibonacci'))?>">Fibonacci Archive</a><br />
-				<a class="sidebarlink" href="<?php echo $url->u(array('archive_info'))?>">Other Archives</a><br />
+				<a class="sidebarlink" href="<?php echo $url->u(array('archiveinfo'))?>">Other Archives</a><br />
 			</td>
 		</tr>
 	</table>

@@ -29,7 +29,7 @@ if ($contact == 'sent'){
 				   "Content-Transfer-Encoding: 7bit\r\n".
 				   "Content-Type: text/html; charset=\"us-ascii\"\r\n".
 				   "X-Mailer: PHP/".phpversion();
-		mail('craig.mayhew@adire.co.uk', 'BIGprimes - Contact Page', stripslashes($message), $headers);
+		mail('primes@bigprimes.net', 'BIGprimes - Contact Page', stripslashes($message), $headers);
 	}
 }
 

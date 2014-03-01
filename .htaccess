@@ -10,6 +10,11 @@ RewriteCond %{REQUEST_URI} !assets/(.*)$
 RewriteCond %{REQUEST_URI} !(.*)/$
 RewriteRule ^(.*)$ $1/ [R=301]
 
+#redirects for moved pages
+RewriteRule ^contact_us/$ contactus [R=301]
+RewriteRule ^archive_info/$ archiveinfo [R=301]
+
+
 ##Rss
 RewriteRule ^rss/([a-z0-9_-]+)/$  raw.php?page=rss/$1 [NC]
 #Cruncher Re-Write Rules
