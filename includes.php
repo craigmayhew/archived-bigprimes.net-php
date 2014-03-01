@@ -29,7 +29,7 @@ if($database->connected){
     $HTMLTags = new HTMLTags();
     $generic = new generic();
     $url = new url(array('config'=>$config));
-    $primes = new primes();
+    $primes = new primes(array('database'=>$database));
     $backgroundTasks = new backgroundTasks();
     $classes = get_declared_classes();
     //Fixes slash problem with get and post vars.

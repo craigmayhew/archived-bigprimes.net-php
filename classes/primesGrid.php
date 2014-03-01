@@ -63,8 +63,7 @@ class primesGrid{
     */
     private function isPrimeDatabase($n){
         if(!is_numeric($n)){
-            mail('admin@adire.co.uk','Big Primes','Holy moly someone tried an sql injection?! error 3785');
-            die();
+            die('SQL Injection Attempt?');
         }
         global $database;
         $row = $database->queryFetchRow("
@@ -211,8 +210,7 @@ class primesGrid{
     private function getTable($dif){
         $dif = (int)$dif;
         if($dif>18446744073709551615){
-            mail('admin@adire.co.uk','Big Primes','Holy moly the difference between primes is bigger then 18446744073709551615');
-            die();
+            die('Woah the difference between primes is bigger then 18446744073709551615');
         }elseif($dif>4294967295){
             $table = 5;
         }elseif($dif>16777215 && $this->tableNumber>3){

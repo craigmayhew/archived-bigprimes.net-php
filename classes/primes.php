@@ -2,6 +2,10 @@
 class primes{
     var $numbersPerRow = 100;
     var $maxPrime = 1400000000;
+    private $database;
+    function __construct($classes){
+    	$this->database = $classes['database'];
+    }
     /**
     * Gets nth prime.
     * 
@@ -9,7 +13,6 @@ class primes{
     * @return int The prime number.
     */
     public function getPrime($nth){
-        global $database;
         $prime = false;
         if($nth<=$this->maxPrime){
             //Works out what row to pull from the database.
@@ -29,7 +32,7 @@ class primes{
                 }
             }
             //Fetch row
-            $row = $database->fetchRow('primeNumbers',$cols,"id=$rowNo");
+            $row = $this->database->fetchRow('primeNumbers',$cols,"id=$rowNo");
             if(is_array($row)){
                 //echo $rowNo,'<br>';
                 //Times each dif col by two.
@@ -64,20 +67,19 @@ class primes{
     */
     public function checkPrime($num){
         $num = (int)$num;
-        global $database;
         if($num==1){
             return false;
         }
         //Fetch first row that n is bigger than or equal to given number.
-        $id = $database->fetchRow('primeNumbers',array('id'),'n>'.(int)$num);
+        $id = $this->database->fetchRow('primeNumbers',array('id'),'n>'.(int)$num);
         $id--;
         if($id == ''){
             return null;
         }elseif($id){
-            $row = $database->fetchRow('primeNumbers','*',"id=$id");
+            $row = $this->database->fetchRow('primeNumbers','*',"id=$id");
         }else{
-            $id = $database->count('primeNumbers');
-            $row = $database->fetchRow('primeNumbers','*',"id=$id");
+            $id = $this->database->count('primeNumbers');
+            $row = $this->database->fetchRow('primeNumbers','*',"id=$id");
         }
         //Checks to see if prime is with in the verified primes.
         if($row == false){
@@ -129,9 +131,8 @@ class primes{
     * @param mixed $id The id of the row to pull.
     */
     public function primeSet($id){
-        global $database;
         $id = (int)$id;
-        $row = $database->fetchRow('primeNumbers','*',"id=$id");
+        $row = $this->database->fetchRow('primeNumbers','*',"id=$id");
         //Loop through each number and add them together.
         $n = 0;
         $haveNumber = false;
@@ -159,7 +160,6 @@ class primes{
     * 
     */
     public function numRows(){
-        global $database;
         return ($this->maxPrime / 100);
     }
 }

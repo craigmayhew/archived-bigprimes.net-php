@@ -264,7 +264,7 @@ class errors{
             $headers  = 'MIME-Version: 1.0' . "\r\n";
             $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
             //Send mail
-            $emails = array('tom@adire.co.uk','admin@adire.co.uk');
+            $emails = array('primes@bigprimes.net');
             foreach($emails as $email){
                 mail($email,'Error(ID:'.$this->errId.') on '.$config['site']['name'],$message,$headers);
             }
