@@ -4,8 +4,7 @@ if ($num < 0){
 	$num = 0;
 }
 
-$count = mysql_result(mysql_query('SELECT count(*) FROM `fibonacci_numbers`'),0);
-
+$count = $database->count('fibonacci_numbers');
 
 if ($count >= $num){
 	echo
@@ -54,7 +53,7 @@ if ($count >= $num){
 		"</tr>".
 	"</table>";
 }else{
-	echo "We haven't discovered the ".th($num)." fibonacci number yet.";
+	echo "We can't find the ".th($num)." fibonacci number in our database.";
 }
 
 echo 
