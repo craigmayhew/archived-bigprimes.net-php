@@ -10,5 +10,5 @@
     ORDER BY
         `timestamp` DESC
     ");
-    $rss->buildXML($news,'Big Primes News',$url->u(array('rss','news'),'index',true),'Big Prime news updates.');
+    echo $rss->buildXML($news,'Big Primes News',$url->u(array('rss','news'),'index',true),'Big Prime news updates.');
 ?>

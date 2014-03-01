@@ -38,7 +38,7 @@ if($database->connected){
             $_REQUEST[$k] = stripslashes($v);
         }
     }
-    $rss = new rss();
+    $rss = new rss(array('url'=>$url));
     $sumOfDigits = new sumOfDigits($primes,$database);
 }
 ?>

@@ -1,9 +1,12 @@
 <?php
 class rss{
-    var $dateFormat = '%a, %d %b %Y %T';
+    private $dateFormat = '%a, %d %b %Y %T';
+    function __construct($classes){
+    	$this->url = $classes['url'];
+    }
+    
     //Creat and output the xml for the rss feed.
     public function buildXML($rows=array(),$title='',$link='',$description='',$img=''){
-        global $url;
         if(is_array($rows) && $title && $link){
             header ("content-type: text/xml");
             echo
@@ -16,7 +19,7 @@ class rss{
                 <language>en-uk</language>
                 <generator>Meeqi RSS Generator v1.0</generator>
                 <lastBuildDate>',date('D, j M Y H:i:s'),' GMT</lastBuildDate>
-                <atom:link href="',safeXML($url->u('this')),'" rel="self" type="application/rss+xml" />'."\r";
+                <atom:link href="',safeXML($this->url->u('this')),'" rel="self" type="application/rss+xml" />'."\r";
                 if($img){
                     echo
                     '<image>
