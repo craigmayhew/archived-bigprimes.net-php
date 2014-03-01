@@ -28,7 +28,7 @@ if($database->connected){
     $form = new form();
     $HTMLTags = new HTMLTags();
     $generic = new generic();
-    $url = new url();
+    $url = new url(array('config'=>$config));
     $primes = new primes();
     $backgroundTasks = new backgroundTasks();
     $classes = get_declared_classes();

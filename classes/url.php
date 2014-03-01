@@ -1,8 +1,10 @@
 <?php
 class url{
-    var $url = '';
-    public function __construct(){
-        //Add the url of the current page to the $url var.
+	private $config;
+	var $url = '';
+	public function __construct($classes){
+		$this->config = $classes['config'];
+		//Add the url of the current page to the $url var.
         $this->url = isset($_SERVER['REQUEST_URI'])?$_SERVER['REQUEST_URI']:'';
         if(substr($this->url,0,1)=='/'){
             $this->url = substr($this->url,1);
@@ -39,8 +41,7 @@ class url{
         }
         //Return teh url.
         if($full){
-            global $config;
-            return $config['site']['url'].$url;
+            return $this->config['site']['url'].$url;
         }else{
             return '/'.$url;
         }
@@ -53,7 +54,6 @@ class url{
     * @return the cruncher url.
     */
     public function cruncher($no=0,$full=false){
-        global $config;
         $no = (int)$no;
         if($no==0){
             $url = 'cruncher/';
@@ -61,7 +61,7 @@ class url{
             $url = 'cruncher/'.$no.'/';
         }
         if($full){
-            $url = $config['site']['url'].$url;
+            $url = $this->config['site']['url'].$url;
         }else{
             $url = '/'.$url;
         }
@@ -74,7 +74,6 @@ class url{
     * @param mixed $full
     */
     public function primeArchive($no=0,$full=false){
-        global $config;
         $no = (int)$no;
         if($no==0){
             $url = 'archive/prime/';
@@ -82,14 +81,13 @@ class url{
             $url = 'archive/prime/'.$no.'/';
         }
         if($full){
-            $url = $config['site']['url'].$url;
+            $url = $this->config['site']['url'].$url;
         }else{
             $url = '/'.$url;
         }
         return $url;
     }
     public function fibonacciArchive($no=0,$full=false){
-        global $config;
         $no = (int)$no;
         if($no==0){
             $url = 'archive/fibonacci/';
@@ -97,7 +95,7 @@ class url{
             $url = 'archive/fibonacci/'.$no.'/';
         }
         if($full){
-            $url = $config['site']['url'].$url;
+            $url = $this->config['site']['url'].$url;
         }else{
             $url = '/'.$url;
         }
