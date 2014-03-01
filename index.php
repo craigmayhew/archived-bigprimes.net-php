@@ -32,7 +32,7 @@ if($database->connected){
     if(isset($_POST['userEmail'])&&isset($_POST['userPass'])){
         $user = new user($_POST['userEmail'],$_POST['userPass']);
     }else{
-        $user = new user(false,false);
+        $user = new user(false,false,array('database'=>$database,'generic'=>$generic));
     }
     $loginResult = $user->login();
     if(isset($_GET['logout']) == true){

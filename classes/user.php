@@ -3,7 +3,9 @@
  * A class for interacting with users
  */
 class user{
-    /**
+	private $database;
+	private $generic;
+	/**
     * $username
     * @var string
     */
@@ -36,7 +38,9 @@ class user{
     * @param string $password
     * @return 
     */
-    public function __construct($email='',$password=''){
+    public function __construct($email,$password,$objects){
+	$this->database=$objects['database'];
+	$this->generic =$objects['generic' ];    
         if(isset($_SESSION['user']['email'])&&isset($_SESSION['user']['password'])){
             if($_SESSION['user']['email']=='' && $_SESSION['user']['password']==''){
                 if($email!='' && $password!=''){
@@ -53,26 +57,25 @@ class user{
     * @return True on success or an error message on failure
     */
     public function login(){
-        global $database,$generic;
         $return = false;
         if($this->email!='' && $this->password!=''){
             $return = true;
             $email = mysql_real_escape_string($this->email);
             $password = $this->password;
             //Check to see if user name and password are correct
-            $c = $database->count('users',"email='$email' AND password='$password' AND deleted=0");
+            $c = $this->database->count('users',"email='$email' AND password='$password' AND deleted=0");
             if($c>0){
-                $userDetails = $database->fetchRow('users',array('locked'),"email='$email' AND password='$password'");
-                $locked = $database->count('users',"email='$email' AND password='$password' AND locked=1");
+                $userDetails = $this->database->fetchRow('users',array('locked'),"email='$email' AND password='$password'");
+                $locked = $this->database->count('users',"email='$email' AND password='$password' AND locked=1");
                 if($userDetails['locked']){
                     $return = $this->errors[10];
                 }else{
-                    $userId = $database->fetchRow('users',array('id'),"email='$email'");
+                    $userId = $this->database->fetchRow('users',array('id'),"email='$email'");
                     $_SESSION['user']['email'] = $email;
                     $_SESSION['user']['password'] = $password;
                     $_SESSION['user']['userId'] = $userId;
                     $_SESSION['loggedIn'] = true;
-                    $this->addLog($generic->getName($_SESSION['cms']['userId']).' logged in.');
+                    $this->addLog($this->generic->getName($_SESSION['cms']['userId']).' logged in.');
                 }
             }else{
                 $return = $this->errors[11];
@@ -86,8 +89,7 @@ class user{
     * @return 
     */
     public function logout(){
-        global $database,$generic;
-        $this->addLog($generic->getName($_SESSION['user']['userId']).' logged out.');
+        $this->addLog($this->generic->getName($_SESSION['user']['userId']).' logged out.');
         unset($_SESSION['user']);
         $_SESSION['loggedIn'] = false;
     }
@@ -103,7 +105,6 @@ class user{
     * @return 
     */
     public function addEditUser($password1,$password2,$email,$locked='',$userId=0,$ipAddress=''){
-        global $database,$generic;
         $return = true;
         //Checks the user has put the correct information into the form. If not returns an error message.
         if(($password1=='' || $password2=='') && $userId==0){
@@ -115,10 +116,10 @@ class user{
         }else{
             //Checks to see if username is already in use.
             if($userId==0){
-                $c=$database->count('users',"email='".mysql_real_escape_string($email)."'");
+                $c=$this->database->count('users',"email='".mysql_real_escape_string($email)."'");
             }else{
                 $currentEmail = $this->getDetails($_SESSION['cms']['userId'],'email');
-                $c=$database->count('users',"email='".mysql_real_escape_string($email)."' AND email!='".mysql_real_escape_string($currentEmail)."'");
+                $c=$this->database->count('users',"email='".mysql_real_escape_string($email)."' AND email!='".mysql_real_escape_string($currentEmail)."'");
             }
             if($c>0){
                 $return = $this->errors[4];
@@ -128,13 +129,13 @@ class user{
                 }
                 if($userId==0){
                     //Inserts new user into database.
-                    $database->insert('users',array('password','email'),array($password,$email));
+                    $this->database->insert('users',array('password','email'),array($password,$email));
                     if($this->userLog){
-                        $this->addLog($generic->getName($_SESSION['cms']['userId']).' added the user '.$username.'.');
+                        $this->addLog($this->generic->getName($_SESSION['cms']['userId']).' added the user '.$username.'.');
                     }
                 }else{
                     //Saves user information.
-                    $c=$database->count('users','id='.(int)$userId);
+                    $c=$this->database->count('users','id='.(int)$userId);
                     if($c>0){
                         $data = array('username'=>$username,
                                       'name'=>$name,
@@ -146,7 +147,7 @@ class user{
                         if(is_array($data2)){
                             $data = array_merge($data,$data2);
                         }
-                        $database->update($data,'users','id='.(int)$userId);
+                        $this->database->update($data,'users','id='.(int)$userId);
                         if($this->userLog){
                             $this->addLog($this->getDetails($_SESSION['cms']['userId'],'email').' edited the user '.$username.'.');
                         }
@@ -166,9 +167,8 @@ class user{
     * @return 
     */
     public function addLog($action){
-        global $database;
         if($this->userLog){
-            $database->insert('log',array('action'),array($action));
+            $this->database->insert('log',array('action'),array($action));
         }
     }
     /**
@@ -178,14 +178,12 @@ class user{
     * @return array Returns an array of logs.
     */
     public function getDetails($userId,$cols='*'){
-        global $database;
-        
         $userId = (double)$userId;
         
         if(is_string($cols) && $cols!='*'){
             $cols = array($cols);
         }
-        $userRow = $database->fetchRow('users',$cols,"id=$userId");
+        $userRow = $this->database->fetchRow('users',$cols,"id=$userId");
         return $userRow;
     }
     /**
@@ -194,11 +192,9 @@ class user{
     * @return array User's table row
     */
     public function getPermsissionName($permissionId){
-        global $database;
-        
         $permissionId = (double)$permissionId;
         
-        $name = $database->fetchRow('userPermissions',array('name'),"id=$permissionId");
+        $name = $this->database->fetchRow('userPermissions',array('name'),"id=$permissionId");
         return $name;
     }
     /**
@@ -207,7 +203,6 @@ class user{
     * @return bool True on success, an error string on failure.
     */
     public function deleteUsers($userIds){
-        global $database,$generic;
         $return = true;
         //This is so you can give it a single numeric value and it still works
         if(is_numeric($userIds)){
@@ -226,8 +221,8 @@ class user{
         //Delets users
         if($return === true){
             foreach($userIds as $id){
-                $database->update(array('deleted'=>1),'users','id='.(double)$id);
-                $this->addLog($generic->getName($_SESSION['cms']['userId']). 'deleted the user '.$generic->getName($id));
+                $this->database->update(array('deleted'=>1),'users','id='.(double)$id);
+                $this->addLog($this->generic->getName($_SESSION['cms']['userId']). 'deleted the user '.$this->generic->getName($id));
             }
         }
         return $return;
@@ -238,7 +233,6 @@ class user{
     * @return bool True on success, an error string on failure.
     */
     public function lockUsers($userIds){
-        global $database,$generic;
         $return = true;
         //This is so you can give it a single numeric value and it still work.
         if(is_numeric($userIds)){
@@ -256,8 +250,8 @@ class user{
         if($return === true){
             foreach($userIds as $id){
                 $locked = $this->getDetails($id,'locked');
-                $database->update(array('locked'=>!$locked),'users','id='.(double)$id);
-                $this->addLog($generic->getName($_SESSION['cms']['userId']).' has locked the user '.$generic->getName($id),'.');
+                $this->database->update(array('locked'=>!$locked),'users','id='.(double)$id);
+                $this->addLog($this->generic->getName($_SESSION['cms']['userId']).' has locked the user '.$this->generic->getName($id),'.');
             }
         }
         return $return;
@@ -268,8 +262,6 @@ class user{
     * @return bool True on success, an error string on failure.
     */
     public function search($searchString){
-        global $database;
-        
         $searchString = mysql_real_escape_string($searchString);
         
         $searchStringEx = explode(' ',$searchString);
@@ -278,7 +270,7 @@ class user{
             $where.="(users.username LIKE '%$word%' OR users.name LIKE '%$word%' OR users.email LIKE '%$word%') AND";
         }
         $where = rtrim($where,' AND');
-        $rows = $database->queryFetchRows('
+        $rows = $this->database->queryFetchRows('
             SELECT
                 users.username,
                 users.name,
@@ -303,8 +295,7 @@ class user{
     * @return bool True if user is super user, false if not.
     */
     public function isSuperUser($userId){
-        global $database;
-        $c=$database->count('users',"superUser=1");
+        $c=$this->database->count('users',"superUser=1");
         return $c;
     }
     /**
@@ -314,7 +305,6 @@ class user{
     * @return array Returns an array of logs.
     */
     public function getLog($when='all',$howMany=''){
-        global $database;
         $whenWhere = '';
         $secondInADay = (60*60*24);
         if($when == 'today'){
@@ -336,9 +326,9 @@ class user{
             $thirtyDays = $secondInADay*30;
             $whenWhere = "(timestamp<'".date('Y-m-d 00:00:00',time()-$sixDays)."' AND timestamp>'".date('Y-m-d 00:00:00',(time()-$thirtyDays))."')";
         }
-        $c = $database->count('log',$whenWhere);
+        $c = $this->database->count('log',$whenWhere);
         if($c){
-            $rows = $database->fetchRows('log',array('action'),$whenWhere,$howMany,'timestamp DESC');
+            $rows = $this->database->fetchRows('log',array('action'),$whenWhere,$howMany,'timestamp DESC');
         }else{
             $rows = array();
         }
