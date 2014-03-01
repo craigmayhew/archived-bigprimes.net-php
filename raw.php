@@ -11,7 +11,10 @@ require_once('functions/generic.php');
 require_once('includes.php');
 
 //page stuff
-$page = basename(isset($_REQUEST['page'])?$_REQUEST['page']:'/');
+$page = isset($_REQUEST['page'])?$_REQUEST['page']:'/';
+$page = filter_var($page, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW); 
+$page = filter_var($page, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH); 
+$page = preg_filter("/^[a-zA-Z0-9\\/]+$/", '$0', $page);
 if($database->connected){
     if ($page != ''){
         if (file_exists('raw/'.$page.'.php')){
