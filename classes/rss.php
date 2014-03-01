@@ -17,7 +17,7 @@ class rss{
                 <link>',safeXML($link),'</link>
                 <description>',safeXML($description),'</description>
                 <language>en-uk</language>
-                <generator>Meeqi RSS Generator v1.0</generator>
+                <generator>BigPrimes.net RSS Generator v1.0</generator>
                 <lastBuildDate>',date('D, j M Y H:i:s'),' GMT</lastBuildDate>
                 <atom:link href="',safeXML($this->url->u('this')),'" rel="self" type="application/rss+xml" />'."\r";
                 if($img){
