@@ -7,10 +7,15 @@ class primesGrid{
     var $chunkFileName = 'lastChunk.txt';
     var $createdTables = array();
     var $currentTable = 1;
-    public function __construct(){
-        global $database,$last,$unitManagment;
-        //Retrieves last chunk from file.
-        $this->getCurrentTable();
+    private $database;
+    private $last;
+    private $unitManagment;
+    public function __construct($classes){
+		$this->database = $classes['database'];
+		$this->last = $classes['last'];
+		$this->unitManagment = $classes['unitManagment'];
+		//Retrieves last chunk from file.
+		$this->getCurrentTable();
     }
     /**
     * Gets nth prime.
@@ -19,7 +24,6 @@ class primesGrid{
     * @return int The prime number.
     */
     public function getPrime($nth){
-        global $database;
         if($nth<100){
             $row=1;
         }else{
@@ -65,8 +69,7 @@ class primesGrid{
         if(!is_numeric($n)){
             die('SQL Injection Attempt?');
         }
-        global $database;
-        $row = $database->queryFetchRow("
+        $row = $this->database->queryFetchRow("
             SELECT
                 *
             FROM
@@ -101,18 +104,16 @@ class primesGrid{
     * @param array $primes Array of prime numbers to be added.
     */
     public function addPrimes($primes){
-        global $unitManagment;
-        if(count($unitManagment->lastChunk)!=0){
-            $primes = array_merge($unitManagment->lastChunk,$primes);
+        if(count($this->unitManagment->lastChunk)!=0){
+            $primes = array_merge($this->unitManagment->lastChunk,$primes);
         }
         $primeChunks = array_chunk($primes,100);
         foreach($primeChunks as $chunk){
             if(count($chunk)<100){
-                $unitManagment->lastChunk = $chunk;
+                $this->unitManagment->lastChunk = $chunk;
                 return $chunk;
             }else{
                 $tables = array();
-                global $database;
                 $i=1;
                 foreach($chunk as $prime){
                     if($i==1){
@@ -142,7 +143,7 @@ class primesGrid{
                     $table = 'primeNumbers'.$this->currentTable;
                 }
                 $this->insertInToDatabase($table,$cols,$data);
-                $unitManagment->lastChunk = array();
+                $this->unitManagment->lastChunk = array();
             }
             unset($cols,$data,$lastPrime,$tables);
         }
@@ -157,8 +158,7 @@ class primesGrid{
     */
     private function insertInToDatabase($table,$cols,$data){
         $table = mysql_real_escape_string($table);
-        global $database;
-        if(!in_array($table,$this->createdTables) && !$database->tableExists($table)){
+        if(!in_array($table,$this->createdTables) && !$this->database->tableExists($table)){
             if($table == 'primeNumbers'){
                 $intSize = 'TINYINT';
             }elseif($table == 'primeNumbers2'){
@@ -183,7 +183,7 @@ class primesGrid{
                 PRIMARY KEY ( `id` )
                 ) ENGINE = MYISAM
             ";
-            $database->query($query);
+            $this->database->query($query);
             $this->createdTables[] = $table;
         }elseif(!in_array($table,$this->createdTables)){
             $this->createdTables[] = $table;
@@ -229,16 +229,15 @@ class primesGrid{
     * 
     */
     private function getCurrentTable(){
-        global $database;
-        if($database->tableExists('primeNumber5')){
+        if($this->database->tableExists('primeNumber5')){
             $this->currentTable = 5;
-        }elseif($database->tableExists('primeNumber4')){
+        }elseif($this->database->tableExists('primeNumber4')){
             $this->currentTable = 4;
-        }elseif($database->tableExists('primeNumber3')){
+        }elseif($this->database->tableExists('primeNumber3')){
             $this->currentTable = 3;
-        }elseif($database->tableExists('primeNumber2')){
+        }elseif($this->database->tableExists('primeNumber2')){
             $this->currentTable = 2;
-        }elseif($database->tableExists('primeNumber1')){
+        }elseif($this->database->tableExists('primeNumber1')){
             $this->currentTable = 1;
         }else{
             $this->currentTable = 1;
@@ -250,11 +249,10 @@ class primesGrid{
     * @param array $chunk Uncomplete chunk.
     */
     public function saveUncompleteChunk($chunk){
-        global $last;
         if(is_array($chunk)){
-            $last->update('chunk',serialize($chunk));
+            $this->last->update('chunk',serialize($chunk));
         }else{
-            $last->update('chunk','');
+            $this->last->update('chunk','');
         }
     }
 }

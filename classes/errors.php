@@ -55,8 +55,9 @@ class errors{
     * @param bool $debug Flag 
     * @return NULL
     */
-    public function __construct($debug=false){
-        global $config;
+    public function __construct($classes,$debug=false){
+      $this->config = $classes['config'];
+      $this->database = $classes['database'];
         //Set delbug level.
         $this->debug = $debug;
         //Take over php error handerling.
@@ -218,36 +219,34 @@ class errors{
         $url                    = isset($_SERVER['REQUEST_URI'])?$_SERVER['REQUEST_URI']:'';
         $urlSHA                 = sha1($url);
         
-        global $database;
-
         //Check to see if the error message has occured in the database already...
-        $c = $database->count('errorLogMessage','sha="'.$errorMessageSHA.'"');
+        $c = $this->database->count('errorLogMessage','sha="'.$errorMessageSHA.'"');
         if ($c == 0){//add the message to the message lookup table if its not already in there
-            $database->insert('errorLogMessage',array('message','sha'),array($this->errMessage,$errorMessageSHA));
-            $messageId = $database->lastId;
+            $this->database->insert('errorLogMessage',array('message','sha'),array($this->errMessage,$errorMessageSHA));
+            $messageId = $this->database->lastId;
         }else{
-            $messageId = $database->fetchRow('errorLogMessage',array('id'),'sha="'.$errorMessageSHA.'"');
+            $messageId = $this->database->fetchRow('errorLogMessage',array('id'),'sha="'.$errorMessageSHA.'"');
         }
         //Check to see if the error backtrace has occured in the database already...
-        $c = $database->count('errorLogBacktrace','sha="'.$backtraceSHA.'"');
+        $c = $this->database->count('errorLogBacktrace','sha="'.$backtraceSHA.'"');
         if ($c == 0){//add the backtrace to the backtrace lookup table if its not already in there
-            $database->insert('errorLogBacktrace',array('backtrace','sha'),array($backtraceSerialized,$backtraceSHA));
-            $backtraceId = $database->lastId;
+            $this->database->insert('errorLogBacktrace',array('backtrace','sha'),array($backtraceSerialized,$backtraceSHA));
+            $backtraceId = $this->database->lastId;
         }else{
-            $backtraceId = $database->fetchRow('errorLogBacktrace',array('id'),'sha="'.$backtraceSHA.'"');
+            $backtraceId = $this->database->fetchRow('errorLogBacktrace',array('id'),'sha="'.$backtraceSHA.'"');
         }
         //Check to see if the url has occured in the database already...
-        $c = $database->count('errorLogUrl','sha="'.$urlSHA.'"');
+        $c = $this->database->count('errorLogUrl','sha="'.$urlSHA.'"');
         if ($c == 0){//add the backtrace to the backtrace lookup table if its not already in there
-            $database->insert('errorLogUrl',array('url','sha'),array($url,$urlSHA));
-            $urlId = $database->lastId;
+            $this->database->insert('errorLogUrl',array('url','sha'),array($url,$urlSHA));
+            $urlId = $this->database->lastId;
         }else{
-            $urlId = $database->fetchRow('errorLogUrl',array('id'),'sha="'.$urlSHA.'"');
+            $urlId = $this->database->fetchRow('errorLogUrl',array('id'),'sha="'.$urlSHA.'"');
         }
         
         //add the error to the errorLog table
-        $database->insert('errorLog',array('messageId','backtraceId','ip','url'),array($messageId,$backtraceId,$_SERVER['REMOTE_ADDR'],$urlId));
-        $unqueErrorCode = $database->lastId;
+        $this->database->insert('errorLog',array('messageId','backtraceId','ip','url'),array($messageId,$backtraceId,$_SERVER['REMOTE_ADDR'],$urlId));
+        $unqueErrorCode = $this->database->lastId;
         return array($unqueErrorCode,$messageId);
     }
     /**
@@ -255,8 +254,7 @@ class errors{
     * @return 
     */
     private function mailError($message,$messageId){
-        global $config,$database;
-        $c = $database->count('errorLogMessage',"id=$messageId AND DATE_SUB(CURRENT_TIMESTAMP,INTERVAL 1 HOUR)>lastEmailed");
+        $c = $this->database->count('errorLogMessage',"id=$messageId AND DATE_SUB(CURRENT_TIMESTAMP,INTERVAL 1 HOUR)>lastEmailed");
         if($this->mailOnce==false){
             $c=1;
         }
@@ -268,7 +266,7 @@ class errors{
             foreach($emails as $email){
                 mail($email,'Error(ID:'.$this->errId.') on '.$config['site']['name'],$message,$headers);
             }
-            $database->update(array('lastEmailed'=>'CURRENT_TIMESTAMP'),'errorLogMessage',"id=$messageId");
+            $this->database->update(array('lastEmailed'=>'CURRENT_TIMESTAMP'),'errorLogMessage',"id=$messageId");
         }
         
     }
@@ -321,11 +319,10 @@ class errors{
                                               PRIMARY KEY (`id`),
                                               UNIQUE KEY `sha` (`sha`)
                                             ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=147 ;");
-        global $database;
         //Adds tables if they do not already exists
         foreach($tables as $table=>$sql){
-            if(!$database->tableExists($table)){
-                $database->createTable($sql);
+            if(!$this->database->tableExists($table)){
+                $this->database->createTable($sql);
             }
         }
         return true;

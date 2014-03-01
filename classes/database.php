@@ -38,11 +38,13 @@ class database{
     */
     var $logQuerys = false;
     var $connected = false;
+    private $config;
     /**
     * Connect to the database, create a database log table if one doesn't exist.
     */
-    function __construct($host,$username,$password,$db,$databaseType='mysql',$create=true){
-        $this->databaseType = $databaseType;
+    function __construct($classes,$host,$username,$password,$db,$databaseType='mysql',$create=true){
+		$this->config = $classes['config'];    
+		$this->databaseType = $databaseType;
         $connect =  $this->databaseType.'Connect';
         $this->$connect($host,$username,$password,$db,$create);
         if($this->connected){
@@ -656,9 +658,8 @@ class database{
     * @return bool
     */
     private function mysqlTableExists($tableName){
-        global $config;
         $return = false;
-        $result = mysql_list_tables($config['db']['db']);
+        $result = mysql_list_tables($this->config['db']['db']);
         $num_rows = mysql_num_rows($result);
         for ($i = 0; $i < $num_rows; $i++) {
             $table = mysql_tablename($result, $i);

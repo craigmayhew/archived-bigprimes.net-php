@@ -211,9 +211,6 @@ function buildUrl($vars_in=false,$driver=0,$config){
 	if($driver===0)
 	{	$file = "index.php";
 	}
-	elseif($driver===1 or $driver===true)
-	{	$file = "popup.php";
-	}
 	elseif($driver===2)
 	{	$file = "raw.php";
 	}
@@ -221,15 +218,6 @@ function buildUrl($vars_in=false,$driver=0,$config){
 	{	$file = "index.php";
 	}
 	if($vars_in==false) $vars_in = array();
-	if(isset($config['persistant_variables'])&&is_array($config['persistant_variables'])){
-		foreach($config['persistant_variables'] as $gv){
-			global $$gv;
-			if(!isset($vars_in[$gv])){
-				if(isset($$gv)) $vars[$gv] = urlencode($$gv);
-				elseif(isset($_REQUEST[$gv])) $vars[$gv] = urlencode($_REQUEST[$gv]);
-			}
-		}
-	}
 		
 	if(!isset($vars)) $vars=array();
 	if(!is_array($vars)) $vars=array();
@@ -243,18 +231,6 @@ function buildUrl($vars_in=false,$driver=0,$config){
 	unset($vars1,$k,$v);	
 	return "/$file?$vars";
 }
-
-/*function insert($string,$html=false){
-    if($html == false){
-        $string = strip_tags($string);
-    }
-    //$string = stripcslashes($string);
-    //$string = stripcslashes($string);
-    //$string = stripcslashes($string);
-	$string = trim($string);
-    //$string = mysql_escape_string($string);
-	return $string;
-}*/
 
 //used to make invalid xml into valid xml .. e.g. sanitize data from database
 function safeXML($str){

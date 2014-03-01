@@ -15,7 +15,7 @@ if ($dh = opendir($dir)) {
     closedir($dh);
 }
 //Create database class instance
-$database = new database($config['db']['host'],$config['db']['user'],$config['db']['pass'],$config['db']['db']);
+$database = new database(array('config'=>$config),$config['db']['host'],$config['db']['user'],$config['db']['pass'],$config['db']['db']);
 if($database->connected){
     if(isset($c) && $c>0){
         $debug=true;
@@ -23,11 +23,11 @@ if($database->connected){
         $debug=false;
     }
     //Config saved in database
-    $errors = new errors(true);
+    $errors = new errors(array('config'=>$config,'database'=>$database));
     //create some instances of classes
     $form = new form();
     $HTMLTags = new HTMLTags();
-    $generic = new generic();
+    $generic = new generic(array('database'=>$database));
     $url = new url(array('config'=>$config));
     $primes = new primes(array('database'=>$database));
     $backgroundTasks = new backgroundTasks();

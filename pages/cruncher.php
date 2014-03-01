@@ -366,7 +366,7 @@ if ($number > 0){
 	$is_number = is_number($number);
 	
 	if ($is_number && $number != 0){
-		echo '<b>The number you submitted to be crunched was:</b><h1>',strrev(wordwrap(strrev($number),3," ",1)),' - ',convertNum($_REQUEST['number']),'</h1>';
+		echo '<b>The number you submitted to be crunched was:</b><h1>',strrev(wordwrap(strrev($number),3," ",1)),' - ',convertNum($_REQUEST['number'], $ones, $tens, $triplets),'</h1>';
 	
 		echo "<table class=\"text\" width='100%' border='1' cellspacing='0' cellpadding='2' bgcolor='$table_color'><tr><td>";//begin table
 			//odd or even?

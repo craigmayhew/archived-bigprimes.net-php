@@ -1,8 +1,8 @@
 <?php
 class sumOfDigits{
-    var $primes;
-    var $database;
     var $values=array();
+    private $database;
+    private $primes;
     public function __construct(&$primes,&$database){
         $this->primes = &$primes;
         $this->database = &$database;
@@ -56,9 +56,8 @@ class sumOfDigits{
         }
     }
     public function get($digits){
-        global $database;
         $digits = (int)$digits;
-        $sums = $database->fetchRows('sumOfDigits',array('sum','count'),"`digits`=$digits",'','`sum`');
+        $sums = $this->database->fetchRows('sumOfDigits',array('sum','count'),"`digits`=$digits",'','`sum`');
         return $sums;
     }
 }

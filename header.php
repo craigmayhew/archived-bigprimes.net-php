@@ -55,7 +55,7 @@ if ($_SERVER['PHP_SELF'] == '/archive/prime.php'){
     $metaTagDescription .= 'square numbers';
     $metaTagKeywords    .= 'square numbers';
 }elseif (isset($_REQUEST['number']) && stristr($_SERVER['REQUEST_URI'],'cruncher')){
-    $title .= (int)$_REQUEST['number'].' - '.convertNum((int)$_REQUEST['number']).' - Big Primes';
+    $title .= (int)$_REQUEST['number'].' - '.convertNum((int)$_REQUEST['number'], $ones, $tens, $triplets).' - Big Primes';
 }elseif ($_SERVER['PHP_SELF'] == '/cruncher.php'){
     $number = (int)$_REQUEST['number'];
     if ($number == 0){

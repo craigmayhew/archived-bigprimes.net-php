@@ -55,9 +55,7 @@ $triplets = array(
 );
 
  // recursive fn, converts three digits per pass
- function convertTri($num, $tri) {
-  global $ones, $tens, $triplets;
-
+ function convertTri($num, $tri, $ones, $tens, $triplets) {
   // chunk the number, ...rxyy
   //$r = (int) bcdiv($num,1000);
   $r = bcdiv($num,1000);
@@ -86,24 +84,19 @@ $triplets = array(
   
   // continue recursing?
   if ($r > 0){
-   return convertTri($r, bcadd($tri,1)).$str;
+   return convertTri($r, bcadd($tri,1), $ones, $tens, $triplets).$str;
   }else{
    return $str;
   }
  }
 
 // returns the number as an anglicized string
-function convertNum($num) {
- //$num = (int) $num;    // make sure it's an integer
-
- //if ($num < 0)
-  //return "negative".convertTri(-$num, 0);
-
+function convertNum($num, $ones, $tens, $triplets) {
  if (!bccomp($num,0)){//same as $num==0
     return 'zero';
  }
 
- return convertTri($num, 0);
+ return convertTri($num, 0, $ones, $tens, $triplets);
 }
 
 function randThousand() {
