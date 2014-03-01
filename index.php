@@ -1,13 +1,6 @@
 <?php
 ob_start("ob_gzhandler");
 
-//load the config array
-require_once('config/site.config.php');
-
-//load the generic functions
-require_once('functions/include_functions.php');
-require_once('functions/numbers.php');
-require_once('functions/generic.php');
 require_once('includes.php');
 
 //page stuff

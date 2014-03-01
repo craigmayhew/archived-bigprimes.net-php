@@ -103,17 +103,6 @@ function displayError($error,$sizeOfBox = 200,$center = false){
         echo '</div>';
     }
 }
-function roundUp($int){
-    if(stristr($int,".") == true){
-        $exploded = explode(".",$int);
-        if(strlen($exploded[1]) > 2){
-            $exploded[1] = substr($exploded[1],0,2).".".substr($exploded[1],2)."<br>";
-            $int = $exploded[0].".".ceil($exploded[1]);
-        }
-    }
-    return $int;
-
-}
 //This returns the date ina readble format.
 function formatDate($date,$seperater="/"){
     $date = substr($date,6).$seperater.substr($date,4,2).$seperater.substr($date,0,4);
