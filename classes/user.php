@@ -27,7 +27,7 @@ class user{
                         4=>'Sorry, that username is already in use.',
                         5=>'Sorry, you do not have permissions to do that.',
                         6=>'Sorry, an error occured please try again.',
-                        7=>'Sorry, you can\'t change this permission.',
+                        7=>'Sorry, you cannot change this permission.',
                         8=>'Please insert a valid ip address.',
                         9=>'This user has been locked down to a specific ip address.',
                         10=>'Sorry this account has been locked.',
