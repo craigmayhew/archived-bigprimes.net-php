@@ -10,10 +10,10 @@ if ($count >= $num){
 	echo
 	"<h1>Fibonacci Archive</h1>
     This page shows the ".th($num+1)." fibonacci number";
-	$num_left = $count - $num;
-	if ($num_left == 0){
+	$numleft = $count - $num;
+	if ($numleft == 0){
 	
-	}elseif ($num_left < 24){
+	}elseif ($numleft < 24){
 		echo
 		" followed by the next ".$numleft;
 	}else{
