@@ -1,3 +1,7 @@
+h1   {  font-size: 18px;}
+img  {  border: 0;}
+table{  border-collapse: collapse;}
+
 .text {
  font-family: 'Lucida Grande',Tahoma,Verdana,Helvetica,sans-serif;
  font-size: 12px;
@@ -47,13 +51,7 @@ a:hover.sidebarlink {
  color: #000000;
  text-decoration: none;
 }
-table{
-	border-collapse:collapse;
-}
-img {
-	border: 0;
-}
-h1{font-size: 18px;}
+
 .table td{border:1px solid #000000}
 /*used in primes.php*/
 .primeTableCell {
