@@ -8,13 +8,6 @@ class functions_generic extends PHPUnit_Framework_TestCase
 		// Assert
 		$this->assertEquals('&amp;', $a);
 	}
-	public function test_generateString()
-	{
-		$len = 6;
-		$str = generateString($len);
-		// Assert
-		$this->assertEquals($len,strlen($str));
-	}
 	public function test_getKey()
 	{
 		$arr = array(9,8,7,6);
