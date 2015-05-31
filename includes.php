@@ -38,7 +38,6 @@ if($database->connected){
     $generic = new generic(array('database'=>$database));
     $url = new url(array('config'=>$config));
     $primes = new primes(array('database'=>$database));
-    $backgroundTasks = new backgroundTasks();
     $classes = get_declared_classes();
     //Fixes slash problem with get and post vars.
     if(is_array($_REQUEST) && get_magic_quotes_gpc()){
