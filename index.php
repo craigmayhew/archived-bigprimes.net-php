@@ -23,26 +23,14 @@ if($database->connected){
         unset($_GET['page']);
         $page = 'index';
     }
-
-    //login or logout
-    if(isset($_POST['userEmail'])&&isset($_POST['userPass'])){
-        $user = new user($_POST['userEmail'],$_POST['userPass']);
-    }else{
-        $user = new user(false,false,array('database'=>$database,'generic'=>$generic));
-    }
-    $loginResult = $user->login();
-    if(isset($_GET['logout']) == true){
-        $user->logout();
-    }
 }
 if(isset($_GET['page']) && isset($_GET['num'])){
     if($_GET['page'] == 'archive/prime' && $_GET['num']>($primes->maxPrime/100)){
         $page = '404';
     }
 }
-echo $loginResult;
-//Main site includes.
 
+//Main site includes.
 if($page=='404'){
     require_once('header.php');
     require_once('err/404.php');
@@ -54,4 +42,3 @@ if($page=='404'){
     require_once('pages/'.$page.'.php');
     require_once('footer.php');
 }
-?>
