@@ -5,7 +5,7 @@ $config['site']['name'] = 'BigPrimes';
 //SQL vars
 $config['db']['user'] = 'bigprime_user';
 $config['db']['host'] = 'localhost';
-$config['db']['pass'] = 'eleventysevenrambocheese666';
+$config['db']['pass'] = getenv('bigprimesDBPass');
 $config['db']['db']   = 'bigprime_db';
 
 $config['email'] = 'primes@bigprimes.net';
