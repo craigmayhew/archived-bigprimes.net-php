@@ -26,4 +26,9 @@ Watch this space for an open source GPU client coming soon...','date'=>'13th Jul
   array('description'=>'We have managed to archive the first 1 million prime numbers.','date'=>'13th May 2005')
 );
 
+foreach($news as $k=>$v){
+  $news[$k]['title'] = substr($news[$k]['description'],0,100);
+  $news[$k]['link' ] = '';
+}
+
 echo $rss->buildXML($news,'Big Primes News',$url->u(array('rss','news'),'index',true),'Big Prime news updates.');
