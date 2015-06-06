@@ -28,7 +28,7 @@ if ($count >= $num){
 	
 	echo "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"text\"><tr><td>";
 	while ($row = mysql_fetch_array($query,MYSQL_ASSOC)){
-		echo "<a class=\"link\" href=\"".$url->cruncher($row['number'])."\">".$row['number']."</a><br />";
+		echo '<a class="link" href="/number/">'.$row['number'].'</a><br />';
 	}
 	echo "</td></tr></table>";
 
@@ -39,14 +39,14 @@ if ($count >= $num){
 			"<td align=\"left\" width=\"180\">";
 				if (($num-25) >= 0){
 					echo
-					"<a class=\"link\" href=\"",$url->fibonacciArchive($num-25),"\">previous 25 fibonacci numbers</a>";
+					'<a class="link" href="/archive/fibonacci/'.($num-25).'/">previous 25 fibonacci numbers</a>';
 				}
 			echo
 			"</td>".
 			"<td align=\"right\" width=\"180\">";
 				if (($num+25) <= $count){
 					echo
-					"<a class=\"link\" href=\"",$url->fibonacciArchive($num+25),"\">next 25 fibonacci numbers</a>";
+					'<a class="link" href="/archive/fibonacci/'.($num+25).'/">next 25 fibonacci numbers</a>';
 				}
 			echo
 			"</td>".
@@ -61,8 +61,7 @@ echo
 "<form action='' method='get' target='_top'>Display the <input name=\"num\" type=\"text\" value=\"\" /> fibonacci number <input type=\"submit\" value=\"Go\" /><input type='hidden' name='page' value='archive/fibonacci' />
 </form>".
 "<br /><br /><br />".
-"<a class=\"link\" href=\"",$url->fibonacciArchive(100),"\">100th Fibonacci Number</a><br />".
-"<a class=\"link\" href=\"",$url->fibonacciArchive(1000),"\">1000th Fibonacci Number</a><br />".
-"<a class=\"link\" href=\"",$url->fibonacciArchive(10000),"\">10000th Fibonacci Number</a><br />".
-"<a class=\"link\" href=\"",$url->fibonacciArchive($count),"\">Our Biggest Fibonacci Number</a><br />";
-?>
+'<a class="link" href="/archive/fibonacci/100/">100th Fibonacci Number</a><br />'.
+'<a class="link" href="/archive/fibonacci/1000/">1000th Fibonacci Number</a><br />'.
+'<a class="link" href="/archive/fibonacci/10000/">10000th Fibonacci Number</a><br />'.
+'<a class="link" href="/archive/fibonacci/'.$count.'/">Our Biggest Fibonacci Number</a><br />';

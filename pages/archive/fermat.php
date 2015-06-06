@@ -15,7 +15,7 @@ echo "
  <td>11</td>	
  <td>2<sup>2048</sup>+1</td>
  <td></td>
- <td><a href=\"../cruncher.php?number=319489\">P27567</a> × 974849 × 167988556341760475137 × 3560841906445833920513 × <a href=\"".$url->cruncher(4093)."\">P564</a></td>
+ <td><a href=\"/cruncher/319489/\">P27567</a> × 974849 × 167988556341760475137 × 3560841906445833920513 × <a href=\"/cruncher/4093/\">P564</a></td>
  <td width=\"30\"></td>
  <td width=\"30\"></td>
  <td width=\"30\"></td>
@@ -26,7 +26,7 @@ echo "
  <td>10</td>	
  <td>2<sup>1024</sup>+1</td>
  <td></td>
- <td>45592577 × 6487031809 × 4659775785220018543264560743076778192897 × <a href=\"".$url->cruncher(1601)."\">P252</a></td>
+ <td>45592577 × 6487031809 × 4659775785220018543264560743076778192897 × <a href=\"/cruncher/1601/\">P252</a></td>
  <td></td>
  <td></td>
  <td></td>
@@ -37,7 +37,7 @@ echo "
  <td>9</td>
  <td>2<sup>512</sup>+1</td>
  <td></td>
- <td>2424833 × 7455602825647884208337395736200454918783366342657 × <a href=\"".$url->cruncher(523).".\">P99</a></td>
+ <td>2424833 × 7455602825647884208337395736200454918783366342657 × <a href=\"/cruncher/523/\">P99</a></td>
  <td><a href=\"/pages/archive/fermat/F9.txt\">TXT</a></td>
  <td></td>
  <td></td>
@@ -48,7 +48,7 @@ echo "
  <td>8</td>
  <td>2<sup>256</sup>+1</td>
  <td></td>
- <td>1238926361552897 × <a href=\"".$url->cruncher(293)."\">P62</a></td>
+ <td>1238926361552897 × <a href=\"/cruncher/293/\">P62</a></td>
  <td><a href=\"/pages/archive/fermat/F8.txt\">TXT</a></td>
  <td></td>
  <td></td>
@@ -144,11 +144,3 @@ echo "
 </tr>
 </table>
 ";
-
-//there are 1.4*10<sup>297</sup> primes smaller than 300 digits
-//
-//there is// always a prime between n^2 and (n+1)^2.
-//
-//$x=10000;
-//echo log($x);
-?>

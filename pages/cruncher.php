@@ -594,10 +594,10 @@ if ($number > 0){
 	<form name=\"crunchy\" action='/index.php?page=cruncher' method='get' target='_top'>
 	<table width='200' border='0' cellspacing='0' cellpadding='2'>
 	  <tr>
-		<td><textarea name='number' cols='85' rows='10' onkeydown=\"if (event.keyCode == 13){document.location='".$url->cruncher()."'+crunchy.number.value+'/'}\">".$number."</textarea></td>
+		<td><textarea name='number' cols='85' rows='10' onkeydown=\"if (event.keyCode == 13){document.location='/cruncher/'+crunchy.number.value+'/'}\">".$number."</textarea></td>
 	  </tr>
 	  <tr>
-		<td align='center'><input type='button' value='Crunch' onclick=\"document.location='".$url->cruncher()."'+crunchy.number.value+'/'\" /></td>
+		<td align='center'><input type='button' value='Crunch' onclick=\"document.location='/cruncher/'+crunchy.number.value+'/'\" /></td>
 	  </tr>
 	</table>
     <input type='hidden' name='page' value='",$_GET['page'],"' />

@@ -1,8 +1,7 @@
 <?php
 class rss{
   private $dateFormat = '%a, %d %b %Y %T';
-  function __construct($classes){
-  	$this->url = $classes['url'];
+  function __construct(){
   }
 
   //used to make invalid xml into valid xml .. e.g. sanitize data from database
@@ -27,7 +26,7 @@ class rss{
         <language>en-uk</language>
         <generator>BigPrimes.net RSS Generator v1.0</generator>
         <lastBuildDate>',date('D, j M Y H:i:s'),' GMT</lastBuildDate>
-        <atom:link href="',self::safeXML($this->url->u('this')),'" rel="self" type="application/rss+xml" />'."\r";
+        <atom:link href="/" rel="self" type="application/rss+xml" />'."\r";
         if($img){
             echo
             '<image>

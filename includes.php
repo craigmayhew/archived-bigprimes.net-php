@@ -33,7 +33,6 @@ if($database->connected){
     $errors = new errors(array('config'=>$config,'database'=>$database));
     //create some instances of classes
     $generic = new generic(array('database'=>$database));
-    $url = new url(array('config'=>$config));
     $primes = new primes(array('database'=>$database));
     $classes = get_declared_classes();
     //Fixes slash problem with get and post vars.
@@ -42,7 +41,6 @@ if($database->connected){
             $_REQUEST[$k] = stripslashes($v);
         }
     }
-    $rss = new rss(array('url'=>$url));
+    $rss = new rss();
     $sumOfDigits = new sumOfDigits($primes,$database);
 }
-?>

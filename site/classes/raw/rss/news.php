@@ -31,4 +31,4 @@ foreach($news as $k=>$v){
   $news[$k]['link' ] = '';
 }
 
-echo $rss->buildXML($news,'Big Primes News',$url->u(array('rss','news'),'index',true),'Big Prime news updates.');
+echo $rss->buildXML($news,'Big Primes News','/rss/news/','Big Prime news updates.');
