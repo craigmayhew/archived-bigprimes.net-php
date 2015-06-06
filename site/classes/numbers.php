@@ -24,12 +24,12 @@ class numbers{
     $x = bcmod(bcdiv($num,100),10);
     $y = bcmod($num,100);
 
-    // init the output string
-    $str = '';
-
     // do hundreds
     if ($x > 0){
       $str = self::$ones[$x] . " hundred";
+    }else{
+      // init the output string
+      $str = '';
     }
 
     // do ones and tens
@@ -40,8 +40,8 @@ class numbers{
     }
     // add triplet modifier only if there
     // is some output to be modified...
-    if ($str != '' && isset($triplets[$tri])){
-      $str .= $triplets[$tri];
+    if ($str != '' && isset(self::$triplets[$tri])){
+      $str .= self::$triplets[$tri];
     }
     
     // continue recursing?
