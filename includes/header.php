@@ -1,34 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<head>
 <?php
-
-function th($n){
-	$sub = substr($n,-1);
-	if ($n < 4){
-		if($n == 1){
-			return $n.'st';
-		}elseif($n == 2){
-			return $n.'nd';
-		}elseif($n == 3){
-			return $n.'rd';
-		}
-	}elseif($n < 20){
-		return $n.'th';
-	}else{
-		if($sub == 1){
-			return $n.'st';
-		}elseif($sub == 2){
-			return $n.'nd';
-		}elseif($sub == 3){
-			return $n.'rd';
-		}else{
-			return $n.'th';
-		}
-	}
-}
-echo
-'<head>';
-
 //meta data!!
 $title              = '';
 $metaTagDescription = '';
@@ -63,7 +36,7 @@ if ($_SERVER['PHP_SELF'] == '/archive/prime.php'){
 ?>
 <title><?php echo $title;?></title>
 <meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1' />
-<link rel="alternate" type="application/rss+xml" title="Big Primes RSS Feed" href="<?php echo $url->u(array('rss','news'))?>" />
+<link rel="alternate" type="application/rss+xml" title="Big Primes RSS Feed" href="/rss/news/" />
 <meta name="keywords" content="<?php echo $metaTagKeywords;?>" />
 <meta name="description" content="<?php echo $metaTagDescription;?>" />
 <link href="/css/css.css" rel="stylesheet" type="text/css" />
@@ -81,9 +54,9 @@ if ($_SERVER['PHP_SELF'] == '/archive/prime.php'){
 	<table bgcolor="#e0faed" border="1" cellpadding="10" cellspacing="0" class="sidebarlink" width="160">
 		<tr>
 			<td valign="top">
-				<a class="sidebarlink" href="<?php echo $url->u()?>">Home</a><br />
-                <a class="sidebarlink" href="<?php echo $url->u(array('contactus'))?>">Contact Us</a><br />
-                                <a class="sidebarlink" href="<?php echo $url->u(array('faq'))?>">FAQ</a><br />
+				<a class="sidebarlink" href="/">Home</a><br />
+                <a class="sidebarlink" href="/contactus/">Contact Us</a><br />
+                                <a class="sidebarlink" href="/faq/">FAQ</a><br />
 			</td>
 		</tr>
 	</table>
@@ -91,8 +64,8 @@ if ($_SERVER['PHP_SELF'] == '/archive/prime.php'){
 	<table bgcolor="#e0faed" border="1" cellpadding="10" cellspacing="0" class="sidebarlink" width="160">
 		<tr>
 			<td valign="top">
-                <a class="sidebarlink" href="<?php echo $url->u(array('downloads'))?>">Downloads</a><br />
-				<a class="sidebarlink" href="<?php echo $url->u(array('status'))?>">Status</a><br />
+                <a class="sidebarlink" href="/downloads/">Downloads</a><br />
+				<a class="sidebarlink" href="/status/>">Status</a><br />
 			</td>
 		</tr>
 	</table>
@@ -101,8 +74,8 @@ if ($_SERVER['PHP_SELF'] == '/archive/prime.php'){
 		<tr>
 			<td valign="top">
 				<div align="center" class="sidebartitle">Crunchers</div><br />
-				<a class="sidebarlink" href="<?php echo $url->cruncher()?>">Number Cruncher</a><br />
-				<a class="sidebarlink" href="<?php echo $url->u(array('primalitytest'))?>">Primality Checker</a><br />
+				<a class="sidebarlink" href="/cruncher/">Number Cruncher</a><br />
+				<a class="sidebarlink" href="/primalitytest/">Primality Checker</a><br />
 			</td>
 		</tr>
 	</table>
@@ -111,12 +84,12 @@ if ($_SERVER['PHP_SELF'] == '/archive/prime.php'){
 		<tr>
 			<td valign="top">
 				<div align="center" class="sidebartitle">Archives</div><br />
-				<a class="sidebarlink" href="<?php echo $url->u(array('archive/prime'))?>">Prime Numbers Archive</a><br />
-				<a class="sidebarlink" href="<?php echo $url->u(array('archive/mersenne'))?>">Mersenne Prime Archive</a><br />
-				<a class="sidebarlink" href="<?php echo $url->u(array('archive/fermat'))?>">Fermat Archive</a><br />
-				<a class="sidebarlink" href="<?php echo $url->u(array('archive/perfect'))?>">Perfect Archive</a><br />
-				<a class="sidebarlink" href="<?php echo $url->u(array('archive/fibonacci'))?>">Fibonacci Archive</a><br />
-				<a class="sidebarlink" href="<?php echo $url->u(array('archiveinfo'))?>">Other Archives</a><br />
+				<a class="sidebarlink" href="/archive/prime/>">Prime Numbers Archive</a><br />
+				<a class="sidebarlink" href="/archive/mersenne/">Mersenne Prime Archive</a><br />
+				<a class="sidebarlink" href="/archive/fermat/">Fermat Archive</a><br />
+				<a class="sidebarlink" href="/archive/perfect/">Perfect Archive</a><br />
+				<a class="sidebarlink" href="/archive/fibonacci/">Fibonacci Archive</a><br />
+				<a class="sidebarlink" href="/archiveinfo/">Other Archives</a><br />
 			</td>
 		</tr>
 	</table>
