@@ -1,9 +1,4 @@
 <?php
-function getFileType($fileName){
-    $fileNameEx = explode('.',$fileName);
-    $fileType = $fileNameEx[count($fileNameEx)-1];
-    return $fileType;
-}
 //Returns the key for a value in an array.
 function getKey($arr,$value){
     foreach($arr as $k=>$v){
