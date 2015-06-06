@@ -93,4 +93,26 @@ class numbers{
     $number = substr($number,0,$decStart).'.'.substr($number,$decStart).$end;
     return $number;
   }
+  public function stndrd($n){
+    if ($n == 1)
+        {return '1st';}
+    elseif ($n == 2)
+        {return '2nd';}
+    elseif ($n == 3)
+        {return '3rd';}
+    elseif ($n == 11) 
+        {return '11th';}
+    elseif ($n == 12) 
+        {return '12th';}
+    elseif ($n == 13) 
+        {return '13th';}
+    elseif (substr($n,(strlen($n)-1),1) == '1')
+        {return $n.'st';}
+    elseif (substr($n,(strlen($n)-1),1) == '2')
+        {return $n.'nd';}
+    elseif (substr($n,(strlen($n)-1),1) == '3')
+        {return $n.'rd';}
+    else
+        {return $n.'th';}
+  }
 }

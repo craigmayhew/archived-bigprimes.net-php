@@ -2,20 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <?php
+$num = (int)$_REQUEST['num'];
 //meta data!!
 $title              = '';
 $metaTagDescription = '';
 $metaTagKeywords    = '';
 if ($_SERVER['PHP_SELF'] == '/archive/prime.php'){
-    $title              .= stndrd((int)$_REQUEST['num']).' to '.stndrd((int)($_REQUEST['num']+100)).' prime number';
-    $metaTagDescription .= stndrd((int)$_REQUEST['num']).' to '.stndrd((int)($_REQUEST['num']+100)).' prime number';
+    $title              .= numbers::stndrd($num).' to '.numbers::stndrd($num+100).' prime number';
+    $metaTagDescription .= numbers::stndrd($num).' to '.numbers::stndrd($num+100).' prime number';
     $metaTagKeywords    .= 'prime, primes, numbers, prime list';
 }elseif ($_SERVER['PHP_SELF'] == '/lists/squarenumbers.php'){
     $title              .= 'Square numbers less than 10000';
     $metaTagDescription .= 'square numbers';
     $metaTagKeywords    .= 'square numbers';
 }elseif (isset($_REQUEST['number']) && stristr($_SERVER['REQUEST_URI'],'cruncher')){
-    $title .= (int)$_REQUEST['number'].' - '.numbers::convertNum((int)$_REQUEST['number'], $ones, $tens, $triplets).' - Big Primes';
+    $title .= (int)$_REQUEST['number'].' - '.numbers::convertNum((int)$_REQUEST['number']).' - Big Primes';
 }elseif ($_SERVER['PHP_SELF'] == '/cruncher.php'){
     $number = (int)$_REQUEST['number'];
     if ($number == 0){

@@ -388,7 +388,7 @@ if ($number > 0){
             if($is_prime===null){
                 echo 'This number is not in our database (Therfore I\'m unable to check for primality).<br />';
             }elseif ($is_prime !== false){
-                echo 'It is the '.stndrd($is_prime).' prime number.<br />';
+                echo 'It is the '.numbers::stndrd($is_prime).' prime number.<br />';
             }else{
                 echo 'It is not a prime number.<br />';
             }
@@ -396,7 +396,7 @@ if ($number > 0){
 			if ($num_len <= strlen($array_mersenne[(count($array_mersenne)-1)])){
 				$mersenne = is_mersenne_prime($number,$array_mersenne);
 				if ($mersenne){
-					echo 'It is the ',stndrd($mersenne)," <a href='http://en.wikipedia.org/wiki/Mersenne_prime' class='link'>mersenne prime</a> number.<br />";
+					echo 'It is the ',numbers::stndrd($mersenne)," <a href='http://en.wikipedia.org/wiki/Mersenne_prime' class='link'>mersenne prime</a> number.<br />";
 				}else{
 					echo "It is not a <a href='http://en.wikipedia.org/wiki/Mersenne_prime' class='link'>mersenne prime</a> number.<br />";
 				}
@@ -408,7 +408,7 @@ if ($number > 0){
 			if ($num_len <= strlen($array_fermat[(count($array_fermat)-1)])){
 				$fermat = is_fermat($number,$array_fermat);
 				if ($fermat){
-					echo 'It is the ',stndrd($fermat)," <a href='http://en.wikipedia.org/wiki/Fermat_number'>fermat number</a>.<br />";
+					echo 'It is the ',numbers::stndrd($fermat)," <a href='http://en.wikipedia.org/wiki/Fermat_number'>fermat number</a>.<br />";
 				}else{
 					echo "It is not a <a class=\"link\" href='http://en.wikipedia.org/wiki/Fermat_number'>fermat number</a>.<br />";
 				}
@@ -419,7 +419,7 @@ if ($number > 0){
 			if ($num_len <= strlen($array_perfect[(count($array_perfect)-1)])){
 				$perfect = is_perfect($number,$array_perfect);
 				if ($perfect){
-					echo 'It is the ',stndrd($perfect)," <a href='http://en.wikipedia.org/wiki/Perfect_number' class='link'>perfect number</a>.<br />";
+					echo 'It is the ',numbers::stndrd($perfect)," <a href='http://en.wikipedia.org/wiki/Perfect_number' class='link'>perfect number</a>.<br />";
 				}else{
 					echo "It is not a <a href='http://en.wikipedia.org/wiki/Perfect_number' class='link'>perfect number</a>.<br />";
 				}
@@ -435,7 +435,7 @@ if ($number > 0){
 			if ($num_len<=$max_len_triangle){
 				$triangle_num = is_triangle($number);
 				if ($triangle_num){
-					echo 'It is the ',stndrd($triangle_num),' triangle number.<br />';
+					echo 'It is the ',numbers::stndrd($triangle_num),' triangle number.<br />';
 				}else{
 					echo 'It is not a triangle number.<br />';
 				}
@@ -446,7 +446,7 @@ if ($number > 0){
 			if ($num_len<=$max_len_square){
 				$sqrt = sqrt($number);
 				if (!stristr($sqrt,'.'))
-					{echo 'It is the ',stndrd(number_format($sqrt,0,'.','')),' square number.<br />';}
+					{echo 'It is the ',numbers::stndrd(number_format($sqrt,0,'.','')),' square number.<br />';}
 				else
 					{echo 'It is not a square number.<br />';}
 			}else{
@@ -456,7 +456,7 @@ if ($number > 0){
 			if ($num_len <= $max_len_cube){
 				$cbrt = pow($number,(1/3));
 				if (!stristr($cbrt,'.'))
-					{echo 'It is the ',stndrd(number_format($cbrt,0,'.','')),' cube number.<br />';}
+					{echo 'It is the ',numbers::stndrd(number_format($cbrt,0,'.','')),' cube number.<br />';}
 				else
 					{echo 'It is not a cube number.<br />';}
 			}else{
@@ -469,7 +469,7 @@ if ($number > 0){
 			if ($num_len <= strlen($array_factorial[(count($array_factorial)-1)])){
 				$factorial = is_factorial($number,$array_factorial);
 				if ($factorial){
-					echo "It is the ".stndrd($factorial)." factorial number (".$factorial."!).<br />";
+					echo "It is the ".numbers::stndrd($factorial)." factorial number (".$factorial."!).<br />";
 				}else{
 					echo 'It is not a factorial number.<br />';
 				}
