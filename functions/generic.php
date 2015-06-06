@@ -1,12 +1,4 @@
 <?php
-//Returns the key for a value in an array.
-function getKey($arr,$value){
-    foreach($arr as $k=>$v){
-        if($v==$value){
-            return $k;
-        }
-    }
-}
 //Returns all files in a directoy as an arrauy
 function filesInDir($dir,$fileExtention='all'){
     $dh = opendir($dir);

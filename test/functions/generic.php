@@ -8,11 +8,4 @@ class functions_generic extends PHPUnit_Framework_TestCase
 		// Assert
 		$this->assertEquals('&amp;', $a);
 	}
-	public function test_getKey()
-	{
-		$arr = array(9,8,7,6);
-		$a = getKey($arr,8);
-		// Assert
-		$this->assertEquals(1,$a);
-        }
 }
