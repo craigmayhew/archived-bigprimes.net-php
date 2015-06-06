@@ -3,6 +3,11 @@ bigprimes.net
 
 Initial commit of php code powering bigprimes.net. This code is procedural and untestable. I have open sourced it now to force me to make the time and fix this codebase.
 
+Related projects
+===
+
+https://github.com/craigmayhew/primes
+
 Goals
 ===
 
