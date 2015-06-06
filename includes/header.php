@@ -1,19 +1,6 @@
-<?php
-
-//to prevent being run directly without index.php
-if(!isset($url)){
-  exit();
-}
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?php
-
-if(isset($_SERVER['REQUEST_URI']) && stristr($_SERVER['REQUEST_URI'],'archive/')){
-	$fixer = '../';
-}else{
-	$fixer = '';
-}
 
 function th($n){
 	$sub = substr($n,-1);
