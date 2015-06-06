@@ -3,7 +3,7 @@
 echo
 '<h1>Prime Numbers</h1>',
 'We currently have ',
-illion($primes->maxPrime,1),
+numbers::illion($primes->maxPrime,1),
 ' Prime numbers available for you.';
 
 //news

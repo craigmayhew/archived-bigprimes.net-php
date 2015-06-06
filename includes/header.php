@@ -15,7 +15,7 @@ if ($_SERVER['PHP_SELF'] == '/archive/prime.php'){
     $metaTagDescription .= 'square numbers';
     $metaTagKeywords    .= 'square numbers';
 }elseif (isset($_REQUEST['number']) && stristr($_SERVER['REQUEST_URI'],'cruncher')){
-    $title .= (int)$_REQUEST['number'].' - '.convertNum((int)$_REQUEST['number'], $ones, $tens, $triplets).' - Big Primes';
+    $title .= (int)$_REQUEST['number'].' - '.numbers::convertNum((int)$_REQUEST['number'], $ones, $tens, $triplets).' - Big Primes';
 }elseif ($_SERVER['PHP_SELF'] == '/cruncher.php'){
     $number = (int)$_REQUEST['number'];
     if ($number == 0){
@@ -23,7 +23,7 @@ if ($_SERVER['PHP_SELF'] == '/archive/prime.php'){
         $metaTagDescription .= 'Check primality, have a number converted into other base systems';
         $metaTagKeywords    .= 'Number cruncher, primality, fermat';
     }else{
-        $title              .= 'Number '.(int)$_REQUEST['number'].' - '.convertNum((int)$_REQUEST['number']);
+        $title              .= 'Number '.(int)$_REQUEST['number'].' - '.numbers::convertNum((int)$_REQUEST['number']);
         $metaTagDescription .= 'All about number '.(int)$_REQUEST['number'];
         $metaTagKeywords    .= (int)$_REQUEST['number'];
     }
