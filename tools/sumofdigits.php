@@ -3,9 +3,9 @@ class sumOfDigits{
     var $values=array();
     private $database;
     private $primes;
-    public function __construct(&$primes,&$database){
-        $this->primes = &$primes;
-        $this->database = &$database;
+    public function __construct($primes,$database){
+        $this->primes = $primes;
+        $this->database = $database;
     }
 
     /**
