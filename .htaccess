@@ -35,6 +35,5 @@ RewriteRule ^([a-z0-9_-]+)/$  index.php?page=$1 [NC]
 RewriteRule ^([a-z0-9_-]+)/([a-z0-9_-]+)/$  index.php?page=$1/$2 [NC]
 RewriteRule ^([a-z0-9_-]+)/([a-z0-9_-]+)/([a-z0-9_-]+)/$  index.php?page=$1/$2/$3 [NC]
 
-
 ##Error Documents.
 ErrorDocument 404 /err/404.php
