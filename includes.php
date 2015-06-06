@@ -34,7 +34,6 @@ if($database->connected){
     $errors = new errors(array('config'=>$config,'database'=>$database));
     //create some instances of classes
     $form = new form();
-    $HTMLTags = new HTMLTags();
     $generic = new generic(array('database'=>$database));
     $url = new url(array('config'=>$config));
     $primes = new primes(array('database'=>$database));
