@@ -17,12 +17,7 @@ echo '<?xml version="1.0" encoding="UTF-8" ?> ';
         <changefreq>weekly</changefreq> 
     </url>
     <url>
-        <loc>http://www.bigprimes.net/links/</loc> 
-        <priority>0.8</priority> 
-        <changefreq>monthly</changefreq> 
-    </url>
-    <url>
-        <loc>http://www.bigprimes.net/contact_us/</loc> 
+        <loc>http://www.bigprimes.net/contactus/</loc> 
         <priority>0.2</priority> 
         <changefreq>yearly</changefreq> 
     </url>
@@ -37,7 +32,7 @@ echo '<?xml version="1.0" encoding="UTF-8" ?> ';
         <changefreq>yearly</changefreq> 
     </url>
     <url>
-        <loc>http://www.bigprimes.net/primality_test/</loc> 
+        <loc>http://www.bigprimes.net/primalitytest/</loc> 
         <priority>0.5</priority> 
         <changefreq>yearly</changefreq> 
     </url>
@@ -45,11 +40,6 @@ echo '<?xml version="1.0" encoding="UTF-8" ?> ';
         <loc>http://www.bigprimes.net/archive/prime/</loc> 
         <priority>0.5</priority> 
         <changefreq>yearly</changefreq> 
-    </url>
-    <url>
-        <loc>http://www.bigprimes.net/biggest_primes/</loc> 
-        <priority>0.5</priority> 
-        <changefreq>monthly</changefreq> 
     </url>
     <url>
         <loc>http://www.bigprimes.net/archive/mersenne/</loc> 
@@ -68,11 +58,6 @@ echo '<?xml version="1.0" encoding="UTF-8" ?> ';
     </url>
     <url>
         <loc>http://www.bigprimes.net/archive/fibonacci/</loc> 
-        <priority>0.5</priority> 
-        <changefreq>monthly</changefreq> 
-    </url>
-    <url>
-        <loc>http://www.bigprimes.net/archive_info/</loc> 
         <priority>0.5</priority> 
         <changefreq>monthly</changefreq> 
     </url>
