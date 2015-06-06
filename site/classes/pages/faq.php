@@ -1,3 +1,9 @@
+<?php
+namespace pages;
+
+class faq extends \pages{
+  function getContent(){
+?>
 <h1>FAQ</h1>
 
 <br /><br /><br />
@@ -32,3 +38,6 @@
   25% of prime numbers end in a 7<br>
   25% of prime numbers end in a 9<br>
 </p>
+<?php
+  }
+}
