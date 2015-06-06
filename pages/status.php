@@ -7,10 +7,6 @@ echo
   <td width="100">',$primes->maxPrime,'</td>
  </tr>
  <tr>
-  <td>Number of un-verified primes:</td>
-  <td>',(($database->count('primeNumbers') * 100) - $primes->maxPrime),'</td>
- </tr>
- <tr>
   <td>Raw storage used:</td>
   <td>',round(((($database->count('primeNumbers') * 100) * 8 / 1024) / 1024) / 1024,2),' GB</td>
  </tr>

@@ -6,6 +6,8 @@ RewriteBase /
 #hide git frow web
 RedirectMatch 404 "(?:.*)/(?:\.git|file_or_dir)(?:/.*)?$"
 
+SetEnv bigprimesDBPass d3euuevdihg75yeoooaa
+
 #Add the slash to the end of url
 RewriteCond %{REQUEST_FILENAME} !-f
 #RewriteCond !(.*)/(.*).(.*)

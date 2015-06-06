@@ -115,7 +115,7 @@ if ($_SERVER['PHP_SELF'] == '/archive/prime.php'){
 			<td valign="top">
 				<div align="center" class="sidebartitle">Crunchers</div><br />
 				<a class="sidebarlink" href="<?php echo $url->cruncher()?>">Number Cruncher</a><br />
-				<a class="sidebarlink" href="<?php echo $url->u(array('primality_test'))?>">Primality Checker</a><br />
+				<a class="sidebarlink" href="<?php echo $url->u(array('primalitytest'))?>">Primality Checker</a><br />
 			</td>
 		</tr>
 	</table>
