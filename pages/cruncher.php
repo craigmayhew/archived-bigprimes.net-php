@@ -72,7 +72,7 @@ if ($number > 0){
 		{
 			$values = array(' &nbsp; &nbsp; &nbsp; ');
 			for($i=1;$i<60;$i++){
-				$values[] = '<img src="/imgs/babnumbers/bab_'.$i.'.gif" alt="'.$i.'">';
+				$values[] = '<img src="http://static.bigprimes.net/imgs/babnumbers/bab_'.$i.'.gif" alt="'.$i.'">';
 			}	
 		$val = '';
 		while (($n != '0') && ($n != 0))
@@ -308,13 +308,13 @@ if ($number > 0){
 		$length = strlen($n);
 		$array = array();
 		for($i=1;$i<10;$i++){
-			$array[0][] = '<img src="/imgs/egyptnumbers/'.$i.'.gif" alt="'.$i.'" />';
-			$array[1][] = '<img src="/imgs/egyptnumbers/'.$i.'0.gif" alt="'.$i.'0" />';
-			$array[2][] = '<img src="/imgs/egyptnumbers/'.$i.'00.gif" alt="'.$i.'00" />';
-			$array[3][] = '<img src="/imgs/egyptnumbers/'.$i.'000.gif" alt="'.$i.'000" />';
-			$array[4][] = '<img src="/imgs/egyptnumbers/'.$i.'0000.gif" alt="'.$i.'0000" />';
-			$array[5][] = '<img src="/imgs/egyptnumbers/'.$i.'00000.gif" alt="'.$i.'00000" />';
-			$array[6][] = '<img src="/imgs/egyptnumbers/'.$i.'000000.gif" alt="'.$i.'000000" />';
+			$array[0][] = '<img src="http://static.bigprimes.net/imgs/egyptnumbers/'.$i.'.gif" alt="'.$i.'" />';
+			$array[1][] = '<img src="http://static.bigprimes.net/imgs/egyptnumbers/'.$i.'0.gif" alt="'.$i.'0" />';
+			$array[2][] = '<img src="http://static.bigprimes.net/imgs/egyptnumbers/'.$i.'00.gif" alt="'.$i.'00" />';
+			$array[3][] = '<img src="http://static.bigprimes.net/imgs/egyptnumbers/'.$i.'000.gif" alt="'.$i.'000" />';
+			$array[4][] = '<img src="http://static.bigprimes.net/imgs/egyptnumbers/'.$i.'0000.gif" alt="'.$i.'0000" />';
+			$array[5][] = '<img src="http://static.bigprimes.net/imgs/egyptnumbers/'.$i.'00000.gif" alt="'.$i.'00000" />';
+			$array[6][] = '<img src="http://static.bigprimes.net/imgs/egyptnumbers/'.$i.'000000.gif" alt="'.$i.'000000" />';
 		}
 		for ($i=0; $i<$length; $i++){
                     if(isset($array[$i][(substr($n,-($i+1),1)-1)])){

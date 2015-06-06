@@ -46,7 +46,7 @@ echo
 	  $localLink = $_SERVER['DOCUMENT_ROOT'].$value['link'].'.zip';
 	  if (file_exists($localLink)){
 	  	echo
-	  	'<a href="',$value['link'],'.zip',"\" class=\"link\"><img src=\"/imgs/file_types/zip_20.gif\" alt=\"\" />&nbsp;(".dl_file_size($localLink).")</a>";
+	  	'<a href="',$value['link'],'.zip',"\" class=\"link\"><img src=\"http://static.bigprimes.net/imgs/file_types/zip_20.gif\" alt=\"\" />&nbsp;(".dl_file_size($localLink).")</a>";
 	  }
 	  echo
 	  '</td>',
@@ -54,7 +54,7 @@ echo
 	  $localLink = $_SERVER['DOCUMENT_ROOT'].$value['link'].'.rar';
 	  if (file_exists($localLink)){
 	  	echo
-	  	'<a href="',$value['link'],'.rar',"\" class=\"link\"><img src=\"/imgs/file_types/rar_20.gif\" alt=\"\" />&nbsp;(".dl_file_size($localLink).")</a>";
+	  	'<a href="',$value['link'],'.rar',"\" class=\"link\"><img src=\"http://static.bigprimes.net/imgs/file_types/rar_20.gif\" alt=\"\" />&nbsp;(".dl_file_size($localLink).")</a>";
 	  }
 	  echo
 	  "</td>".
