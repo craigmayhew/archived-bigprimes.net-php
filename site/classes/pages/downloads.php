@@ -1,5 +1,8 @@
-<?php require_once("header.php");
+<?php
+namespace pages;
 
+class downloads extends \pages{
+  function getContent(){
 $downloads_area_array[] = array(
 	'title' => 'All 44 known Mersenne primes',
 	'description' => 'This contains the first 44 Mersenne prime numbers.',
@@ -16,17 +19,7 @@ $downloads_area_array[] = array(
 	'link' => '/pages/archive/perfect/Perfect Numbers'
 );
 
-function dl_file_size($file){
-	$bytes = filesize($file);
-	if ($bytes > 1000000){
-		$size = round(($bytes/1000000),2).' Mb';
-	}elseif ($bytes > 1000){
-		$size = round(($bytes/1000),2).' Kb';
-	}else{
-		$size = $bytes.' b';
-	}
-	return $size;
-}
+
 
 echo
 "<h1>Downloads</h1>".
@@ -46,7 +39,7 @@ echo
 	  $localLink = $_SERVER['DOCUMENT_ROOT'].$value['link'].'.zip';
 	  if (file_exists($localLink)){
 	  	echo
-	  	'<a href="',$value['link'],'.zip',"\" class=\"link\"><img src=\"http://static.bigprimes.net/imgs/file_types/zip_20.gif\" alt=\"\" />&nbsp;(".dl_file_size($localLink).")</a>";
+	  	'<a href="',$value['link'],'.zip',"\" class=\"link\"><img src=\"http://static.bigprimes.net/imgs/file_types/zip_20.gif\" alt=\"\" />&nbsp;(".$this->dl_file_size($localLink).")</a>";
 	  }
 	  echo
 	  '</td>',
@@ -54,7 +47,7 @@ echo
 	  $localLink = $_SERVER['DOCUMENT_ROOT'].$value['link'].'.rar';
 	  if (file_exists($localLink)){
 	  	echo
-	  	'<a href="',$value['link'],'.rar',"\" class=\"link\"><img src=\"http://static.bigprimes.net/imgs/file_types/rar_20.gif\" alt=\"\" />&nbsp;(".dl_file_size($localLink).")</a>";
+	  	'<a href="',$value['link'],'.rar',"\" class=\"link\"><img src=\"http://static.bigprimes.net/imgs/file_types/rar_20.gif\" alt=\"\" />&nbsp;(".$this->dl_file_size($localLink).")</a>";
 	  }
 	  echo
 	  "</td>".
@@ -63,5 +56,16 @@ echo
 echo
 '</table>',
 '<br /><br />';
-
-require_once('footer.php');?>
+  }
+  function dl_file_size($file){
+    $bytes = filesize($file);
+    if ($bytes > 1000000){
+      $size = round(($bytes/1000000),2).' Mb';
+    }elseif ($bytes > 1000){
+      $size = round(($bytes/1000),2).' Kb';
+    }else{
+      $size = $bytes.' b';
+    }
+    return $size;
+  }
+}
