@@ -39,7 +39,6 @@ class sumOfDigits{
             //echo count($sumofdigits),'<br>';
             //ob_flush();
             if(count($sumofdigits)>50){
-                //pr($sumofdigits);
                 $this->addToDatabase($sumofdigits);
                 $sumofdigits = array();
             }
