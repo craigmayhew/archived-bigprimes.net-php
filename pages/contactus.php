@@ -36,7 +36,7 @@ if ($contact == 'sent'){
 if ($contact != 'sent'){
 	echo
 	"<h1>Contact Us</h1>".
-	"<form action=\"".buildUrl(array('page'=>'contact_us','contact'=>'sent'),0,$config)."\" method=\"post\">".
+	"<form action=\"/contactus/?contact=sent\" method=\"post\">".
 		"<table style=\"border:1px solid #000000\">".
 		'<tr>',
             '<td>'.

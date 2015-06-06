@@ -99,32 +99,6 @@ function months($all = false,$numeric = true){
     return $array;
 }
 
-//build_url(array("page"=>"world/city/place"))
-function buildUrl($vars_in=false,$driver=0,$config){
-	if($driver===0)
-	{	$file = "index.php";
-	}
-	elseif($driver===2)
-	{	$file = "raw.php";
-	}
-	else
-	{	$file = "index.php";
-	}
-	if($vars_in==false) $vars_in = array();
-		
-	if(!isset($vars)) $vars=array();
-	if(!is_array($vars)) $vars=array();
-	$vars = array_merge($vars,$vars_in);
-        $vars1 = '';
-	foreach ($vars as $k=>$v)
-	{	if($v!==null) $vars1 .= '&'.$k.'='.$v;
-	}
-	$vars = trim($vars1,"&");
-	
-	unset($vars1,$k,$v);	
-	return "/$file?$vars";
-}
-
 //used to make invalid xml into valid xml .. e.g. sanitize data from database
 function safeXML($str){
   $search = array('&','<','>',"'",'"','<br>');

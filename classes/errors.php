@@ -151,13 +151,6 @@ class errors{
             }else{
                 //Mail error to admin.
                 $this->mailError($out,$this->errId[1]);
-                //If debug is set to false just guve generic error message..
-                /*echo 
-                '<script type="text/javascript">
-                    <!--
-                        window.location = "',buildUrl(array('page'=>'error','errorCode'=>$this->errId)),'"
-                    //-->
-                </script>';*/
             }
         }
     }
