@@ -15,7 +15,7 @@ class prime extends \pages{
     if ($count >= $num){
       echo
       '<h1>Prime numbers archive</h1>',
-      'This page shows the ',th($number),' prime number followed by the next 99.<br /><br />';
+      'This page shows the ',numbers::stndrd($number),' prime number followed by the next 99.<br /><br />';
 
       $primesList = primes::primeSet($num);
     
@@ -63,7 +63,7 @@ class prime extends \pages{
         '</tr>',
       '</table>';
     }else{
-      echo 'We haven\'t discovered the ',generic::th($num),' prime number yet.';
+      echo 'We haven\'t discovered the ',numbers::stndrd($num),' prime number yet.';
     }
 
     echo 

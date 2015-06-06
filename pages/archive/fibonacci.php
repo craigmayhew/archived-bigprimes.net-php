@@ -9,7 +9,7 @@ $count = $database->count('fibonacci_numbers');
 if ($count >= $num){
 	echo
 	"<h1>Fibonacci Archive</h1>
-    This page shows the ".th($num+1)." fibonacci number";
+    This page shows the ".numbers::stndrd($num+1)." fibonacci number";
 	$numleft = $count - $num;
 	if ($numleft == 0){
 	
@@ -53,7 +53,7 @@ if ($count >= $num){
 		"</tr>".
 	"</table>";
 }else{
-	echo "We can't find the ".th($num)." fibonacci number in our database.";
+	echo "We can't find the ".numbers::stndrd($num)." fibonacci number in our database.";
 }
 
 echo 

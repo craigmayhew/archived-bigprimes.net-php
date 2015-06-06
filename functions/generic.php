@@ -1,30 +1,4 @@
 <?php
-function th($n){
-  if ($n < 4){ 
-    if($n == 1){ 
-      return $n.'st';
-    }elseif($n == 2){ 
-      return $n.'nd';
-    }elseif($n == 3){ 
-      return $n.'rd';
-    }
-  }elseif($n < 20){
-    return $n.'th';
-  }else{
-    $sub = substr($n,-1);
-    if($sub == 1){ 
-      return $n.'st';
-    }elseif($sub == 2){ 
-      return $n.'nd';
-    }elseif($sub == 3){ 
-       return $n.'rd';
-    }else{
-       return $n.'th';
-    }
-  }
-}
-
-
 function getFileType($fileName){
     $fileNameEx = explode('.',$fileName);
     $fileType = $fileNameEx[count($fileNameEx)-1];
