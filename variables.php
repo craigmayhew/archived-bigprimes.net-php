@@ -14,33 +14,6 @@ $max_len_egypt_numerals = 7;
 $max_len_chinese_numerals = 6;
 $max_len_babylonian_numerals = 13;
 
-// factorial numbers array
-$array_factorial[ 0] = '1';
-$array_factorial[ 1] = '3';
-$array_factorial[ 2] = '6';
-$array_factorial[ 3] = '24';
-$array_factorial[ 4] = '120';
-$array_factorial[ 5] = '720';
-$array_factorial[ 6] = '5040';
-$array_factorial[ 7] = '40320';
-$array_factorial[ 8] = '362880';
-$array_factorial[ 9] = '3628800';
-$array_factorial[10] = '39916800';
-$array_factorial[11] = '479010600';
-$array_factorial[12] = '6227020800';
-$array_factorial[13] = '87178291200';
-$array_factorial[14] = '1307674368000';
-$array_factorial[15] = '20922789888000';
-$array_factorial[16] = '355687428096000';
-$array_factorial[17] = '6402373705728000';
-$array_factorial[18] = '121645100408832000';
-$array_factorial[19] = '2432902008176640000';
-$array_factorial[20] = '51090942171709440000';
-$array_factorial[21] = '1124000727777607680000';
-$array_factorial[22] = '25852016738884976640000';
-$array_factorial[23] = '620448401733239438360000';
-$array_factorial[24] = '15511210043330985959000000';
-
 // fermat numbers array
 $array_fermat[ 0] = '3';
 $array_fermat[ 1] = '5';
