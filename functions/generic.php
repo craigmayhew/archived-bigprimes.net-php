@@ -1,23 +1,4 @@
 <?php
-//Returns all files in a directoy as an arrauy
-function filesInDir($dir,$fileExtention='all'){
-    $dh = opendir($dir);
-    if(!$dh){
-        mkdir($dir);
-        $dh = opendir($dir);
-    }
-    if($dh){
-        while($file = readdir($dh)){
-            if($fileExtention!='all' && substr($file,-strlen($fileExtention))==$fileExtention){
-                $files[] = str_replace($fileExtention,'',$file);
-            }
-        }
-        return $files;
-    }else{
-        return array();
-    }
-}
-
 //This returns an array of numbers from 1 to 31
 function days($all = false){
     $array = array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31);
