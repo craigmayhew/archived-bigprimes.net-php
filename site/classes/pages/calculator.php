@@ -1,7 +1,7 @@
 <?php
 namespace pages;
 
-class status extends \pages{
+class calculator extends \pages{
   function getContent(){
     //TODO fix this html because, wow, just wow.
     return
