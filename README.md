@@ -11,10 +11,10 @@ https://github.com/craigmayhew/primes
 Goals
 ===
 
-Remove redundent code.
-Organise code into logical folders.
-Get code to the point where we can run unit tests.
-100% test coverage.
+- Remove redundent code.
+- Organise code into logical folders.
+- Get code to the point where we can run unit tests.
+- 100% test coverage.
 
 Fun Facts
 ===
