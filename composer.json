@@ -1,6 +1,6 @@
 {
     "require":{
-          "aws/aws-sdk-php": "2.7.*",
+          "aws/aws-sdk-php": "3.0.*",
           "recaptcha-lib/recaptcha":"0.1.*"
     }
 }
