@@ -20,4 +20,4 @@ Fun Facts
 ===
 
 - there are 1.4\*10<sup>297</sup> primes smaller than 300 digits
-- there is// always a prime between n^2 and (n+1)^2.
+- there is always a prime between n^2 and (n+1)^2.
