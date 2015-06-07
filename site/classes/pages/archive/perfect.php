@@ -3,7 +3,7 @@ namespace pages;
 
 class perfect extends \pages{
   function getContent(){
-    echo '
+    return '
     <h1>Perfect Numbers</h1>
     <table cellpadding="0" cellspacing="0" border="0" class="text">
     <tr>

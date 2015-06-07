@@ -3,7 +3,7 @@ namespace pages;
 
 class fermat extends \pages{
   function getContent(){
-    echo '
+    return '
     <h1>The Fermat Numbers</h1>
     <table cellpadding="3" cellspacing="0" border="0" class="text">
     <tr>
