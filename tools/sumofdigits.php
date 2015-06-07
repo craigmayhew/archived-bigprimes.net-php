@@ -17,7 +17,7 @@ class sumOfDigits{
         $sumofdigits = array();
         for($i=1;$i<510001;$i++){
             $numbers = $this->primes->primeSet($i);
-            foreach($numbers as &$number){
+            foreach($numbers as $number){
                 $number = (string)$number;
                 $len = strlen($number);
                 $sum = 0;
@@ -41,8 +41,8 @@ class sumOfDigits{
         }
         $this->addToDatabase($sumofdigits);
     }
-    private function addToDatabase(&$sumofdigits){
-        foreach($sumofdigits as &$sum){
+    private function addToDatabase($sumofdigits){
+        foreach($sumofdigits as $sum){
             if($this->database->count('sumOfDigits',"`digits`={$sum['len']} AND `sum`={$sum['sum']}")){
                 $this->database->query("UPDATE `sumOfDigits` SET `count`=`count`+".$sum['count']." WHERE `digits`={$sum['len']} AND `sum`={$sum['sum']}");
             }else{
