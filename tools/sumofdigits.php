@@ -11,8 +11,6 @@ class sumOfDigits{
     /**
     * Calculates the sum of all digits of the number between $start and $end
     * 
-    * @param mixed $start Starting number.
-    * @param mixed $end Ending number.
     */
     public function calc(){
         set_time_limit(0);
