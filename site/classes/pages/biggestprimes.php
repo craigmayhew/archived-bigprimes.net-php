@@ -11,7 +11,9 @@ echo "
  <td></td>
 </tr>";
 
+$biggest_primes = array();
 $i=1;
+
 $biggest_primes[$i]['prime']='2<sup>32582657</sup>-1';
 $biggest_primes[$i]['digits']=9808358;
 $biggest_primes[$i]['date']='Sep. 4, 2006';
