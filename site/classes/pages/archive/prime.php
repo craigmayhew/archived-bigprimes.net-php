@@ -79,12 +79,5 @@ class prime extends \pages{
     '<a class="link" href="/archive/prime/10001/">1000001st Prime</a><br />',
     '<a class="link" href="/archive/prime/100001/">10000001st Prime</a><br />',
     '<a class="link" href="/archive/prime/',$count,'/">Our Biggest Prime</a><br />';
-
-    //there are 1.4*10<sup>297</sup> primes smaller than 300 digits
-    //
-    //there is// always a prime between n^2 and (n+1)^2.
-    //
-    //$x=10000;
-    //echo log($x);
   }
 }

@@ -100,11 +100,4 @@ foreach ($biggest_primes as $position => $prime)
 
 echo '</table>';
 
-//there are 1.4*10<sup>297</sup> primes smaller than 300 digits
-//
-//there is// always a prime between n^2 and (n+1)^2.
-//
-//$x=10000;
-//echo log($x);
-
 require_once("footer.php");?>
