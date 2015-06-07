@@ -6,7 +6,8 @@ Initial commit of php code powering bigprimes.net. This code is procedural and u
 Related projects
 ===
 
-https://github.com/craigmayhew/primes
+- https://github.com/craigmayhew/primes
+- https://github.com/craigmayhew/static.bigprimes.net
 
 Goals
 ===
