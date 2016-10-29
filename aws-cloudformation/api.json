@@ -1,0 +1,236 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Description"   : "Generate aws lambdas for bigprimes api.",
+  "Parameters"               : {
+        "mysqlHost" : {
+            "Description" : "MySQL Host",
+            "Type"        : "string",
+            "Default"     : "",
+            "MinLength"   : 1
+        },
+        "mysqlUser" : {
+            "Description" : "MySQL user",
+            "Type"        : "String",
+            "MinLength"   : 1
+        },
+        "mysqlPassword" : {
+            "Description" : "MySQL password",
+            "Type"        : "String",
+            "Default"     : "",
+            "MinLength"   : 1,
+            "NoEcho"      : true
+        },
+        "mysqlDatabase" : {
+            "Description" : "Name of database",
+            "Type"        : "String",
+            "Default"     : "bigprimes",
+            "MinLength"   : 1
+        }
+  },
+  "Resources"     : {
+    "Lambda-bigprimes-request-work-all" : {
+      "Type" : "AWS::Lambda::Function",
+      "Properties" : {
+        "Code" : {
+            "ZipFile": { "Fn::Join": ["\n", [
+                "var mysql = require('mysql');",
+
+                "exports.handler = function(event, context) {","
+                  "var connection = mysql.createConnection({",
+                      {"Fn::Join": ["", ["host '", {"Ref":"mysqlHost"} ,"',"]]},
+                      {"Fn::Join": ["", ["user '", {"Ref":"mysqlUser"} ,"',"]]},
+                      {"Fn::Join": ["", ["password '", {"Ref":"mysqlPassword"} ,"',"]]},
+                      {"Fn::Join": ["", ["database '", {"Ref":"mysqlDatabase"} ,"',"]]},
+                  "});",
+                  
+                  "//res.setHeader('Content-Type', 'application/json');",
+
+                  "connection.connect(function(err){",
+                     "//connected unless err is set ",
+                  "});",
+
+                  "var querystring = ",
+                      "'SELECT '+",
+                        "'count(*) as WorkUnits, '+",
+                        "'sum(`size`) as \'Numbers factored\', '+",
+                        "'sum(time_taken_ms)/86400000 as \'CPU Days\', '+",
+                        "'sum(work_done) / 1000000000000 as \'TDivs\', '+",
+                        "'sum(work_done)/(sum(time_taken_ms)/1000)/1000000 as \'MDivs/Sec\', '+",
+                        "'user.name as User, client.name as Client '+",
+                      "'FROM bigprimes.wu_result '+",
+                      "'left join bigprimes.client on client.client_id = wu_result.client_id '+",
+                      "'left join bigprimes.user on client.user = user.user_id '+",
+                      "'left join bigprimes.`wu` on `wu`.`wu_id` = `wu_result`.`wu_id` '+",
+                      "'WHERE 1 '+",
+                      "'GROUP BY client.client_id '+",
+                      "'ORDER BY TDivs desc;';",
+                   
+                  "var query = connection.query(querystring, function(err, rows, fields) {",
+                    "if (err) {",
+                      "context.fail(err);",
+                      "throw err;",
+                    "}",
+                          
+                    "var ret = [];",
+                    "for (var i in rows) {",
+                      "ret.push(rows[i]);",
+                    "}",
+                    
+                    "context.succeed(JSON.stringify(ret));  // Echo back the first key value",
+                  "});",
+                "};"
+            ]]}
+        },
+        "Description" : "List all work done",
+        "FunctionName" : "cloudformation-bigprimes-request-work-all",
+        "Handler" : "index.handler",
+        "MemorySize" : 1536,
+        "Role": { "Fn::GetAtt" : ["LambdaExecutionRole", "Arn"] },
+        "Runtime" : "nodejs4.3",
+        "Timeout" : 3
+      }
+    },
+    "Lambda-bigprimes-request-work-all-24hours" : {
+      "Type" : "AWS::Lambda::Function",
+      "Properties" : {
+        "Code" : {
+            "ZipFile": { "Fn::Join": ["\n", [
+                "var mysql = require('mysql');",
+
+                "exports.handler = function(event, context) {","
+                  "var connection = mysql.createConnection({",
+                      {"Fn::Join": ["", ["host '", {"Ref":"mysqlHost"} ,"',"]]},
+                      {"Fn::Join": ["", ["user '", {"Ref":"mysqlUser"} ,"',"]]},
+                      {"Fn::Join": ["", ["password '", {"Ref":"mysqlPassword"} ,"',"]]},
+                      {"Fn::Join": ["", ["database '", {"Ref":"mysqlDatabase"} ,"',"]]},
+                  "});",
+                  
+                  "//res.setHeader('Content-Type', 'application/json');",
+
+                  "connection.connect(function(err){",
+                     "//connected unless err is set ",
+                  "});",
+
+                  "var querystring = ",
+                      "'SELECT '+",
+                        "'count(*) as WorkUnits, '+",
+                        "'sum(`size`) as \'Numbers factored\', '+",
+                        "'sum(time_taken_ms)/86400000 as \'CPU Days\', '+",
+                        "'sum(work_done) / 1000000000000 as \'TDivs\', '+",
+                        "'sum(work_done)/(sum(time_taken_ms)/1000)/1000000 as \'MDivs/Sec\', '+",
+                        "'user.name as User, client.name as Client '+",
+                      "'FROM bigprimes.wu_result '+",
+                      "'left join bigprimes.client on client.client_id = wu_result.client_id '+",
+                      "'left join bigprimes.user on client.user = user.user_id '+",
+                      "'left join bigprimes.`wu` on `wu`.`wu_id` = `wu_result`.`wu_id` '+",
+                      "'WHERE bigprimes.`wu_result`.`time_received` > UNIX_TIMESTAMP() - (86400 * 1) '+",
+                      "'group by client.client_id '+",
+                      "'order by TDivs desc;';",
+                      
+                  "var query = connection.query(querystring, function(err, rows, fields) {",
+                    "if (err) {",
+                      "context.fail(err);",
+                      "throw err;",
+                    "}",
+                          
+                    "var ret = [];",
+                    "for (var i in rows) {",
+                      "ret.push(rows[i]);",
+                    "}",
+                    
+                    "context.succeed(JSON.stringify(ret));  // Echo back the first key value",
+                  "});",
+                "};"
+            ]]}
+        },
+        "Description" : "List all work done in the last 24 hours",
+        "FunctionName" : "cloudformation-bigprimes-request-work-all-24hours",
+        "Handler" : "index.handler",
+        "MemorySize" : 1536,
+        "Role": { "Fn::GetAtt" : ["LambdaExecutionRole", "Arn"] },
+        "Runtime" : "nodejs4.3",
+        "Timeout" : 3
+      }
+    },
+    "Lambda-bigprimes-request-workunit" : {
+      "Type" : "AWS::Lambda::Function",
+      "Properties" : {
+        "Code" : {
+            "ZipFile": { "Fn::Join": ["\n", [
+                "var mysql = require('mysql');",
+
+                "exports.handler = function(event, context) {","
+                  "var connection = mysql.createConnection({",
+                      {"Fn::Join": ["", ["host '", {"Ref":"mysqlHost"} ,"',"]]},
+                      {"Fn::Join": ["", ["user '", {"Ref":"mysqlUser"} ,"',"]]},
+                      {"Fn::Join": ["", ["password '", {"Ref":"mysqlPassword"} ,"',"]]},
+                      {"Fn::Join": ["", ["database '", {"Ref":"mysqlDatabase"} ,"',"]]},
+                  "});",
+                  
+                  "//res.setHeader('Content-Type', 'application/json');",
+
+                  "connection.connect(function(err){",
+                     "//connected unless err is set ",
+                  "});",
+
+                  "var querystring = ",
+                      "'SELECT '+",
+                        "'count(*) as WorkUnits, '+",
+                        "'sum(`size`) as \'Numbers factored\', '+",
+                        "'sum(time_taken_ms)/86400000 as \'CPU Days\', '+",
+                        "'sum(work_done) / 1000000000000 as \'TDivs\', '+",
+                        "'sum(work_done)/(sum(time_taken_ms)/1000)/1000000 as \'MDivs/Sec\', '+",
+                        "'user.name as User, client.name as Client '+",
+                      "'FROM bigprimes.wu_result '+",
+                      "'left join bigprimes.client on client.client_id = wu_result.client_id '+",
+                      "'left join bigprimes.user on client.user = user.user_id '+",
+                      "'left join bigprimes.`wu` on `wu`.`wu_id` = `wu_result`.`wu_id` '+",
+                      "'WHERE 1 '+",
+                      "//'where `wu_result`.`time_received` > UNIX_TIMESTAMP() - (86400 * 1) '+",
+                      "'group by client.client_id '+",
+                      "'order by TDivs desc;';",
+                      
+                  "var query = connection.query(querystring, function(err, rows, fields) {",
+                    "if (err) {",
+                      "context.fail(err);",
+                      "throw err;",
+                    "}",
+                          
+                    "var ret = [];",
+                    "for (var i in rows) {",
+                      "ret.push(rows[i]);",
+                    "}",
+                    
+                    "context.succeed(JSON.stringify(ret));  // Echo back the first key value",
+                  "});",
+                "};"
+            ]]}
+        },
+        "Description" : "List all work done in the last 24 hours",
+        "FunctionName" : "cloudformation-bigprimes-request-work-all-24hours",
+        "Handler" : "index.handler",
+        "MemorySize" : 1536,
+        "Role": { "Fn::GetAtt" : ["LambdaExecutionRole", "Arn"] },
+        "Runtime" : "nodejs4.3",
+        "Timeout" : 3
+      }
+    },
+    "LambdaExecutionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [{ "Effect": "Allow", "Principal": {"Service": ["lambda.amazonaws.com"]}, "Action": ["sts:AssumeRole"] }]
+        },
+        "Path": "/",
+        "Policies": [{
+          "PolicyName": "root",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [{ "Effect": "Allow", "Action": ["logs:*"], "Resource": "arn:aws:logs:*:*:*" }]
+          }
+        }]
+      }
+    }
+  }
+}
