@@ -1,0 +1,4 @@
+.gitignore
+composer.phar
+htdocs/.htaccess
+vendor

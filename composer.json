@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "autoload": {
       "psr-4": {
         "Bigprimes\\": "src/Bigprimes/"
@@ -9,5 +10,10 @@
         "doctrine/dbal": "~2.2",
         "gregwar/captcha": "1.*",
         "silex/silex": "2.0.*"
+=======
+    "require":{
+          "aws/aws-sdk-php": "3.0.*",
+          "recaptcha-lib/recaptcha":"0.1.*"
+>>>>>>> daeef0312f889e398df04dc5c1abeb24ebb4334e
     }
 }
