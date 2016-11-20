@@ -395,7 +395,7 @@ class Cruncher extends \Bigprimes\Pages
 
         //heavy calculation due to cache miss
         $afactors = null;
-        exec('/srv/api.bigprimes.net/public/bin/factors '.(int) $n, $afactors);
+        exec('../src/Bigprimes/bin/factors '.(int) $n, $afactors);
 
         //update cache
         $insertString = implode($afactors, ',');
