@@ -1,0 +1,13 @@
+{
+    "autoload": {
+      "psr-4": {
+        "Bigprimes\\": "src/Bigprimes/"
+      }
+    },
+    "require":{
+        "aws/aws-sdk-php": "3.0.*",
+        "doctrine/dbal": "~2.2",
+        "gregwar/captcha": "1.*",
+        "silex/silex": "2.0.*"
+    }
+}
