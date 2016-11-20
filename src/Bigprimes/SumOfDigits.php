@@ -48,7 +48,7 @@ class SumOfDigits{
     }
     private function addToDatabase($sumofdigits){
         foreach($sumofdigits as &$sum){
-            $sql = 'SELECT `count` FROM `bigprimes`.`sumOfDigits` WHERE `digits` = ? AND `sum` = ?';
+            $sql = 'SELECT `count` FROM sumOfDigits WHERE `digits` = ? AND `sum` = ?';
             $count = $this->app['dbs']['mysql_read']->fetchAssoc($sql, array($sum['len'], $sum['sum']));
 
             if($count['count'] && $count['count']>0){
@@ -65,7 +65,7 @@ class SumOfDigits{
     }
     public function get($digits){
         $digits = (int)$digits;
-        $sql = 'SELECT `sum`,`count` FROM `bigprimes`.`sumOfDigits` WHERE `digits` = ? ORDER BY sum';
+        $sql = 'SELECT `sum`,`count` FROM sumOfDigits WHERE `digits` = ? ORDER BY sum';
         $sums = $this->app['dbs']['mysql_read']->fetchAll($sql, array($digits));
  
         return $sums;
