@@ -3,6 +3,11 @@ bigprimes.net
 
 PHP 7 compatible www.bigprimes.net codebase written using the Silex microframework. 
 
+Install
+===
+
+Apache instructions: Copy htdocs/.htaccesssample to htdocs/.htaccess and provide it with the variables needed for mysql. Run schema.sql on your chosen mysql server and populate tables such as `primeNumbers` if required.
+
 Related projects
 ===
 
