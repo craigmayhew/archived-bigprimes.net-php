@@ -1,60 +1,63 @@
 <?php
 namespace Bigprimes;
 
-class Pages{
-  protected $app;
-  function __construct($app){
-    $this->app = $app;
-  }
- 
-  // add st nd rd th to a number
-protected function stndrd($n)
+class Pages
 {
-    switch ($n) {
-        case 1:
-          return $n.'st';
-        case 2:
-          return $n.'nd';
-        case 3:
-          return $n.'rd';
-        case 11:
-        case 12:
-        case 13:
-          return $n.'th';
-        default:
-          $substr = substr($n,(strlen($n)-1),1);
-          switch ($substr) {
-            case 1:
-              return $n.'st';
-            case 2:
-              return $n.'nd';
-            case 3:
-              return $n.'rd';
-            default:
-              return $n.'th';
-          }
-          break;
+    protected $app;
+
+    function __construct($app)
+    {
+        $this->app = $app;
     }
-}
+
+    // add st nd rd th to a number
+    protected function stndrd($n)
+    {
+        switch ($n) {
+            case 1:
+                return $n . 'st';
+            case 2:
+                return $n . 'nd';
+            case 3:
+                return $n . 'rd';
+            case 11:
+            case 12:
+            case 13:
+                return $n . 'th';
+            default:
+                $substr = substr($n, (strlen($n) - 1), 1);
+                switch ($substr) {
+                    case 1:
+                        return $n . 'st';
+                    case 2:
+                        return $n . 'nd';
+                    case 3:
+                        return $n . 'rd';
+                    default:
+                        return $n . 'th';
+                }
+                break;
+        }
+    }
 
 
-  public function getHeader($title, $metaTagDescription, $metaTagKeywords){
-    return 
-    '<html xmlns="http://www.w3.org/1999/xhtml">'.
-      '<head>'.
-        '<title>'.$title.'</title>'.
-        '<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />'.
-        '<meta name="keywords" content="'.$metaTagKeywords.'" />'.
-        '<meta name="description" content="'.$metaTagDescription.'" />'.
-        '<link rel="alternate" type="application/rss+xml" title="Big Primes RSS Feed" href="/rss/news/" />'.
-        '<link href="//static.bigprimes.net/css/css.css" rel="stylesheet" type="text/css" />'.
-        '<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>'.
-      '</head>'.
-      '<body class="text">'.
+    public function getHeader($title, $metaTagDescription, $metaTagKeywords)
+    {
+        return
+            '<html xmlns="http://www.w3.org/1999/xhtml">' .
+            '<head>' .
+            '<title>' . $title . '</title>' .
+            '<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />' .
+            '<meta name="keywords" content="' . $metaTagKeywords . '" />' .
+            '<meta name="description" content="' . $metaTagDescription . '" />' .
+            '<link rel="alternate" type="application/rss+xml" title="Big Primes RSS Feed" href="/rss/news/" />' .
+            '<link href="//static.bigprimes.net/css/css.css" rel="stylesheet" type="text/css" />' .
+            '<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>' .
+            '</head>' .
+            '<body class="text">' .
 
 
-
-'<table cellpadding="0" cellspacing="0" border="0" width="100%" class="text">
+            '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="text">
  <tr>
   <td align="left" valign="top" colspan="2">
         <a href="/index.php"><img src="//static.bigprimes.net/imgs/title.gif" alt="BigPrimes.net" /></a>
@@ -109,14 +112,16 @@ protected function stndrd($n)
 ';
 
 
-  }
-  public function getFooter(){
-    return
-            '</td>'.
-          '</tr>'.
-        '</table>'.
-        '<div align="center"><br /><br /><a href="http://www.adire.co.uk/" class="sidebarlink">Hosted by the Adire Cloud Engine</a></div>'.
-      '</body>'.
-    '</html>';
-  }
+    }
+
+    public function getFooter()
+    {
+        return
+            '</td>' .
+            '</tr>' .
+            '</table>' .
+            '<div align="center"><br /><br /><a href="http://www.adire.co.uk/" class="sidebarlink">Hosted by the Adire Cloud Engine</a></div>' .
+            '</body>' .
+            '</html>';
+    }
 }

@@ -1,12 +1,14 @@
 <?php
 namespace Bigprimes\Pages;
 
-class Perfects extends \Bigprimes\Pages{
+class Perfects extends \Bigprimes\Pages
+{
 
-    public function getContent(){
+    public function getContent()
+    {
 
-$return =
-'<h1>Perfect Numbers</h1>
+        $return =
+            '<h1>Perfect Numbers</h1>
 <table cellpadding="0" cellspacing="0" border="0" class="text">
 <tr>
 	<td width="60"><b>Rank</b></td>
@@ -374,6 +376,6 @@ $return =
 	<td><a href="//static.bigprimes.net/archive/perfect/1.txt">TXT</a></td>
 </tr>
 </table>';
-       return $return;
+        return $return;
     }
 }

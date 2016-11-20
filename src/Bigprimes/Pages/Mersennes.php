@@ -1,12 +1,14 @@
 <?php
 namespace Bigprimes\Pages;
 
-class Mersennes extends \Bigprimes\Pages{
+class Mersennes extends \Bigprimes\Pages
+{
 
-    public function getContent(){
+    public function getContent()
+    {
 
-$return = 
-'<h1>The Mersenne Primes</h1>
+        $return =
+            '<h1>The Mersenne Primes</h1>
 <table cellpadding="0" cellspacing="0" border="0" class="text">
 <tr>
  <td width="70"><b>No.</b></td>	
@@ -490,7 +492,7 @@ $return =
 </tr>
 </table>';
 
-      return
-      $return;
+        return
+            $return;
     }
 }

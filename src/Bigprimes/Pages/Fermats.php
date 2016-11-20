@@ -1,12 +1,14 @@
 <?php
 namespace Bigprimes\Pages;
 
-class Fermats extends \Bigprimes\Pages{
+class Fermats extends \Bigprimes\Pages
+{
 
-    public function getContent(){
+    public function getContent()
+    {
 
-$return = 
-'<h1>The Fermat Numbers</h1>
+        $return =
+            '<h1>The Fermat Numbers</h1>
 <table cellpadding="3" cellspacing="0" border="0" class="text">
 <tr>
  <td width="28">&nbsp;</td>
@@ -150,7 +152,7 @@ $return =
 </tr>
 </table>
 ';
-       return $return;
+        return $return;
     }
 }
 
