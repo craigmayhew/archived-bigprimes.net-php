@@ -5,10 +5,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 $app = new Silex\Application();
 
-if (isset($_GET['craig']) && $_GET['craig'] == 'yes') {
-  $app['debug'] = true;
-}
-
 //create a read connection and a write connection
 //they are using the same mysql url currently, so this is for easy future scaling
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
