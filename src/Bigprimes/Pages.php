@@ -39,37 +39,6 @@ protected function stndrd($n)
 
 
   public function getHeader($title, $metaTagDescription, $metaTagKeywords){
-        //meta data
-/*        $title              = '';
-        $metaTagDescription = '';
-        $metaTagKeywords    = '';
-        if ($_SERVER['PHP_SELF'] == '/archive/prime.php'){
-            $title              .= stndrd((int)$_REQUEST['num']).' to '.stndrd((int)($_REQUEST['num']+100)).' prime number';
-            $metaTagDescription .= stndrd((int)$_REQUEST['num']).' to '.stndrd((int)($_REQUEST['num']+100)).' prime number';
-            $metaTagKeywords    .= 'prime, primes, numbers, prime list';
-        }elseif ($_SERVER['PHP_SELF'] == '/lists/squarenumbers.php'){
-            $title              .= 'Square numbers less than 10000';
-            $metaTagDescription .= 'square numbers';
-            $metaTagKeywords    .= 'square numbers';
-        }elseif (isset($_REQUEST['number']) && stristr($_SERVER['REQUEST_URI'],'cruncher')){
-            $title .= (int)$_REQUEST['number'].' - '.convertNum((int)$_REQUEST['number'], $ones, $tens, $triplets).' - Big Primes';
-        }elseif ($_SERVER['PHP_SELF'] == '/cruncher.php'){
-            $number = (int)$_REQUEST['number'];
-            if ($number == 0){
-                $title              .= 'Number Cruncher';
-                $metaTagDescription .= 'Check primality, have a number converted into other base systems';
-                $metaTagKeywords    .= 'Number cruncher, primality, fermat';
-            }else{
-               $title              .= 'Number '.(int)$_REQUEST['number'].' - '.convertNum((int)$_REQUEST['number']);
-               $metaTagDescription .= 'All about number '.(int)$_REQUEST['number'];
-               $metaTagKeywords    .= (int)$_REQUEST['number'];
-            }
-        }else{
-            $title              = 'Big Primes: large list of prime numbers';
-            $metaTagDescription = 'Home of the large primes numbers archive and the number cruncher...';
-            $metaTagKeywords    = 'prime, primes, perfect, fermat, numbers, number cruncher, archive';
-        }
-*/
     return 
     '<html xmlns="http://www.w3.org/1999/xhtml">'.
       '<head>'.
