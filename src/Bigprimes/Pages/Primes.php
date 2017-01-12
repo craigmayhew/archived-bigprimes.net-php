@@ -38,10 +38,10 @@ class Primes extends \Bigprimes\Pages
                 $i++;
                 $return .=
                     '<tr>'
-                    . '<td class="primeTableCell"><a class="link" href="//www.bigprimes.net/cruncher/' . ($primesList[$n]) . '">' . $primesList[$n] . '</a></td>'
-                    . '<td class="primeTableCell"><a class="link" href="//www.bigprimes.net/cruncher/' . ($primesList[$n + 25]) . '">' . $primesList[$n + 25] . '</a></td>'
-                    . '<td class="primeTableCell"><a class="link" href="//www.bigprimes.net/cruncher/' . ($primesList[$n + 50]) . '">' . $primesList[$n + 50] . '</a></td>'
-                    . '<td class="primeTableCell"><a class="link" href="//www.bigprimes.net/cruncher/' . ($primesList[$n + 75]) . '">' . $primesList[$n + 75] . '</a></td>'
+                    . '<td class="primeTableCell"><a class="link" href="//www.bigprimes.net/cruncher/' . ($primesList[$n]) . '/">' . $primesList[$n] . '</a></td>'
+                    . '<td class="primeTableCell"><a class="link" href="//www.bigprimes.net/cruncher/' . ($primesList[$n + 25]) . '/">' . $primesList[$n + 25] . '</a></td>'
+                    . '<td class="primeTableCell"><a class="link" href="//www.bigprimes.net/cruncher/' . ($primesList[$n + 50]) . '/">' . $primesList[$n + 50] . '</a></td>'
+                    . '<td class="primeTableCell"><a class="link" href="//www.bigprimes.net/cruncher/' . ($primesList[$n + 75]) . '/">' . $primesList[$n + 75] . '</a></td>'
                     . '</tr>';
                 if ($i >= 25) {
                     break 1;
