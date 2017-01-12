@@ -8,7 +8,7 @@ class SumOfDigits extends \Bigprimes\Pages
     {
         $return = '';
 
-        $sumOfDigits = new \Bigprimes\SumOfDigits(new \Bigprimes\Primes, $this->app);
+        $sumOfDigits = new \Bigprimes\SumOfDigits(new \Bigprimes\Primes($this->app), $this->app);
 
         for ($i = 2; $i <= 9; $i++) {
             $sums = $sumOfDigits->get($i);
