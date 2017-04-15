@@ -8,7 +8,7 @@ Install
 
  1. Apache instructions: Copy htdocs/.htaccesssample to htdocs/.htaccess and provide it with the variables needed for mysql.
  2. Run schema.sql on your chosen mysql server and populate tables such as `primeNumbers` if required.
- 3. php composer.phar 
+ 3. php composer.phar install
 
 Related projects
 ===
