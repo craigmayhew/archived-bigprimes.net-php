@@ -97,7 +97,7 @@ class Primes extends \Bigprimes\Pages
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>' .
             '<br /><br /><br />' .
-            'Display the <input id="num" type="text" value="" /> prime number <button type="button" onclick="window.location.href=\'http://www.bigprimes.net/archive/prime/\'+$(\'#num\').val()+\'/\'">Go</button>' .
+            'Display the <input id="num" type="text" value="" /> prime number <button type="button" onclick="window.location.href=\'http://www.bigprimes.net/archive/prime/\'+Math.ceil($(\'#num\').val()/100)+\'/\'">Go</button>' .
             '<br /><br /><br />' .
             '<a class="link" href="//www.bigprimes.net/archive/prime/1/">1st Prime</a><br />' .
             '<a class="link" href="//www.bigprimes.net/archive/prime/2/">101st Prime</a><br />' .
