@@ -6,7 +6,9 @@ PHP 7 compatible www.bigprimes.net codebase written using the Silex microframewo
 Install
 ===
 
-Apache instructions: Copy htdocs/.htaccesssample to htdocs/.htaccess and provide it with the variables needed for mysql. Run schema.sql on your chosen mysql server and populate tables such as `primeNumbers` if required.
+ 1. Apache instructions: Copy htdocs/.htaccesssample to htdocs/.htaccess and provide it with the variables needed for mysql.
+ 2. Run schema.sql on your chosen mysql server and populate tables such as `primeNumbers` if required.
+ 3. php composer.phar install
 
 Related projects
 ===
