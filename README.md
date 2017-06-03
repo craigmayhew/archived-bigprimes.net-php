@@ -3,6 +3,8 @@ bigprimes.net
 
 PHP 7 compatible www.bigprimes.net codebase written using the Silex microframework.
 
+
+[![Build Status](https://travis-ci.org/craigmayhew/bigprimes.net.svg?branch=master)](https://travis-ci.org/craigmayhew/bigprimes.net)
 [![Dependency Status](https://www.versioneye.com/user/projects/5932825c22f278006540a1f0/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5932825c22f278006540a1f0)
 
 Install
