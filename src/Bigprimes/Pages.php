@@ -11,7 +11,7 @@ class Pages
     }
 
     // add st nd rd th to a number
-    protected function stndrd($n)
+    public function stndrd($n)
     {
         switch ($n) {
             case 1:
