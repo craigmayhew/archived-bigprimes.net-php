@@ -1,7 +1,7 @@
 bigprimes.net
 ======
 
-PHP 7 codebase written using the Silex microframework.
+PHP 7 codebase written using the [Silex micro-framework](https://github.com/silexphp/Silex).
 
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.0-8892BF.svg?style=flat-square)](https://php.net/)
 [![Dependency Status](https://www.versioneye.com/user/projects/5932825c22f278006540a1f0/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5932825c22f278006540a1f0)
