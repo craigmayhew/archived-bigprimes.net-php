@@ -29,7 +29,7 @@ before_script:
     - git config --global user.email travis@example.com
 
 script:
-    - echo "Running {} tests"; ./vendor/bin/phpunit test/ --colors=always {} || (echo -e "\e[41mFAILED\e[0m {}" && $(exit 1));
+    - echo "Running {} tests"; ./vendor/bin/phpunit -c phpunit.xml --testsuite tests --colors=always {} || (echo -e "\e[41mFAILED\e[0m {}" && $(exit 1));
 
 git:
   depth: 3
