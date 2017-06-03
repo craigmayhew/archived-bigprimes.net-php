@@ -1,7 +1,9 @@
 bigprimes.net
 ======
 
-PHP 7 compatible www.bigprimes.net codebase written using the Silex microframework. 
+PHP 7 compatible www.bigprimes.net codebase written using the Silex microframework.
+
+[![Dependency Status](https://www.versioneye.com/user/projects/5932825c22f278006540a1f0/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5932825c22f278006540a1f0)
 
 Install
 ===
