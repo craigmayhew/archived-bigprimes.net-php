@@ -23,14 +23,25 @@ matrix:
   allow_failures:
     - php: nightly
 
+before_install:
+  - composer self-update
+  - composer clear-cache
+
 before_script:
-    - composer install --prefer-dist
-    - git config --global user.name travis-ci
-    - git config --global user.email travis@example.com
+  - composer install --prefer-dist
+  - git config --global user.name travis-ci
+  - git config --global user.email travis@example.com
 
 script:
-    - echo "Running {} tests"; ./vendor/bin/phpunit -c phpunit.xml --testsuite tests --colors=always {} || (echo -e "\e[41mFAILED\e[0m {}" && $(exit 1));
+  - ./vendor/bin/phpunit --coverage-clover=coverage.xml
+  - echo "Running {} tests"; ./vendor/bin/phpunit -c phpunit.xml --testsuite tests --colors=always {} || (echo -e "\e[41mFAILED\e[0m {}" && $(exit 1));
 
 git:
   depth: 3
   submodules: false
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email: false
