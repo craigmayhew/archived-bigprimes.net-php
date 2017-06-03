@@ -25,7 +25,6 @@ matrix:
 
 before_script:
     - composer install --prefer-dist
-    - bin/composer install --prefer-dist
     - git config --global user.name travis-ci
     - git config --global user.email travis@example.com
 
