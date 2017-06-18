@@ -12,7 +12,7 @@ class UtilsTest extends \PHPUnit\Framework\TestCase
   public function test_generate_uuid()
   {
     $u = new Utils();
-    $uuid = $u::generate_uuid();		
+    $uuid = $u->generate_uuid();		
 
     // Assert uuid is 36 chars long
     $this->assertEquals(36, strlen($uuid));
@@ -30,7 +30,7 @@ class UtilsTest extends \PHPUnit\Framework\TestCase
                     ];
 
     foreach($messyNumbers as $in=>$out){
-      $try = $u::convert2Number($in);		
+      $try = $u->convert2Number($in);		
       // Assert we have a cleaned up number without the commas and spaces etc
       $this->assertEquals($out, $try);
     }
@@ -53,7 +53,7 @@ class UtilsTest extends \PHPUnit\Framework\TestCase
                     ];
 
     foreach($numbers as $in=>$out){
-      $try = $u::is_even($in);
+      $try = $u->is_even($in);
       $this->assertEquals($out, $try);
     }
   }
