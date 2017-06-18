@@ -866,6 +866,7 @@ class Cruncher extends \Bigprimes\Pages
 
     public function getContent($n)
     {
+        $util = new \Bigprimes\Utils();
         $return = '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <ins class="adsbygoogle"
              style="display:inline-block;width:728px;height:90px"
@@ -880,8 +881,8 @@ class Cruncher extends \Bigprimes\Pages
 
             $return .= "<div align='center'><table class=\"text\" width='75%' border='0' cellspacing='0' cellpadding='3'><tr><td align='left' class='text'><br />";
 
-            //make sure there are no spaces, commas, charcater returns so line feeds in the number
-            $number = str_replace([' ', ',', chr(13), chr(10)], '', $number);
+            //make sure there are no spaces, commas, character returns so line feeds in the number
+            $number = $utils->convert2Number($number);
 
             $is_number = ctype_digit($number);
 

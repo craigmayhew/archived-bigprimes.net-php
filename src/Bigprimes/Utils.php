@@ -1,6 +1,6 @@
 <?php
 
-class utils
+class Utils
 {
     static public function generate_uuid()
     {
@@ -19,6 +19,11 @@ class utils
             // 48 bits for "node"
             mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
         );
+    }
+
+    //make sure there are no spaces, commas, character returns, line feeds in the number
+    static public function convert2Number($rawString){ 
+      return str_replace([' ', ',', chr(13), chr(10)], '', $rawString);
     }
 }
 
