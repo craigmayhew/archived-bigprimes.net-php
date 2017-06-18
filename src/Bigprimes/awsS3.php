@@ -1,26 +1,23 @@
 <?php
+namespace Bigprimes;
 
 class awsS3
 {
     static private $bucket;
     private $client;
 
-    function __construct()
+    function __construct($client)
     {
-        $this->config = new \config();
-        $this->loadConfig();
-    }
-
-    public function loadConfig()
-    {
-        // Create the AWS service builder, providing the path to the config file
+        // Create the AWS service builder, providing the config array
         $awsConfig = [
             'credentials' => ['key' => getenv('bigprimesawskey'), 'secret' => getenv('bigprimesawssecret')],
             'region' => 'eu-west-1',
             'version' => '2006-03-01'
         ];
         self::$bucket = 'bigprimes';
-        $this->client = new \Aws\S3\S3Client($awsConfig);
+        
+        //$this->client = new \Aws\S3\S3Client($awsConfig);
+        $this->client = $client;
     }
 
     /* $tmpFileName string local filepath
