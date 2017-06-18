@@ -68,6 +68,7 @@ class UtilsTest extends \PHPUnit\Framework\TestCase
                       '123'=>false,
                       '234'=>false,
                       '155555555555551'=>true,
+                      '1553551'=>true,
                       '67777777777776'=>true,
                       '9999999999999999'=>true,
                       '11111111111111111111119'=>false
