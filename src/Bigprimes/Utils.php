@@ -1,4 +1,5 @@
 <?php
+namespace Bigprimes;
 
 class Utils
 {
