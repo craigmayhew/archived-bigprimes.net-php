@@ -69,5 +69,20 @@ class Utils
         return null;
     }
 
+    //decimal to babylonian numerals (base 60)
+    public function dec2bab($n)
+    {
+        $values = [' &nbsp; &nbsp; &nbsp; '];
+        for ($i = 1; $i < 60; $i++) {
+            $values[] = '<img src="//static.bigprimes.net/imgs/babnumbers/bab_' . $i . '.gif" alt="' . $i . '">';
+        }
+        $val = '';
+        while (($n != '0') && ($n != 0)) {
+            $val = $values[bcmod($n, 60)] . " &nbsp; " . $val;
+            $n = bcdiv($n, 60, 0);
+        }
+        return $val;
+    }
+
 }
 

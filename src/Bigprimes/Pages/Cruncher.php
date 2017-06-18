@@ -367,20 +367,6 @@ class Cruncher extends \Bigprimes\Pages
         return $val;
     }
 
-    private function dec2bab($n)//decimal to babylonian numerals (base 60)
-    {
-        $values = [' &nbsp; &nbsp; &nbsp; '];
-        for ($i = 1; $i < 60; $i++) {
-            $values[] = '<img src="//static.bigprimes.net/imgs/babnumbers/bab_' . $i . '.gif" alt="' . $i . '">';
-        }
-        $val = '';
-        while (($n != '0') && ($n != 0)) {
-            $val = $values[bcmod($n, 60)] . " &nbsp; " . $val;
-            $n = bcdiv($n, 60, 0);
-        }
-        return $val;
-    }
-
     //check if a number is a triangle number or not. if not then return false.
     //if true return which triangle number it is
     private function is_triangle($num)
@@ -1031,7 +1017,7 @@ class Cruncher extends \Bigprimes\Pages
                         $return .= "<tr><td width='200'>Chinese Numerals:</td><td valign='middle' bgcolor='#FFFFFF'>" . $this->den2numerals($number,
                                 $this->numeralsChinese) . "</td></tr>";
                     }
-                    $return .= "<tr><td>Babylonian Numerals:</td><td valign='middle' bgcolor='#FFFFFF'>" . $this->dec2bab($number) . "</td></tr>";
+                    $return .= "<tr><td>Babylonian Numerals:</td><td valign='middle' bgcolor='#FFFFFF'>" . $utils->dec2bab($number) . "</td></tr>";
                     $return .= '</table><br /><br />'; //end table
                 }
             } else {

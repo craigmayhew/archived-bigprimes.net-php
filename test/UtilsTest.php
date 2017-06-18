@@ -80,5 +80,23 @@ class UtilsTest extends \PHPUnit\Framework\TestCase
     }
   }
 
+  //decimal to babylonian numerals (base 60)
+  public function test_dec2bab()
+  {
+    $u = new Utils();
+    $numbers = [
+                      '1'=>'<img src="//static.bigprimes.net/imgs/babnumbers/bab_1.gif" alt="1"> &nbsp; ',
+                      '12'=>'<img src="//static.bigprimes.net/imgs/babnumbers/bab_12.gif" alt="12"> &nbsp; ',
+                      '123'=>'<img src="//static.bigprimes.net/imgs/babnumbers/bab_2.gif" alt="2"> &nbsp; <img src="//static.bigprimes.net/imgs/babnumbers/bab_3.gif" alt="3"> &nbsp; ',
+                      '234'=>'<img src="//static.bigprimes.net/imgs/babnumbers/bab_3.gif" alt="3"> &nbsp; <img src="//static.bigprimes.net/imgs/babnumbers/bab_54.gif" alt="54"> &nbsp; ',
+                      '911111111119'=>'<img src="//static.bigprimes.net/imgs/babnumbers/bab_19.gif" alt="19"> &nbsp; <img src="//static.bigprimes.net/imgs/babnumbers/bab_31.gif" alt="31"> &nbsp; <img src="//static.bigprimes.net/imgs/babnumbers/bab_41.gif" alt="41"> &nbsp; <img src="//static.bigprimes.net/imgs/babnumbers/bab_46.gif" alt="46"> &nbsp; <img src="//static.bigprimes.net/imgs/babnumbers/bab_59.gif" alt="59"> &nbsp; <img src="//static.bigprimes.net/imgs/babnumbers/bab_45.gif" alt="45"> &nbsp; <img src="//static.bigprimes.net/imgs/babnumbers/bab_19.gif" alt="19"> &nbsp; '
+                    ];
+
+    foreach($numbers as $in=>$out){
+      $try = $u->dec2bab($in);
+      $this->assertEquals($out, $try);
+    }
+
+  }
  
 }
