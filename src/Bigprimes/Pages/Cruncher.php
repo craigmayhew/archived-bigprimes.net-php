@@ -460,29 +460,6 @@ class Cruncher extends \Bigprimes\Pages
         return true;
     }
 
-    private function is_palindrome($number)
-    {
-        $len = strlen($number);
-        if (is_int($len / 2) == true) {
-            $i = 1;
-            while ($i <= $len / 2) {
-                if (substr($number, ($i - 1), 1) != substr($number, -$i, 1)) {
-                    return false;
-                }
-                $i++;
-            }
-        } else {
-            $i = 1;
-            while ($i <= ($len / 2)) {
-                if (substr($number, ($i - 1), 1) != substr($number, -$i, 1)) {
-                    return false;
-                }
-                $i++;
-            }
-        }
-        return true;
-    }
-
     private function factors($n)
     {
         //check cache
@@ -893,7 +870,7 @@ class Cruncher extends \Bigprimes\Pages
                 }
                 //palindrome or not?
                 if ($num_len > 1) { //if its got more than 1 digit
-                    if ($this->is_palindrome($number)) {
+                    if ($utils->is_palindrome($number)) {
                         $return .= 'It is a palindrome.<br />';
                     } else {
                         $return .= 'It is not a palindrome.<br />';

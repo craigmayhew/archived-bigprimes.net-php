@@ -41,5 +41,29 @@ class Utils
         }
     }
 
+
+    public function is_palindrome($number)
+    {
+        $len = strlen($number);
+        if (is_int($len / 2) == true) {
+            $i = 1;
+            while ($i <= $len / 2) {
+                if (substr($number, ($i - 1), 1) != substr($number, -$i, 1)) {
+                    return false;
+                }
+                $i++;
+            }
+        } else {
+            $i = 1;
+            while ($i <= ($len / 2)) {
+                if (substr($number, ($i - 1), 1) != substr($number, -$i, 1)) {
+                    return false;
+                }
+                $i++;
+            }
+        }
+        return true;
+    }
+
 }
 

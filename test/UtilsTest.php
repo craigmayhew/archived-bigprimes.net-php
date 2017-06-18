@@ -58,6 +58,26 @@ class UtilsTest extends \PHPUnit\Framework\TestCase
     }
   }
  
+  public function test_is_palindrome()
+  {
+    $u = new Utils();
+    $numbers = [
+                      '0'=>true,
+                      '1'=>true,
+                      '12'=>false,
+                      '123'=>false,
+                      '234'=>false,
+                      '155555555555551'=>true,
+                      '67777777777776'=>true,
+                      '9999999999999999'=>true,
+                      '11111111111111111111119'=>false
+                    ];
+
+    foreach($numbers as $in=>$out){
+      $try = $u->is_palindrome($in);
+      $this->assertEquals($out, $try);
+    }
+  }
 
  
 }
