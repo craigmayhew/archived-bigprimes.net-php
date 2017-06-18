@@ -8,8 +8,8 @@ class test_Pages_Perfects extends TestCase
 {
 	public function test_get()
 	{
-            $fermats = new \Bigprimes\Pages\Perfects(new \stdClass());
-            $pageContent = $fermats->getContent();
+            $perfects = new \Bigprimes\Pages\Perfects(new \stdClass());
+            $pageContent = $perfects->getContent();
             $this->assertContains('<h1>Perfect Numbers</h1>', $pageContent);
 	}
 }
