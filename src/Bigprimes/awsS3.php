@@ -35,9 +35,7 @@ class awsS3
             $fileExistsInS3 = false;
         }
 
-        if ($fileExistsInS3) {
-
-        } else {
+        if (!$fileExistsInS3) {
             $result = $this->client->putObject(array(
                 'Bucket' => self::$bucket,
                 'Key' => $s3FileName,
