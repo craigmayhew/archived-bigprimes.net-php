@@ -879,7 +879,6 @@ class Cruncher extends \Bigprimes\Pages
 
             if ($is_number && $number !== '0') {
                 $num_len = strlen($number);
-                $is_even = $utils->is_even($number);
 
                 $return .= '<b>The number you submitted to be crunched was:</b>' .
                     '<h1>' . strrev(wordwrap(strrev($number), 3, ' ', 1)) . ' - ' . $this->convertNum($number,
@@ -887,7 +886,7 @@ class Cruncher extends \Bigprimes\Pages
 
                 $return .= "<table class=\"text\" width='100%' border='1' cellspacing='0' cellpadding='2'><tr><td>"; //begin table
                 //odd or even?
-                if ($is_even) {
+                if ($utils->is_even($number)) {
                     $return .= 'It is an even number.<br />';
                 } else {
                     $return .= 'It is an odd number.<br />';
