@@ -8,6 +8,6 @@
         "aws/aws-sdk-php": "3.*",
         "doctrine/dbal": "~2.2",
         "phpunit/phpunit": "^6.1",
-        "silex/silex": "2.0.*"
+        "silex/silex": "2.1.*"
     }
 }
