@@ -29,7 +29,7 @@ class awsS3
         $sha1 = sha1($data);
         $s3FileName = $s3FileName ? $s3FileName : 'uploads/' . $sha1;
 
-        if (false == $overWriteFile) {
+        if (false === $overWriteFile) {
             $fileExistsInS3 = $this->client->doesObjectExist(self::$bucket, $s3FileName);
         } else {
             $fileExistsInS3 = false;
