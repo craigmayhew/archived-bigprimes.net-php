@@ -852,7 +852,7 @@ class Cruncher extends \Bigprimes\Pages
 
     public function getContent($n)
     {
-        $util = new \Bigprimes\Utils();
+        $utils = new \Bigprimes\Utils();
         $return = '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <ins class="adsbygoogle"
              style="display:inline-block;width:728px;height:90px"
@@ -879,7 +879,7 @@ class Cruncher extends \Bigprimes\Pages
 
             if ($is_number && $number !== '0') {
                 $num_len = strlen($number);
-                $is_even = $util->is_even($number);
+                $is_even = $utils->is_even($number);
 
                 $return .= '<b>The number you submitted to be crunched was:</b>' .
                     '<h1>' . strrev(wordwrap(strrev($number), 3, ' ', 1)) . ' - ' . $this->convertNum($number,
