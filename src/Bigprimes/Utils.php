@@ -2,7 +2,7 @@
 
 class Utils
 {
-    static public function generate_uuid()
+    public function generate_uuid()
     {
         return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
             // 32 bits for "time_low"
@@ -22,8 +22,23 @@ class Utils
     }
 
     //make sure there are no spaces, commas, character returns, line feeds in the number
-    static public function convert2Number($rawString){ 
+    public function convert2Number($rawString){ 
       return str_replace([' ', ',', chr(13), chr(10)], '', $rawString);
     }
+
+    public function is_even($n)
+    {
+        switch (substr($n, -1)) {
+            case '0':
+            case '2':
+            case '4':
+            case '6':
+            case '8':
+                return true;
+            default:
+                return false;
+        }
+    }
+
 }
 

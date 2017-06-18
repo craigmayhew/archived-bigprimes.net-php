@@ -34,4 +34,28 @@ class UtilsTest extends TestCase
     }
   }
   
+  public function test_is_even()
+  {
+    $u = new Utils();
+    $numbers = [
+                      '0'=>true,
+                      '1'=>false,
+                      '12'=>true,
+                      '123'=>false,
+                      '234'=>true,
+                      '15'=>false,
+                      '56'=>true,
+                      '17'=>false,
+                      '18'=>true,
+                      '11111111111111111111119'=>false
+                    ];
+
+    foreach($numbers as $in=>$out){
+      $try = $u::is_even($in);
+      $this->assertEquals($out, $try);
+    }
+  }
+ 
+
+ 
 }

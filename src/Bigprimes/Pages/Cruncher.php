@@ -381,20 +381,6 @@ class Cruncher extends \Bigprimes\Pages
         return $val;
     }
 
-    private function is_even($n)
-    {
-        switch (substr($n, -1)) {
-            case '0':
-            case '2':
-            case '4':
-            case '6':
-            case '8':
-                return true;
-            default:
-                return false;
-        }
-    }
-
     //check if a number is a triangle number or not. if not then return false.
     //if true return which triangle number it is
     private function is_triangle($num)
@@ -879,7 +865,12 @@ class Cruncher extends \Bigprimes\Pages
         $number = $n;
         if (strlen($number) > 0) {
 
-            $return .= "<div align='center'><table class=\"text\" width='75%' border='0' cellspacing='0' cellpadding='3'><tr><td align='left' class='text'><br />";
+            $return .= 
+            '<div align="center">'.
+              '<table class="text" width="75%" border="0" cellspacing="0" cellpadding="3">'.
+                '<tr>'.
+                  '<td align="left" class="text">'.
+                    '<br />';
 
             //make sure there are no spaces, commas, character returns so line feeds in the number
             $number = $utils->convert2Number($number);
@@ -888,7 +879,7 @@ class Cruncher extends \Bigprimes\Pages
 
             if ($is_number && $number !== '0') {
                 $num_len = strlen($number);
-                $is_even = $this->is_even($number);
+                $is_even = $util->is_even($number);
 
                 $return .= '<b>The number you submitted to be crunched was:</b>' .
                     '<h1>' . strrev(wordwrap(strrev($number), 3, ' ', 1)) . ' - ' . $this->convertNum($number,
