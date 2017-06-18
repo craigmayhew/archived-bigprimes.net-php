@@ -1,10 +1,12 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
+namespace Bigprimes;
+
 require_once __DIR__.'/../vendor/autoload.php';
 require_once __DIR__.'/../src/Bigprimes/Utils.php';
 
-class UtilsTest extends TestCase
+class UtilsTest extends \PHPUnit\Framework\TestCase
 {
 
   public function test_generate_uuid()
