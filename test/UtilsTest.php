@@ -96,7 +96,26 @@ class UtilsTest extends \PHPUnit\Framework\TestCase
       $try = $u->dec2bab($in);
       $this->assertEquals($out, $try);
     }
+  }
 
+  public function test_dec2base(){
+    $u = new Utils();
+    
+    $numbers = [
+      '2' => ['1'=>'1', '123'=>'1111011'],
+      '3' => ['1'=>'1', '123'=>'11120'],
+      '4' => ['1'=>'1', '123'=>'1323'],
+      '5' => ['1'=>'1', '123'=>'443'],
+      '8' => ['1'=>'1', '123'=>'173'],
+      '16' => ['1'=>'1', '123'=>'7B', '999999999999999999'=>'DE0B6B3A763FFFF']
+    ];
+
+    foreach($numbers as $base => $v){
+      foreach($v as $in => $out){
+        $try = $u->dec2base($in, $base);
+        $this->assertEquals($out, $try);
+      }
+    }
   }
  
 }

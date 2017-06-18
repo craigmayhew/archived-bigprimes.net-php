@@ -290,83 +290,6 @@ class Cruncher extends \Bigprimes\Pages
         }
     }
 
-    //convert a decimal/denery number to a base of your choosing (max = base 16)
-    private function dec2base($n, $base)
-    {
-        $values = [
-            '0',
-            '1',
-            '2',
-            '3',
-            '4',
-            '5',
-            '6',
-            '7',
-            '8',
-            '9',
-            'A',
-            'B',
-            'C',
-            'D',
-            'E',
-            'F',
-            'G',
-            'H',
-            'I',
-            'J',
-            'K',
-            'L',
-            'M',
-            'N',
-            'O',
-            'P',
-            'Q',
-            'R',
-            'S',
-            'T',
-            'U',
-            'V',
-            'W',
-            'X',
-            'Y',
-            'Z',
-            'a',
-            'b',
-            'c',
-            'd',
-            'e',
-            'f',
-            'g',
-            'h',
-            'i',
-            'j',
-            'k',
-            'l',
-            'm',
-            'n',
-            'o',
-            'p',
-            'q',
-            'r',
-            's',
-            't',
-            'u',
-            'v',
-            'w',
-            'x',
-            'y',
-            'z',
-            '+',
-            '/'
-        ];
-        $val = '';
-        while (($n != '0') && ($n != 0)) {
-            $val = $values[bcmod($n, $base)] . $val;
-            $n = bcdiv($n, $base, 0);
-        }
-        return $val;
-    }
-
     //check if a number is a triangle number or not. if not then return false.
     //if true return which triangle number it is
     private function is_triangle($num)
@@ -983,19 +906,19 @@ class Cruncher extends \Bigprimes\Pages
                 //converting to different bases
                 if ($num_len <= $this->max_len_convertion) {
                     $return .= "<table class=\"text\" width='100%' border='0' cellspacing='0' cellpadding='2'>";
-                    $return .= "<tr><td width='200'>Base 2 (Binary):</td><td>" . strrev(wordwrap(strrev($this->dec2base($number,
+                    $return .= "<tr><td width='200'>Base 2 (Binary):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
                             2)), 4, " ", 1)) . "</td></tr>";
-                    $return .= "<tr><td>Base 3 (Ternary):</td><td>" . strrev(wordwrap(strrev($this->dec2base($number,
+                    $return .= "<tr><td>Base 3 (Ternary):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
                             3)), 6, " ", 1)) . "</td></tr>";
-                    $return .= "<tr><td>Base 4 (Quaternary):</td><td>" . strrev(wordwrap(strrev($this->dec2base($number,
+                    $return .= "<tr><td>Base 4 (Quaternary):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
                             4)), 4, " ", 1)) . "</td></tr>";
-                    $return .= "<tr><td>Base 5 (Quintal):</td><td>" . strrev(wordwrap(strrev($this->dec2base($number,
+                    $return .= "<tr><td>Base 5 (Quintal):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
                             5)), 5, " ", 1)) . "</td></tr>";
-                    $return .= "<tr><td>Base 8 (Octal):</td><td>" . strrev(wordwrap(strrev($this->dec2base($number,
+                    $return .= "<tr><td>Base 8 (Octal):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
                             8)), 8, " ", 1)) . "</td></tr>";
                     $return .= "<tr><td>Base 10 (Denary):</td><td>" . strrev(wordwrap(strrev($number),
                             3, " ", 1)) . "</td></tr>";
-                    $return .= "<tr><td>Base 16 (Hexadecimal):</td><td>" . strrev(wordwrap(strrev($this->dec2base($number,
+                    $return .= "<tr><td>Base 16 (Hexadecimal):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
                             16)), 4, " ", 1)) . "</td></tr>";
                     $return .= '</table>';
                 } else {
