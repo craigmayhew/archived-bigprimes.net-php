@@ -26,6 +26,17 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
+
+        
+        
+      - run:
+          name: Install Composer
+          command: |
+            php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+            php -r "if (hash_file('SHA384', 'composer-setup.php') === trim(file_get_contents('https://composer.github.io/installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer invalid'; unlink('composer-setup.php'); } echo PHP_EOL;"
+            php composer-setup.php
+            php -r "unlink('composer-setup.php');"
+
       - run: composer install -n --prefer-dist
 
       - save_cache:
@@ -33,5 +44,14 @@ jobs:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
         
-      # run tests!
-      - run: phpunit
+      - run:
+          name: Display PHP information
+          command: |
+            php -v
+            php composer.phar --version
+      - run:
+          name: Install project dependencies
+          command: php composer.phar install
+      - run:
+          name: Run Unit tests
+          command: vendor/bin/phpunit
