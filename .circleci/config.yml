@@ -18,12 +18,16 @@ jobs:
 
     steps:
       - run:
+          name: Update system packages
+          command: sudo apt-get update -y
+          
+      - run:
           name: Install system packages
-          command: sudo apt-get update -y && apt-get -y install git
+          command: sudo apt-get -y install git
           
       - run:
           name: Install PHP extensions
-          command: docker-php-ext-install pdo bcmath
+          command: sudo docker-php-ext-install pdo bcmath
           
       - checkout
 
