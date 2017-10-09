@@ -133,7 +133,7 @@ class Fermats extends \Bigprimes\Pages
  <td>1</td>	
  <td>2<sup>2</sup>+1</td>
  <td>1</td>
- <td>2nd Prime</td>
+ <td>3rd Prime</td>
  <td><a href="//static.bigprimes.net/archive/fermat/F1.txt">TXT</a></td>
  <td></td>
  <td></td>
@@ -144,7 +144,7 @@ class Fermats extends \Bigprimes\Pages
  <td>0</td>	
  <td>2<sup>1</sup>+1</td>
  <td>1</td>
- <td>1st Prime</td>
+ <td>2nd Prime</td>
  <td><a href="//static.bigprimes.net/archive/fermat/F0.txt">TXT</a></td>
  <td></td>
  <td></td>
