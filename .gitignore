@@ -1,4 +1,6 @@
 .idea
+.terraform
 composer.phar
 htdocs/.htaccess
+terraform
 vendor
