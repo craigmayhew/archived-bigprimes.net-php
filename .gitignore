@@ -2,5 +2,5 @@
 .terraform
 composer.phar
 htdocs/.htaccess
-terraform
+terraform*
 vendor
