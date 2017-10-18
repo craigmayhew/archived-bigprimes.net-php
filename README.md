@@ -13,6 +13,35 @@ Install
  1. Apache instructions: Copy htdocs/.htaccesssample to htdocs/.htaccess and provide it with the variables needed for mysql.
  2. Run schema.sql on your chosen mysql server and populate tables such as `primeNumbers` if required.
  3. php composer.phar install
+ 
+AWS Lambda
+===
+To host bigprimes.net via AWS Lambda we need to; build a package, copy the bigprimes codebase into it, deploy it.
+
+ 1. Build php or use this prebuilt copy https://github.com/craigmayhew/bigprimes.net/php-71-bin.tar.gz
+```bash
+#update and install system packages
+sudo yum update –y
+sudo yum install gcc gcc-c++ libxml2-devel
+#download php
+cd ~
+wget http://ie1.php.net/get/php-7.1.10.tar.xz/from/this/mirror -O php-7.1.10.tar.xz
+tar xvfJ php-7.1.10.tar.xz
+#compile php
+mkdir /home/ec2-user/php-71-bin
+cd php-7.1.10
+./configure --prefix=/home/ec2-user/php-71-bin/
+make install
+#strip out files we dont need
+rm php-71-bin/bin/phpdbg
+#create the lambda package
+cd ~
+tar -zcvf php-71-bin.tar.gz php-71-bin/```
+
+ 2. Copy the codebase into it
+ 
+ 3. Deploy it to lambda
+
 
 Related projects
 ===
