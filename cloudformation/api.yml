@@ -1,275 +1,139 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Generate aws lambdas for bigprimes api.
+Description: Generate bigprimes api gateway.
 Parameters:
-  mysqlHost:
-    Description: MySQL Host
+  certificateARN:
+    Description: certificate for bigprimes.net
     Type: String
-    MinLength: 1
-  mysqlUser:
-    Description: MySQL user
-    Type: String
-    MinLength: 1
-  mysqlPassword:
-    Description: MySQL password
-    Type: String
-    MinLength: 1
-    NoEcho: true
-  mysqlDatabase:
-    Description: Name of database
-    Type: String
-    Default: bigprimes
-    MinLength: 1
-  s3Bucket:
-    Description: Name of S3 bucket where lambda zips are
-    Type: String
-    Default: bigprimes
-    MinLength: 1
 Resources:
-  LambdaBigprimesRequestWorkAll:
-    Type: AWS::Lambda::Function
+  PHPLambdaPermission:
+    Type: AWS::Lambda::Permission
     Properties:
-      Code:
-        ZipFile:
-          Fn::Join:
-          - "\n"
-          - - var mysql = require('mysql');
-            - exports.handler = function(event, context) {
-            - var connection = mysql.createConnection({
-            - Fn::Join:
-              - ''
-              - - host '
-                - Ref: mysqlHost
-                - "',"
-            - Fn::Join:
-              - ''
-              - - user '
-                - Ref: mysqlUser
-                - "',"
-            - Fn::Join:
-              - ''
-              - - password '
-                - Ref: mysqlPassword
-                - "',"
-            - Fn::Join:
-              - ''
-              - - database '
-                - Ref: mysqlDatabase
-                - "',"
-            - "});"
-            - "//res.setHeader('Content-Type', 'application/json');"
-            - connection.connect(function(err){
-            - "//connected unless err is set "
-            - "});"
-            - 'var querystring = '
-            - "'SELECT '+"
-            - "'count(*) as WorkUnits, '+"
-            - "'sum(`size`) as \"Numbers factored\", '+"
-            - "'sum(time_taken_ms)/86400000 as \"CPU Days\", '+"
-            - "'sum(work_done) / 1000000000000 as \"TDivs\", '+"
-            - "'sum(work_done)/(sum(time_taken_ms)/1000)/1000000 as \"MDivs/Sec\",
-              '+"
-            - "'user.name as User, client.name as Client '+"
-            - "'FROM bigprimes.wu_result '+"
-            - "'left join bigprimes.client on client.client_id = wu_result.client_id
-              '+"
-            - "'left join bigprimes.user on client.user = user.user_id '+"
-            - "'left join bigprimes.`wu` on `wu`.`wu_id` = `wu_result`.`wu_id` '+"
-            - "'WHERE 1 '+"
-            - "'GROUP BY client.client_id '+"
-            - "'ORDER BY TDivs desc;';"
-            - var query = connection.query(querystring, function(err, rows, fields)
-              {
-            - if (err) {
-            - context.fail(err);
-            - throw err;
-            - "}"
-            - var ret = [];
-            - for (var i in rows) {
-            - ret.push(rows[i]);
-            - "}"
-            - context.succeed(JSON.stringify(ret));  // Echo back the first key value
-            - "});"
-            - "};"
-      Description: List all work done
-      FunctionName: cloudformation-bigprimes-request-work-all
-      Handler: index.handler
-      MemorySize: 1536
-      Role:
+      Action: lambda:invokeFunction
+      FunctionName:
         Fn::GetAtt:
-        - LambdaExecutionRole
+        - BTCLambda
         - Arn
-      Runtime: nodejs4.3
-      Timeout: 3
-  LambdaBigprimesRequestWorkAll24hours:
-    Type: AWS::Lambda::Function
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+        - ''
+        - - 'arn:aws:execute-api:'
+          - Ref: AWS::Region
+          - ":"
+          - Ref: AWS::AccountId
+          - ":"
+          - Ref: RaiAPI
+          - "/*"
+  UsagePlan:
+    Type: "AWS::ApiGateway::UsagePlan"
     Properties:
-      Code:
-        ZipFile:
-          Fn::Join:
-          - "\n"
-          - - var mysql = require('mysql');
-            - exports.handler = function(event, context) {
-            - var connection = mysql.createConnection({
-            - Fn::Join:
-              - ''
-              - - host '
-                - Ref: mysqlHost
-                - "',"
-            - Fn::Join:
-              - ''
-              - - user '
-                - Ref: mysqlUser
-                - "',"
-            - Fn::Join:
-              - ''
-              - - password '
-                - Ref: mysqlPassword
-                - "',"
-            - Fn::Join:
-              - ''
-              - - database '
-                - Ref: mysqlDatabase
-                - "',"
-            - "});"
-            - "//res.setHeader('Content-Type', 'application/json');"
-            - connection.connect(function(err){
-            - "//connected unless err is set "
-            - "});"
-            - 'var querystring = '
-            - "'SELECT '+"
-            - "'count(*) as WorkUnits, '+"
-            - "'sum(`size`) as \"Numbers factored\", '+"
-            - "'sum(time_taken_ms)/86400000 as \"CPU Days\", '+"
-            - "'sum(work_done) / 1000000000000 as \"TDivs\", '+"
-            - "'sum(work_done)/(sum(time_taken_ms)/1000)/1000000 as \"MDivs/Sec\",
-              '+"
-            - "'user.name as User, client.name as Client '+"
-            - "'FROM bigprimes.wu_result '+"
-            - "'left join bigprimes.client on client.client_id = wu_result.client_id
-              '+"
-            - "'left join bigprimes.user on client.user = user.user_id '+"
-            - "'left join bigprimes.`wu` on `wu`.`wu_id` = `wu_result`.`wu_id` '+"
-            - "'WHERE bigprimes.`wu_result`.`time_received` > UNIX_TIMESTAMP() - (86400
-              * 1) '+"
-            - "'group by client.client_id '+"
-            - "'order by TDivs desc;';"
-            - var query = connection.query(querystring, function(err, rows, fields)
-              {
-            - if (err) {
-            - context.fail(err);
-            - throw err;
-            - "}"
-            - var ret = [];
-            - for (var i in rows) {
-            - ret.push(rows[i]);
-            - "}"
-            - context.succeed(JSON.stringify(ret));  // Echo back the first key value
-            - "});"
-            - "};"
-      Description: List all work done in the last 24 hours
-      FunctionName: cloudformation-bigprimes-request-work-all-24hours
-      Handler: index.handler
-      MemorySize: 1536
-      Role:
-        Fn::GetAtt:
-        - LambdaExecutionRole
-        - Arn
-      Runtime: nodejs4.3
-      Timeout: 3
-  LambdaBigprimesRequestWorkunit:
-    Type: AWS::Lambda::Function
+      Description: "Rai"
+      Quota:
+        Limit: 5000
+        Period: MONTH
+      Throttle:
+        BurstLimit: 5
+        RateLimit: 2
+      UsagePlanName: UsagePlan
+            
+  BigPrimesAPI:
+    Type: AWS::ApiGateway::RestApi
     Properties:
-      Code:
-        ZipFile:
-          Fn::Join:
-          - "\n"
-          - - var mysql = require('mysql');
-            - exports.handler = function(event, context) {
-            - var connection = mysql.createConnection({
-            - Fn::Join:
-              - ''
-              - - host '
-                - Ref: mysqlHost
-                - "',"
-            - Fn::Join:
-              - ''
-              - - user '
-                - Ref: mysqlUser
-                - "',"
-            - Fn::Join:
-              - ''
-              - - password '
-                - Ref: mysqlPassword
-                - "',"
-            - Fn::Join:
-              - ''
-              - - database '
-                - Ref: mysqlDatabase
-                - "',"
-            - "});"
-            - "//res.setHeader('Content-Type', 'application/json');"
-            - connection.connect(function(err){
-            - "//connected unless err is set "
-            - "});"
-            - 'var querystring = '
-            - "'SELECT '+"
-            - "'count(*) as WorkUnits, '+"
-            - "'sum(`size`) as \"Numbers factored\", '+"
-            - "'sum(time_taken_ms)/86400000 as \"CPU Days\", '+"
-            - "'sum(work_done) / 1000000000000 as \"TDivs\", '+"
-            - "'sum(work_done)/(sum(time_taken_ms)/1000)/1000000 as \"MDivs/Sec\",
-              '+"
-            - "'user.name as User, client.name as Client '+"
-            - "'FROM bigprimes.wu_result '+"
-            - "'left join bigprimes.client on client.client_id = wu_result.client_id
-              '+"
-            - "'left join bigprimes.user on client.user = user.user_id '+"
-            - "'left join bigprimes.`wu` on `wu`.`wu_id` = `wu_result`.`wu_id` '+"
-            - "'WHERE 1 '+"
-            - "//'where `wu_result`.`time_received` > UNIX_TIMESTAMP() - (86400 *
-              1) '+"
-            - "'group by client.client_id '+"
-            - "'order by TDivs desc;';"
-            - var query = connection.query(querystring, function(err, rows, fields)
-              {
-            - if (err) {
-            - context.fail(err);
-            - throw err;
-            - "}"
-            - var ret = [];
-            - for (var i in rows) {
-            - ret.push(rows[i]);
-            - "}"
-            - context.succeed(JSON.stringify(ret));  // Echo back the first key value
-            - "});"
-            - "};"
-      Description: List all work done in the last 24 hours
-      FunctionName: cloudformation-bigprimes-request-work-unit
-      Handler: index.handler
-      MemorySize: 1536
-      Role:
-        Fn::GetAtt:
-        - LambdaExecutionRole
-        - Arn
-      Runtime: nodejs4.3
-      Timeout: 3
-  LambdaBigprimesPHP:
-    Type: AWS::Lambda::Function
+      Name: Rai API
+      Description: API used for Rai
+      FailOnWarnings: true
+          
+  ApiStage:
+    DependsOn:
+    - ApiGatewayAccount
+    Type: AWS::ApiGateway::Stage
     Properties:
-      Code:
-        S3Bucket: !Ref s3Bucket
-        S3Key: lambdas/php.zip
-      Description: PHP version of site, bundled into a lambda zip
-      FunctionName: cloudformation-bigprimes-php
-      Handler: php.handler
-      MemorySize: 1536
-      Role:
+      DeploymentId:
+        Ref: ApiDeployment
+      MethodSettings:
+      - DataTraceEnabled: true
+        HttpMethod: "*"
+        LoggingLevel: INFO
+        ResourcePath: "/*"
+      RestApiId:
+        Ref: RaiAPI
+      StageName: LATEST
+      
+  ApiGatewayCloudWatchLogsRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - apigateway.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Policies:
+      - PolicyName: ApiGatewayLogsPolicy
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:DescribeLogGroups
+            - logs:DescribeLogStreams
+            - logs:PutLogEvents
+            - logs:GetLogEvents
+            - logs:FilterLogEvents
+            Resource: "*"
+            
+  ApiGatewayAccount:
+    Type: AWS::ApiGateway::Account
+    Properties:
+      CloudWatchRoleArn:
         Fn::GetAtt:
-        - LambdaExecutionRole
+        - ApiGatewayCloudWatchLogsRole
         - Arn
-      Runtime: nodejs4.3
-      Timeout: 3
+        
+  ApiDeployment:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn:
+    - LSRequest
+    Properties:
+      RestApiId:
+        Ref: RaiAPI
+      StageName: DummyStage
+      
+  DomainName:
+    Type: AWS::ApiGateway::DomainName
+    Properties:
+      DomainName: api.rai.mayhew.io
+      CertificateArn: !Ref certificateARN
+      
+  DomainMapping:
+    Type: 'AWS::ApiGateway::BasePathMapping'
+    Properties:
+      BasePath: ""
+      DomainName: !Ref DomainName
+      RestApiId: !Ref RaiAPI
+      
+  APIDNSRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneName: mayhew.io.
+      Comment: RAI API
+      Name: "api.rai.mayhew.io"
+      Type: CNAME
+      TTL: '300'
+      ResourceRecords:
+      - Fn::Join:
+        - ''
+        - - Ref: RaiAPI
+          - ".execute-api."
+          - Ref: AWS::Region
+          - ".amazonaws.com."
+
   LambdaExecutionRole:
     Type: AWS::IAM::Role
     Properties:
