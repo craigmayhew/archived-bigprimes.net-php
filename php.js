@@ -3,9 +3,7 @@ process.env['PATH'] = process.env['PATH'] + ':' + process.env['LAMBDA_TASK_ROOT'
 const spawn = require('child_process').spawn;
 
 exports.handler = function(event, context) {
-
-    //var php = spawn('php',['index.php']); //local debug only
-    var php = spawn('php-71-bin/bin/php',['index.php']);
+    var php = spawn('php-71-bin/bin/php',['htdocs/index-silex.php']);
     var output = "";
 
     //send the input event json as string via STDIN to php process
@@ -26,6 +24,7 @@ exports.handler = function(event, context) {
 
     //finalize when php process is done.
     php.on('close', function(code) {
+    console.log('php says: '+output);
             context.succeed(JSON.parse(output));
     });
 }
