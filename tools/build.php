@@ -3,32 +3,27 @@ date_default_timezone_set("Europe/London");
 
 class builder{
   /*CONFIG START*/
-  private $zipName = 'lambda';
+  private static $zipName = 'lambda';
+  private static $workingdirectory = '/tmp';
   /*CONFIG END*/
 
   public function build(){
-    exec('sudo yum update –y');
-    exec('sudo yum install gcc gcc-c++ libxml2-devel');
+    exec('sudo yum -y update');
+    exec('sudo yum -y install gcc gcc-c++ libxml2-devel');
     //#download php
     $php = file_get_contents('http://ie1.php.net/get/php-7.1.10.tar.xz/from/this/mirror');
-    file_put_contents('~/php-7.1.10.tar.xz', $php);
-    exec('tar xvfJ php-7.1.10.tar.xz');
+    file_put_contents(self::$workingdirectory.'/php-7.1.10.tar.xz', $php);
+    exec('cd '.self::$workingdirectory.' && tar xvfJ '.self::$workingdirectory.'/php-7.1.10.tar.xz');
     #compile php
-    exec('mkdir ~/php-71-bin');
-    exec('cd ~/php-7.1.10');
-    exec('./configure --prefix=/home/ec2-user/php-71-bin/');
-    exec('make install');
+    exec('mkdir -p '.self::$workingdirectory.'/php-71-bin');
+    exec('cd '.self::$workingdirectory.'/php-7.1.10 && ./configure --prefix='.self::$workingdirectory.'/php-71-bin/');
+    exec('cd '.self::$workingdirectory.'/php-7.1.10 && make install');
     #strip out files we dont need
-    exec('rm php-71-bin/bin/phpdbg');
+    exec('cd '.self::$workingdirectory.' && rm php-71-bin/bin/phpdbg');
     #create the lambda package
-    exec('cd ~');
-    exec('tar -zcvf php-71-bin.tar.gz php-71-bin/');
-    
-      
-    $zip = new ZipArchive();
-    $filename = '../'.self::$zipname.'.zip';
-    $zip->addFile('../php.js');
-    $zip->addFile('../php-71-bin.tar.gz');
+    exec('cd '.self::$workingdirectory.' && tar -zcvf php-71-bin.tar.gz php-71-bin/');
+    #compress into zip file for deploy to aws lambda 
+    exec('cd '.self::$workingdirectory.' && zip '.self::$zipName.'.zip php.js php-71-bin.tar.gz');
   }
 }
 
