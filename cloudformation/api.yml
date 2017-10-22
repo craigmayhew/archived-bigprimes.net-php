@@ -262,7 +262,7 @@ Resources:
         S3Key: lambdas/php.zip
       Description: PHP version of site, bundled into a lambda zip
       FunctionName: cloudformation-bigprimes-php
-      Handler: index.handler
+      Handler: php.handler
       MemorySize: 1536
       Role:
         Fn::GetAtt:
