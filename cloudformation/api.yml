@@ -20,7 +20,7 @@ Parameters:
     Type: String
     Default: bigprimes
     MinLength: 1
-  s3bucket:
+  s3Bucket:
     Description: Name of S3 bucket where lambda zips are
     Type: String
     Default: bigprimes
@@ -258,7 +258,7 @@ Resources:
     Type: AWS::Lambda::Function
     Properties:
       Code:
-        S3Bucket: !Ref s3bucket
+        S3Bucket: !Ref s3Bucket
         S3Key: lambdas/php.zip
       Description: PHP version of site, bundled into a lambda zip
       FunctionName: cloudformation-bigprimes-php
