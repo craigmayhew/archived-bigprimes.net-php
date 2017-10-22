@@ -24,8 +24,7 @@ exports.handler = function(event, context) {
 
     //finalize when php process is done.
     php.on('close', function(code) {
-    console.log('php says: '+output);
-            context.succeed(JSON.parse(output));
+            context.succeed(output);
     });
 }
 

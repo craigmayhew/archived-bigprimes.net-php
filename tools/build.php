@@ -27,6 +27,8 @@ class builder{
     #compress into zip file for deploy to aws lambda 
     exec('cd '.self::$workingdirectory.' && zip -9 '.self::$workingdirectory.'/'.self::$zipName.'.zip -r php-71-bin');
     exec('cd '.$scriptPath.'/../ && zip -9 '.self::$workingdirectory.'/'.self::$zipName.'.zip php.js htdocs/index-silex.php');
+    exec('cd '.$scriptPath.'/../ && zip -9 '.self::$workingdirectory.'/'.self::$zipName.'.zip -r src');
+    exec('cd '.$scriptPath.'/../ && zip -9 '.self::$workingdirectory.'/'.self::$zipName.'.zip -r vendor');
   }
 }
 
