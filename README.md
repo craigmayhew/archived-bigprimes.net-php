@@ -16,32 +16,14 @@ Install
  
 AWS Lambda
 ===
-To host bigprimes.net via AWS Lambda we need to; build a package, copy the bigprimes codebase into it, deploy it.
+To host bigprimes.net via AWS Lambda we need to; build a package, copy the bigprimes codebase into it, deploy it to lambda.
 
- 1. Build php or use this prebuilt copy https://github.com/craigmayhew/bigprimes.net/php-71-bin.tar.gz
-```bash
-#update and install system packages
-sudo yum update –y
-sudo yum install gcc gcc-c++ libxml2-devel
-#download php
-cd ~
-wget http://ie1.php.net/get/php-7.1.10.tar.xz/from/this/mirror -O php-7.1.10.tar.xz
-tar xvfJ php-7.1.10.tar.xz
-#compile php
-mkdir /home/ec2-user/php-71-bin
-cd php-7.1.10
-./configure --prefix=/home/ec2-user/php-71-bin/
-make install
-#strip out files we dont need
-rm php-71-bin/bin/phpdbg
-#create the lambda package
-cd ~
-tar -zcvf php-71-bin.tar.gz php-71-bin/```
+All of that has been wrapped up into:
 
- 2. Copy the codebase into it
- 
- 3. Deploy it to lambda
+- terraform init
+- terraform apply
 
+make sure you have your aws credentials in your home directory and you have terraform installed (or referenced in the bin directory, or the repo directory)
 
 Related projects
 ===
