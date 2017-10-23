@@ -117,6 +117,7 @@ Resources:
       BasePath: ""
       DomainName: !Ref DomainName
       RestApiId: !Ref BigPrimesAPI
+      Stage: LATEST
       
   APIDNSRecord:
     Type: AWS::Route53::RecordSet
@@ -166,7 +167,7 @@ Resources:
         Fn::GetAtt:
         - BigPrimesAPI
         - RootResourceId
-      PathPart: changeme
+      PathPart: 
 
   PHPRequest:
     DependsOn: PHPLambdaPermission
@@ -191,6 +192,7 @@ Resources:
             method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
             method.response.header.Access-Control-Allow-Methods: "'GET,POST,OPTIONS'"
             method.response.header.Access-Control-Allow-Origin: "'*'"
+            method.response.header.Content-Type: "'text/html'"
         RequestTemplates:
           application/json: '"$input.params(''pid'')"'
       RequestParameters:
