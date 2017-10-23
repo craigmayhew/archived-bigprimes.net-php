@@ -25,6 +25,15 @@ Parameters:
     Type: String
     Default: bigprimes
     MinLength: 1
+Outputs:
+  LambdaARN:
+    Description: PHP Lambda ARN
+    Value: 
+      Fn::GetAtt:
+        - LambdaBigprimesPHP
+        - Arn
+    Export:
+      Name: BigPrimesPHPLambdaARN
 Resources:
   LambdaBigprimesRequestWorkAll:
     Type: AWS::Lambda::Function

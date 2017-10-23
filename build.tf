@@ -20,6 +20,7 @@ resource "aws_cloudformation_stack" "api" {
   on_failure = "DELETE"
   parameters {
     certificateARN = "arn:aws:acm:us-east-1:902420391845:certificate/eb2693d6-fe4a-4f9f-8ce5-d09ae037e627"
+    phpLambdaARN = "${aws_cloudformation_stack.lambdas.outputs["LambdaARN"]}"
   }
   template_body = "${ file("cloudformation/api.yml") }"
 }

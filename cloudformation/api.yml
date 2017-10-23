@@ -5,15 +5,15 @@ Parameters:
   certificateARN:
     Description: certificate for bigprimes.net
     Type: String
+  phpLambdaARN:
+    Description: php lambda for bigprimes.net
+    Type: String
 Resources:
   PHPLambdaPermission:
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:invokeFunction
-      FunctionName:
-        Fn::GetAtt:
-        - BTCLambda
-        - Arn
+      FunctionName: !Ref phpLambdaARN
       Principal: apigateway.amazonaws.com
       SourceArn:
         Fn::Join:
@@ -23,12 +23,12 @@ Resources:
           - ":"
           - Ref: AWS::AccountId
           - ":"
-          - Ref: RaiAPI
+          - Ref: BigPrimesAPI
           - "/*"
   UsagePlan:
     Type: "AWS::ApiGateway::UsagePlan"
     Properties:
-      Description: "Rai"
+      Description: "BigPrimes"
       Quota:
         Limit: 5000
         Period: MONTH
@@ -40,8 +40,8 @@ Resources:
   BigPrimesAPI:
     Type: AWS::ApiGateway::RestApi
     Properties:
-      Name: Rai API
-      Description: API used for Rai
+      Name: BigPrimes API
+      Description: API used for BigPrimes
       FailOnWarnings: true
           
   ApiStage:
@@ -57,7 +57,7 @@ Resources:
         LoggingLevel: INFO
         ResourcePath: "/*"
       RestApiId:
-        Ref: RaiAPI
+        Ref: BigPrimesAPI
       StageName: LATEST
       
   ApiGatewayCloudWatchLogsRole:
@@ -99,16 +99,16 @@ Resources:
   ApiDeployment:
     Type: AWS::ApiGateway::Deployment
     DependsOn:
-    - LSRequest
+    - PHPRequest
     Properties:
       RestApiId:
-        Ref: RaiAPI
+        Ref: BigPrimesAPI
       StageName: DummyStage
       
   DomainName:
     Type: AWS::ApiGateway::DomainName
     Properties:
-      DomainName: api.rai.mayhew.io
+      DomainName: test.bigprimes.net
       CertificateArn: !Ref certificateARN
       
   DomainMapping:
@@ -116,20 +116,20 @@ Resources:
     Properties:
       BasePath: ""
       DomainName: !Ref DomainName
-      RestApiId: !Ref RaiAPI
+      RestApiId: !Ref BigPrimesAPI
       
   APIDNSRecord:
     Type: AWS::Route53::RecordSet
     Properties:
-      HostedZoneName: mayhew.io.
-      Comment: RAI API
-      Name: "api.rai.mayhew.io"
+      HostedZoneName: bigprimes.net.
+      Comment: Bigprimes API
+      Name: "test.bigprimes.net"
       Type: CNAME
       TTL: '300'
       ResourceRecords:
       - Fn::Join:
         - ''
-        - - Ref: RaiAPI
+        - - Ref: BigPrimesAPI
           - ".execute-api."
           - Ref: AWS::Region
           - ".amazonaws.com."
@@ -156,3 +156,52 @@ Resources:
             Action:
             - logs:*
             Resource: arn:aws:logs:*:*:*
+
+  PHPResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId:
+        Ref: BigPrimesAPI
+      ParentId:
+        Fn::GetAtt:
+        - BigPrimesAPI
+        - RootResourceId
+      PathPart: changeme
+
+  PHPRequest:
+    DependsOn: PHPLambdaPermission
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: GET
+      Integration:
+        Type: AWS
+        IntegrationHttpMethod: POST
+        Uri:
+          Fn::Join:
+          - ''
+          - - 'arn:aws:apigateway:'
+            - Ref: AWS::Region
+            - ":lambda:path/2015-03-31/functions/"
+            - Ref: phpLambdaARN
+            - "/invocations"
+        IntegrationResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+            method.response.header.Access-Control-Allow-Methods: "'GET,POST,OPTIONS'"
+            method.response.header.Access-Control-Allow-Origin: "'*'"
+        RequestTemplates:
+          application/json: '"$input.params(''pid'')"'
+      RequestParameters:
+        method.request.querystring.name: false
+      ResourceId:
+        Ref: PHPResource
+      RestApiId:
+        Ref: BigPrimesAPI
+      MethodResponses:
+      - StatusCode: 200
+        ResponseParameters:
+          method.response.header.Access-Control-Allow-Headers: true
+          method.response.header.Access-Control-Allow-Methods: true
+          method.response.header.Access-Control-Allow-Origin: true
