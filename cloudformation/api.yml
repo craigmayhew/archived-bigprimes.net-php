@@ -207,4 +207,6 @@ Resources:
           method.response.header.Access-Control-Allow-Methods: true
           method.response.header.Access-Control-Allow-Origin: true
           method.response.header.Content-Type: "'text/html'"
+        ResponseModels:
+          text/html: "$input.path('$')"
 
