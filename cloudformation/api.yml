@@ -108,7 +108,7 @@ Resources:
   DomainName:
     Type: AWS::ApiGateway::DomainName
     Properties:
-      DomainName: test.bigprimes.net
+      DomainName: www.bigprimes.net
       CertificateArn: !Ref certificateARN
       
   DomainMapping:
@@ -124,7 +124,7 @@ Resources:
     Properties:
       HostedZoneName: bigprimes.net.
       Comment: Bigprimes API
-      Name: "test.bigprimes.net"
+      Name: "www.bigprimes.net"
       Type: CNAME
       TTL: '300'
       ResourceRecords:
@@ -158,17 +158,6 @@ Resources:
             - logs:*
             Resource: arn:aws:logs:*:*:*
 
-  PHPResource:
-    Type: AWS::ApiGateway::Resource
-    Properties:
-      RestApiId:
-        Ref: BigPrimesAPI
-      ParentId:
-        Fn::GetAtt:
-        - BigPrimesAPI
-        - RootResourceId
-      PathPart: "php" 
-
   PHPRequest:
     DependsOn: PHPLambdaPermission
     Type: AWS::ApiGateway::Method
@@ -192,12 +181,17 @@ Resources:
             method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
             method.response.header.Access-Control-Allow-Methods: "'GET,POST,OPTIONS'"
             method.response.header.Access-Control-Allow-Origin: "'*'"
+            method.response.header.Content-Type: "'text/html'"
+          ResponseTemplates:
+            "text/html": "$input.path('$')"
         RequestTemplates:
           application/json: '"$input.params(''pid'')"'
       RequestParameters:
         method.request.querystring.name: false
       ResourceId:
-        Ref: PHPResource
+        Fn::GetAtt:
+        - BigPrimesAPI
+        - RootResourceId
       RestApiId:
         Ref: BigPrimesAPI
       MethodResponses:
@@ -207,6 +201,3 @@ Resources:
           method.response.header.Access-Control-Allow-Methods: true
           method.response.header.Access-Control-Allow-Origin: true
           method.response.header.Content-Type: "'text/html'"
-        ResponseModels:
-          text/html: "$input.path('$')"
-

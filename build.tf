@@ -19,7 +19,7 @@ resource "aws_cloudformation_stack" "api" {
   name = "bigprimes-api"
   on_failure = "DELETE"
   parameters {
-    certificateARN = "arn:aws:acm:us-east-1:902420391845:certificate/eb2693d6-fe4a-4f9f-8ce5-d09ae037e627"
+    certificateARN = "arn:aws:acm:us-east-1:902420391845:certificate/4768a8b5-5707-40b8-aece-9f5ba8277097"
     phpLambdaARN = "${aws_cloudformation_stack.lambdas.outputs["LambdaARN"]}"
   }
   template_body = "${ file("cloudformation/api.yml") }"
