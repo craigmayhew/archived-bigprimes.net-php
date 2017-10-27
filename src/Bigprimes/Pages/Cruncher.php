@@ -787,11 +787,16 @@ class Cruncher extends \Bigprimes\Pages
                 }
                 //prime ?
                 $primes = new \Bigprimes\Primes($this->app);
-                $is_prime = $primes->checkPrime($number);
-                if ($is_prime === null) {
-                    $return .= 'This number is not in our database (Therfore I\'m unable to check for primality).<br />';
-                } elseif ($is_prime !== false) {
-                    $return .= 'It is the ' . $this->stndrd($is_prime) . ' prime number.<br />';
+                $largestInSequentialDatabase = $primes->largestNthPrime();
+                if ($largestInSequentialDatabase > $number){
+                    $is_prime = $primes->checkPrime($number);
+                    if ($is_prime !== false) {
+                      $return .= 'It is the ' . $this->stndrd($is_prime) . ' prime number.<br />';
+                    } else {
+                      $return .= 'It is not a prime number.<br />';
+                    }
+                } elseif ($this->prob_prime($number)){
+                    $return .= 'It is almost certainly a prime number.<br />';
                 } else {
                     $return .= 'It is not a prime number.<br />';
                 }

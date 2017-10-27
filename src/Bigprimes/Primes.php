@@ -14,6 +14,19 @@ class Primes
     }
 
     /**
+     * Gets largest prime in database.
+     *
+     * @return int The largest prime number we have in the db.
+     */
+    public function largestNthPrime()
+    {
+      /*$sql = 'SELECT n FROM primeNumbers ORDER BY n LIMIT 1';
+      $row = $this->app['dbs']['mysql_read']->fetchAssoc($sql, array());
+      return $this->getPrime($row['n']+99);*/
+      return $this->maxPrime;
+    }
+
+    /**
      * Gets nth prime.
      *
      * @param int $nth The nth prime you wish to get.
@@ -23,7 +36,7 @@ class Primes
     {
         $prime = false;
         if ($nth > $this->maxPrime) {
-            return false;
+            return null;
         }
         //Works out what row to pull from the database.
         $rowNo = ceil($nth / $this->numbersPerRow);
@@ -90,7 +103,7 @@ class Primes
         if ($row == false) {
             return null;
         } elseif (($row['id'] * 100) <= $this->maxPrime && $id) {
-            //Loop through each number of the row untill given number is found.
+            //Loop through each number of the row until given number is found.
             $n = 0;
             $haveNumber = false;
             foreach ($row as $k => $col) {
