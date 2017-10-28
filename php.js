@@ -3,10 +3,15 @@ process.env['PATH'] = process.env['PATH'] + ':' + process.env['LAMBDA_TASK_ROOT'
 const spawn = require('child_process').spawn;
 
 exports.handler = function(event, context) {
-    var php = spawn('php-71-bin/bin/php',['htdocs/index-silex.php']);
-    var output = "";
+    var php = spawn('php-71-bin/bin/php', ['htdocs/index-silex.php'], {
+      env: {
+        REQUEST_URI: '/status/'
+      }
+    });
+    var output = '';//JSON.stringify(event)+JSON.stringify(context);
 
     //send the input event json as string via STDIN to php process
+    //event['params']['path']
     php.stdin.write(JSON.stringify(event));
 
     //close the php stream to unblock php process
