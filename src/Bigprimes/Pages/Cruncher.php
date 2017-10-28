@@ -244,11 +244,10 @@ class Cruncher extends \Bigprimes\Pages
         $numToCheck = explode('-', chunk_split($num . '.00000000', 1, '-'));
         $divideBy = 9; //currently only for dividing by 9!
 
-        $setting['decimals only'] = true;
-
         $answer = []; // to hold the answer
         $working = false; // for working out
 
+        $donePoint = false;
         foreach ($numToCheck as $nthDigit => $digit) {
             if ($digit == '.') {
                 $donePoint = true;
@@ -791,15 +790,17 @@ class Cruncher extends \Bigprimes\Pages
                 $primes = new \Bigprimes\Primes($this->app);
                 $largestInSequentialDatabase = $primes->largestNthPrime();
                 if ($largestInSequentialDatabase > $number){
-                    $is_prime = $primes->checkPrime($number);
+                    $is_prime = $primes->checkIfNthPrime($number);
                     if ($is_prime !== false) {
                       $return .= 'It is the ' . $this->stndrd($is_prime) . ' prime number.<br />';
                     } else {
                       $return .= 'It is not a prime number.<br />';
                     }
                 } elseif ($this->prob_prime($number)){
+                    $is_prime = true;
                     $return .= 'It is almost certainly a prime number.<br />';
                 } else {
+                    $is_prime = false;
                     $return .= 'It is not a prime number.<br />';
                 }
                 //mersenne prime or not?
