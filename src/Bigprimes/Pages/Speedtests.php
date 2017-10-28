@@ -25,6 +25,35 @@ class Speedtests extends \Bigprimes\Pages
 
                 $primes = new \Bigprimes\Primes($this->app);
                
+                // PHP EXEC OVERHEAD
+                $iterations = 10;
+                $startTime = microtime(true);
+                for ($i=0 ;$i<$iterations; $i++) {
+                  exec('echo test', $outputArray);
+                }
+                $overheadTime = (microtime(true) - $startTime)/$iterations;
+                $return .= 'php exec overhead is '.substr($overheadTime,0,6).' seconds (average over '.$iterations.' samples)<br><br>';
+
+                // CALLING NEW BINARY OVERHEAD
+                $iterations = 10;
+                $startTime = microtime(true);
+                for ($i=0 ;$i<$iterations; $i++) {
+                  exec('../src/Bigprimes/bin/factors 9', $outputArray);
+                }
+                $overheadTime = (microtime(true) - $startTime)/$iterations;
+                $return .= 'binary call overhead is '.substr($overheadTime,0,6).' seconds (average over '.$iterations.' samples)<br><br>';
+
+                // DATABASE OVERHEAD
+                $iterations = 30;
+                $startTime = microtime(true);
+                $sql = 'SELECT 1 FROM numberCache WHERE number = ? LIMIT 1';
+                for ($i=0 ;$i<$iterations; $i++) {
+                  $factors = $this->app['dbs']['mysql_read']->fetchAssoc($sql, array('1'));
+                }
+                $overheadTime = (microtime(true) - $startTime)/$iterations;
+                $return .= 'database overhead is '.substr($overheadTime,0,6).' seconds (average over '.$iterations.' samples)<br><br>';
+
+                // NTH PRIME RETRIEVAL
                 $crunchTime = 0;
                 $waitTime = 1; 
                 $number = 99;//start number
@@ -45,7 +74,7 @@ class Speedtests extends \Bigprimes\Pages
                 }
                 $return .= 'Crunch rather than read cache, for prime numbers up to the '.$this->stndrd($number).' prime. Crunch time: '.substr($crunchTime,0,6).' seconds<br>';
 
-                
+                // FACTORIZATION 
                 $cruncher = new \Bigprimes\Pages\Cruncher($this->app);
                 $crunchTime = 0;
                 $waitTime = 1;
