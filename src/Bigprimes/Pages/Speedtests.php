@@ -45,6 +45,28 @@ class Speedtests extends \Bigprimes\Pages
                 }
                 $return .= 'Crunch rather than read cache, for prime numbers up to the '.$this->stndrd($number).' prime. Crunch time: '.substr($crunchTime,0,6).' seconds<br>';
 
+                
+                $cruncher = new \Bigprimes\Pages\Cruncher($this->app);
+                $crunchTime = 0;
+                $waitTime = 1;
+                $number = 3;//start number
+                while($crunchTime < $waitTime){
+                  $startTime = microtime(true);
+                  $waitTime = microtime(true) - $startTime;
+                  $f1 = $cruncher->factors($number);
+
+                  $startTime = microtime(true);
+                  exec('../src/Bigprimes/bin/factors ' . (int)$number, $f2);
+                  $crunchTime = microtime(true) - $startTime;
+
+                  if (str_replace('<br>',',',$f1) !== implode(',',$f2)) {
+                    $return .= 'error, '.str_replace('<br>',',',$f1).'!='.implode(',',$f2).'<br>';
+                  }
+
+                  $number +=2;
+                }
+                $return .= 'Crunch rather than read cache, for factorization of numbers up to '.$number.'. Crunch time: '.substr($crunchTime,0,6).' seconds<br>';
+                
               $return .= 
               '</td>'.
             '</tr>'.

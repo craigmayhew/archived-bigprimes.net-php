@@ -368,20 +368,21 @@ class Cruncher extends \Bigprimes\Pages
         return true;
     }
 
-    private function factors($n)
+    public function factors($n)
     {
         //check cache
         $sql = 'SELECT factors FROM numberCache WHERE number = ? LIMIT 1';
         $factors = $this->app['dbs']['mysql_read']->fetchAssoc($sql, array($n));
         //if we have a cache entry
         if ($factors != false && $factors['factors'] != '') {
-            $factors = str_replace(',', '<br />', $factors['factors']);
+            $factors = str_replace(',', '<br>', $factors['factors']);
             return $factors;
         }
 
         //heavy calculation due to cache miss
         $afactors = [];
         exec('../src/Bigprimes/bin/factors ' . (int)$n, $afactors);
+        $afactors = array_unique($afactors);
 
         $insertString = implode($afactors, ',');
         if ($factors) {
@@ -396,7 +397,7 @@ class Cruncher extends \Bigprimes\Pages
             ));
         }
 
-        return implode($afactors, '<br />');
+        return implode($afactors, '<br>');
     }
 
     private $ones = [
