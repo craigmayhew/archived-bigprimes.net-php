@@ -289,6 +289,14 @@ class Cruncher extends \Bigprimes\Pages
         }
     }
 
+    private function bcfact($n){
+      $factorial = $n;
+      while (--$n > 1) {
+        $factorial = bcmul($factorial, $n);
+      }
+      return $factorial;
+    }
+
     //check if a number is a triangle number or not. if not then return false.
     //if true return which triangle number it is
     private function is_triangle($num)
