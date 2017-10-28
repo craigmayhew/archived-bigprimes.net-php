@@ -4,6 +4,7 @@ namespace Bigprimes\Pages;
 
 class Cruncher extends \Bigprimes\Pages
 {
+    private $max_english_len = 126;
     private $max_len_prime = 11;
     private $max_len_cube = 17;
     private $max_len_square = 100;
@@ -455,7 +456,39 @@ class Cruncher extends \Bigprimes\Pages
         ' sextillion',
         ' septillion',
         ' octillion',
-        ' nonillion'
+        ' nonillion',
+        ' decillion',
+        ' undecillion',
+        ' duodecillion',
+        ' tredecillion',
+        ' quattuordecillion',
+        ' quindecillion',
+        ' sexdecillion',
+        ' septendecillion',
+        ' octodecillion',
+        ' novemdecillion',
+        ' vigintillion',
+        ' unvigintillion',
+        ' duovigintillion',
+        ' tresvigintillion',
+        ' quattuorvigintillion',
+        ' quinquavigintillion',
+        ' sesvigintillion',
+        ' septemvigintillion',
+        ' octovigintillion',
+        ' novemvigintillion',
+        ' trigintillion',
+        ' untrigintillion',
+        ' duotrigintillion',
+        ' trestrigintillion',
+        ' quattuortrigintillion',
+        ' quinquatrigintillion',
+        ' sestrigintillion',
+        ' septentrigintillion',
+        ' octotrigintillion',
+        ' noventrigintillion',
+        ' quadragintillion',
+        ' ERROR ',
     ];
 
 
@@ -776,9 +809,12 @@ class Cruncher extends \Bigprimes\Pages
             if ($is_number && $number !== '0') {
                 $num_len = strlen($number);
 
-                $return .= '<b>The number you submitted to be crunched was:</b>' .
-                    '<h1>' . strrev(wordwrap(strrev($number), 3, ' ', 1)) . ' - ' . $this->convertNum($number,
-                        $this->ones, $this->tens, $this->triplets) . '</h1>';
+                $return .= 
+                '<b>The number you submitted to be crunched was:</b>' .
+                '<h1>' .
+                  strrev(wordwrap(strrev($number), 3, ' ', 1)) . 
+                  ($num_len > $this->max_english_len?'':' - ' . $this->convertNum($number, $this->ones, $this->tens, $this->triplets)) . 
+                '</h1>';
 
                 $return .= "<table class=\"text\" width='100%' border='1' cellspacing='0' cellpadding='2'><tr><td>"; //begin table
                 //odd or even?
