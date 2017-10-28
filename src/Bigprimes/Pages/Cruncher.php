@@ -374,21 +374,23 @@ class Cruncher extends \Bigprimes\Pages
         //check cache
         $sql = 'SELECT factors FROM numberCache WHERE number = ? LIMIT 1';
         $factors = $this->app['dbs']['mysql_read']->fetchAssoc($sql, array($n));
-        if ($factors != false) {
+        //if we have a cache entry
+        if ($factors != false && $factors['factors'] != '') {
             $factors = str_replace(',', '<br />', $factors['factors']);
             return $factors;
         }
 
         //heavy calculation due to cache miss
-        $afactors = null;
+        $afactors = [];
         exec('../src/Bigprimes/bin/factors ' . (int)$n, $afactors);
 
-        //update cache
         $insertString = implode($afactors, ',');
         if ($factors) {
+            //update existing cache row
             $sql = "UPDATE numberCache SET factors = ?  WHERE number = ?";
             $this->app['dbs']['mysql_write']->executeUpdate($sql, array($insertString, $n));
         } else {
+            //insert brand new cache row
             $this->app['dbs']['mysql_write']->insert('numberCache', array(
                 'number' => $n,
                 'factors' => $insertString
