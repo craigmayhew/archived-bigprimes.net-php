@@ -24,7 +24,7 @@ class Utils
 
     //make sure there are no spaces, commas, character returns, line feeds in the number
     public function convert2Number($rawString){ 
-      return str_replace([' ', ',', chr(13), chr(10)], '', $rawString);
+      return ltrim(str_replace([' ', ',', chr(13), chr(10)], '', $rawString), '0');
     }
 
     public function is_even($n)
