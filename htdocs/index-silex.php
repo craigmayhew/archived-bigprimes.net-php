@@ -133,6 +133,22 @@ $app->get('/primalitytest/', function () use ($app) {
     $page->getFooter();
 });
 
+
+$app->get('/speedtests/', function () use ($app) {
+    $pageName = '\\Bigprimes\\Pages\\Speedtests';
+    $page = new $pageName($app);
+
+    $title              = 'Big Primes: Speed Tests';
+    $metaTagDescription = 'How much crunch before we cache?...';
+    $metaTagKeywords    = 'speed, crunch, primes';
+
+    return
+    $page->getHeader($title, $metaTagDescription, $metaTagKeywords).
+    $page->getContent().
+    $page->getFooter();
+});
+
+
 $app->get('/status/', function () use ($app) {
     $pageName = '\\Bigprimes\\Pages\\Status';
     $page = new $pageName($app);
