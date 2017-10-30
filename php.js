@@ -5,13 +5,12 @@ const spawn = require('child_process').spawn;
 exports.handler = function(event, context) {
     var php = spawn('php-71-bin/bin/php', ['htdocs/index-silex.php'], {
       env: {
-        REQUEST_URI: '/status/'
+        REQUEST_URI: (event.params&&event.params.proxy?'/'+event.params.proxy+'/':'')
       }
     });
-    var output = '';//JSON.stringify(event)+JSON.stringify(context);
+    var output = '';
 
     //send the input event json as string via STDIN to php process
-    //event['params']['path']
     php.stdin.write(JSON.stringify(event));
 
     //close the php stream to unblock php process
