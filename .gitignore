@@ -2,5 +2,6 @@
 .terraform
 composer.phar
 htdocs/.htaccess
+php.js
 terraform*
 vendor
