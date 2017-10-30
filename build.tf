@@ -2,6 +2,11 @@ variable "bucket" {
   type = "string"
   default = "bigprimes-created-by-cfterraform"
 }
+variable "rdshost" {}
+variable "rdsdb" {}
+variable "rdsuser" {}
+variable "rdspass" {}
+
 
 provider "aws" {
   region     = "eu-west-1"
@@ -32,10 +37,10 @@ resource "aws_cloudformation_stack" "lambdas" {
   on_failure = "DELETE"
   parameters {
     # replace this with mysql IAM!
-    mysqlHost = "mysql.adire.co.uk"
-    mysqlUser = "root"
-    mysqlPassword = "123456789"
-    mysqlDatabase = "bigprimes"
+    mysqlHost = "${var.rdshost}"
+    mysqlUser = "${var.rdsuser}"
+    mysqlPassword = "${var.rdspass}"
+    mysqlDatabase = "${var.rdsdb}"
     s3Bucket = "${var.bucket}"
   }
   template_body = "${ file("cloudformation/lambdas.yml") }"

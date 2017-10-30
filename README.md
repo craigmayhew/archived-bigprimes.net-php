@@ -21,7 +21,7 @@ To host bigprimes.net via AWS Lambda we need to; build a package, copy the bigpr
 All of that has been wrapped up into:
 
 - terraform init
-- terraform apply
+- terraform apply -var 'rdsuser=user' -var 'rdspass=pass' -var 'rdshost=host' -var 'rdsdb=bigprimes'
 
 make sure you have your aws credentials in your home directory and you have terraform installed (or referenced in the bin directory, or the repo directory)
 
