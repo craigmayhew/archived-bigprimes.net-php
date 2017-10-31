@@ -18,8 +18,8 @@ class builder{
     exec('cd '.self::$workingdirectory.' && tar xvfJ '.self::$workingdirectory.'/php-7.1.10.tar.xz');
     #compile php
     exec('mkdir -p '.self::$workingdirectory.'/php-71-bin');
-    exec('cd '.self::$workingdirectory.'/php-7.1.10 && ./configure --prefix='.self::$workingdirectory.'/php-71-bin/');
-    exec('cd '.self::$workingdirectory.'/php-7.1.10 && make install');
+    exec('cd '.self::$workingdirectory.'/php-7.1.10 && ./configure --prefix='.self::$workingdirectory.'/php-71-bin/ --enable-bcmath --with-mysqli=/usr/bin/mysql_config --with-mcrypt');
+    exec('cd '.self::$workingdirectory.'/php-7.1.10 && make -j$((`cat /proc/cpuinfo | grep processor | wc -l` + 1)) install');
     #strip out files we dont need
     exec('cd '.self::$workingdirectory.' && rm php-71-bin/bin/phpdbg');
     #create the lambda package
