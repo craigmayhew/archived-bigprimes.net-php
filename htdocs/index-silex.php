@@ -3,26 +3,41 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 use Symfony\Component\HttpFoundation\Response;
 
-$app = new Silex\Application();
+use Symfony\Component\Debug\ExceptionHandler;
+use Symfony\Component\Debug\ErrorHandler;
+use Symfony\Component\Debug\Debug;
 
+/*Debug::enable();
+
+// set the error handling
+ini_set('display_errors', 1);
+error_reporting(-1);
+ErrorHandler::register();
+if ('cli' !== php_sapi_name()) {
+  ExceptionHandler::register();
+}
+*/
+$app = new Silex\Application();
+//$app['debug'] = true;
+//echo phpinfo();
 //create a read connection and a write connection
 //they are using the same mysql url currently, so this is for easy future scaling
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'dbs.options' => array(
         'mysql_read' => array(
             'driver' => 'pdo_mysql',
-            'host' => getenv('bigprimesDBEndPoint'),
-            'dbname' => getenv('bigprimesDBName'),
-            'user' => getenv('bigprimesDBUser'),
-            'password' => getenv('bigprimesDBPass'),
+            'host' => $_ENV['bigprimesDBEndPoint'],
+            'dbname' => $_ENV['bigprimesDBName'],
+            'user' => $_ENV['bigprimesDBUser'],
+            'password' => $_ENV['bigprimesDBPass'],
             'charset'   => 'utf8mb4',
         ),
         'mysql_write' => array(
             'driver' => 'pdo_mysql',
-            'host' => getenv('bigprimesDBEndPoint'),
-            'dbname' => getenv('bigprimesDBName'),
-            'user' => getenv('bigprimesDBUser'),
-            'password' => getenv('bigprimesDBPass'),
+            'host' => $_ENV['bigprimesDBEndPoint'],
+            'dbname' => $_ENV['bigprimesDBName'],
+            'user' => $_ENV['bigprimesDBUser'],
+            'password' => $_ENV['bigprimesDBPass'],
             'charset'   => 'utf8mb4',
         ),
     ),

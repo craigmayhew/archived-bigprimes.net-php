@@ -26,7 +26,7 @@ process.env['PATH'] = process.env['PATH'] + ':' + process.env['LAMBDA_TASK_ROOT'
 const spawn = require('child_process').spawn;
 
 exports.handler = function(event, context) {
-    var php = spawn('php-71-bin/bin/php', ['htdocs/index-silex.php'], {
+    var php = spawn('php-71-bin/bin/php', ['-c','php-71-bin/php.ini', 'htdocs/index-silex.php'], {
       env: {
         REQUEST_URI: (event.params&&event.params.proxy?'/'+event.params.proxy+'/':''),
         bigprimesDBEndPoint: '${var.rdshost}',
