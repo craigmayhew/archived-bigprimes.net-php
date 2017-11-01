@@ -6,7 +6,10 @@ variable "rdshost" {type = "string"}
 variable "rdsdb" {type = "string"}
 variable "rdsuser" {type = "string"}
 variable "rdspass" {type = "string"}
-
+variable "securityGroup" {type = "string"}
+variable "subnetA" {type = "string"}
+variable "subnetB" {type = "string"}
+variable "subnetC" {type = "string"}
 
 provider "aws" {
   region     = "eu-west-1"
@@ -86,6 +89,10 @@ resource "aws_cloudformation_stack" "lambdas" {
     mysqlPassword = "${var.rdspass}"
     mysqlDatabase = "${var.rdsdb}"
     s3Bucket = "${var.bucket}"
+    securityGroup = "${var.securityGroup}"
+    subnetA = "${var.subnetA}"
+    subnetB = "${var.subnetB}"
+    subnetC = "${var.subnetC}"
   }
   template_body = "${ file("cloudformation/lambdas.yml") }"
 }

@@ -25,6 +25,18 @@ Parameters:
     Type: String
     Default: bigprimes
     MinLength: 1
+  securityGroup:
+    Description: Security group to place lambdas in
+    Type: String
+  subnetA:
+    Type: String
+    Description: Subnet within VPC.
+  subnetB:
+    Type: String
+    Description: Subnet within VPC.
+  subnetC:
+    Type: String
+    Description: Subnet within VPC.
 Outputs:
   LambdaARN:
     Description: PHP Lambda ARN
@@ -264,6 +276,7 @@ Resources:
       Runtime: nodejs4.3
       Timeout: 3
   LambdaBigprimesPHP:
+    DependsOn: [ "LambdaBigprimesRequestWorkunit", "LambdaBigprimesRequestWorkAll", "LambdaExecutionRole"]
     Type: AWS::Lambda::Function
     Properties:
       Code:
@@ -279,6 +292,13 @@ Resources:
         - Arn
       Runtime: nodejs4.3
       Timeout: 3
+      VpcConfig:
+        SecurityGroupIds:
+        - Ref: securityGroup
+        SubnetIds:
+        - Ref: subnetA
+          Ref: subnetB
+          Ref: subnetC
   LambdaExecutionRole:
     Type: AWS::IAM::Role
     Properties:
@@ -301,3 +321,9 @@ Resources:
             Action:
             - logs:*
             Resource: arn:aws:logs:*:*:*
+          - Effect: Allow
+            Action:
+            - "ec2:CreateNetworkInterface"
+            - "ec2:DescribeNetworkInterfaces"
+            - "ec2:DeleteNetworkInterface"
+            Resource: "*"
