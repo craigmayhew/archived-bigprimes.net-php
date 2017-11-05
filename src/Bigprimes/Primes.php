@@ -14,6 +14,78 @@ class Primes
     }
 
     /**
+     * Gets largest prime in database.
+     *
+     * @return int The largest prime number we have in the db.
+     */
+    public function largestNthPrime()
+    {
+      /*$sql = 'SELECT n FROM primeNumbers ORDER BY n LIMIT 1';
+      $row = $this->app['dbs']['mysql_read']->fetchAssoc($sql, array());
+      return $this->getPrime($row['n']+99);*/
+      return $this->maxPrime;
+    }
+
+     /**
+     * CPU intensive primality check.
+     *
+     * @param int The number to be checked for primality
+     * @return bool
+     */
+    public function cpuCheckNthPrime($num)
+    {
+      if ($num > 2147483647) {
+        $error = 'cpuCheckPrime() cannot handle number larger than 2147483647';
+        throw new Exception($error);
+      }
+
+      //1 is not prime
+      if($num == 1) {
+        return false;
+      }
+
+      //2 is the first prime and is the only even number that is also prime
+      if($num == 2) {
+        return '1';
+      }
+
+      /**
+       * if the number is even (and not exactly equal to 2), then it's not prime
+       */
+      if(bcmod($num, 2) == 0) {
+          return false;
+      }
+
+      /**
+       * Checks the odd numbers. If any of them is a factor, then return false.
+       */
+      $ceil = ceil(sqrt($num));
+      for($i = 3; $i <= $ceil; $i = $i + 2) {
+        if(bcmod($num, $i) == 0) {
+          return false;
+        }
+      }
+
+      
+      $nth = 1;
+      //for every odd number starting at 3
+      for ($n=3; $n<=$num; $n+=2) {
+        $ceil = ceil(sqrt($n));
+        //check if
+        $add = 1;
+        for($i = 3; $i <= $ceil; $i = $i + 2) {
+          if(bcmod($n, $i) == 0) {
+            $add = 0;
+            break 1;
+          }
+        }
+        $nth += $add; 
+      }
+
+      return $nth; 
+    }
+
+    /**
      * Gets nth prime.
      *
      * @param int $nth The nth prime you wish to get.
@@ -23,7 +95,7 @@ class Primes
     {
         $prime = false;
         if ($nth > $this->maxPrime) {
-            return false;
+            return null;
         }
         //Works out what row to pull from the database.
         $rowNo = ceil($nth / $this->numbersPerRow);
@@ -67,7 +139,7 @@ class Primes
      * @param mixed $num The number you wish to check for primality.
      * @return boolean Flase if given number is not a prime. What number prime it is if is a prime.
      */
-    public function checkPrime($num)
+    public function checkIfNthPrime($num)
     {
         $num = (int)$num;
         if ($num === 1) {
@@ -90,7 +162,7 @@ class Primes
         if ($row == false) {
             return null;
         } elseif (($row['id'] * 100) <= $this->maxPrime && $id) {
-            //Loop through each number of the row untill given number is found.
+            //Loop through each number of the row until given number is found.
             $n = 0;
             $haveNumber = false;
             foreach ($row as $k => $col) {

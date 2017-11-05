@@ -1,26 +1,23 @@
 <?php
+namespace Bigprimes;
 
 class awsS3
 {
     static private $bucket;
     private $client;
 
-    function __construct()
+    function __construct($client)
     {
-        $this->config = new \config();
-        $this->loadConfig();
-    }
-
-    public function loadConfig()
-    {
-        // Create the AWS service builder, providing the path to the config file
+        // Create the AWS service builder, providing the config array
         $awsConfig = [
             'credentials' => ['key' => getenv('bigprimesawskey'), 'secret' => getenv('bigprimesawssecret')],
             'region' => 'eu-west-1',
             'version' => '2006-03-01'
         ];
         self::$bucket = 'bigprimes';
-        $this->client = new \Aws\S3\S3Client($awsConfig);
+        
+        //$this->client = new \Aws\S3\S3Client($awsConfig);
+        $this->client = $client;
     }
 
     /* $tmpFileName string local filepath
@@ -32,15 +29,13 @@ class awsS3
         $sha1 = sha1($data);
         $s3FileName = $s3FileName ? $s3FileName : 'uploads/' . $sha1;
 
-        if (false == $overWriteFile) {
+        if (false === $overWriteFile) {
             $fileExistsInS3 = $this->client->doesObjectExist(self::$bucket, $s3FileName);
         } else {
             $fileExistsInS3 = false;
         }
 
-        if ($fileExistsInS3) {
-
-        } else {
+        if (!$fileExistsInS3) {
             $result = $this->client->putObject(array(
                 'Bucket' => self::$bucket,
                 'Key' => $s3FileName,
