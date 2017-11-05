@@ -4,9 +4,10 @@ namespace Bigprimes\Pages;
 
 class Cruncher extends \Bigprimes\Pages
 {
+    private $max_english_len = 126;
     private $max_len_prime = 11;
     private $max_len_cube = 17;
-    private $max_len_square = 19;
+    private $max_len_square = 100;
     private $max_len_triangle = 17;
     private $max_len_convertion = 500; //converting the number to binary and hex ...
     private $max_len_factorization = 9;
@@ -244,11 +245,10 @@ class Cruncher extends \Bigprimes\Pages
         $numToCheck = explode('-', chunk_split($num . '.00000000', 1, '-'));
         $divideBy = 9; //currently only for dividing by 9!
 
-        $setting['decimals only'] = true;
-
         $answer = []; // to hold the answer
         $working = false; // for working out
 
+        $donePoint = false;
         foreach ($numToCheck as $nthDigit => $digit) {
             if ($digit == '.') {
                 $donePoint = true;
@@ -290,109 +290,12 @@ class Cruncher extends \Bigprimes\Pages
         }
     }
 
-    //convert a decimal/denery number to a base of your choosing (max = base 16)
-    private function dec2base($n, $base)
-    {
-        $values = [
-            '0',
-            '1',
-            '2',
-            '3',
-            '4',
-            '5',
-            '6',
-            '7',
-            '8',
-            '9',
-            'A',
-            'B',
-            'C',
-            'D',
-            'E',
-            'F',
-            'G',
-            'H',
-            'I',
-            'J',
-            'K',
-            'L',
-            'M',
-            'N',
-            'O',
-            'P',
-            'Q',
-            'R',
-            'S',
-            'T',
-            'U',
-            'V',
-            'W',
-            'X',
-            'Y',
-            'Z',
-            'a',
-            'b',
-            'c',
-            'd',
-            'e',
-            'f',
-            'g',
-            'h',
-            'i',
-            'j',
-            'k',
-            'l',
-            'm',
-            'n',
-            'o',
-            'p',
-            'q',
-            'r',
-            's',
-            't',
-            'u',
-            'v',
-            'w',
-            'x',
-            'y',
-            'z',
-            '+',
-            '/'
-        ];
-        $val = '';
-        while (($n != '0') && ($n != 0)) {
-            $val = $values[bcmod($n, $base)] . $val;
-            $n = bcdiv($n, $base, 0);
-        }
-        return $val;
-    }
-
-    private function dec2bab($n)//decimal to babylonian numerals (base 60)
-    {
-        $values = [' &nbsp; &nbsp; &nbsp; '];
-        for ($i = 1; $i < 60; $i++) {
-            $values[] = '<img src="//static.bigprimes.net/imgs/babnumbers/bab_' . $i . '.gif" alt="' . $i . '">';
-        }
-        $val = '';
-        while (($n != '0') && ($n != 0)) {
-            $val = $values[bcmod($n, 60)] . " &nbsp; " . $val;
-            $n = bcdiv($n, 60, 0);
-        }
-        return $val;
-    }
-
-    private function is_even($n)
-    {
-        switch (substr($n, -1)) {
-            case '0':
-            case '2':
-            case '4':
-            case '6':
-            case '8':
-                return true;
-            default:
-                return false;
-        }
+    private function bcfact($n){
+      $factorial = $n;
+      while (--$n > 1) {
+        $factorial = bcmul($factorial, $n);
+      }
+      return $factorial;
     }
 
     //check if a number is a triangle number or not. if not then return false.
@@ -474,56 +377,36 @@ class Cruncher extends \Bigprimes\Pages
         return true;
     }
 
-    private function is_palindrome($number)
-    {
-        $len = strlen($number);
-        if (is_int($len / 2) == true) {
-            $i = 1;
-            while ($i <= $len / 2) {
-                if (substr($number, ($i - 1), 1) != substr($number, -$i, 1)) {
-                    return false;
-                }
-                $i++;
-            }
-        } else {
-            $i = 1;
-            while ($i <= ($len / 2)) {
-                if (substr($number, ($i - 1), 1) != substr($number, -$i, 1)) {
-                    return false;
-                }
-                $i++;
-            }
-        }
-        return true;
-    }
-
-    private function factors($n)
+    public function factors($n)
     {
         //check cache
         $sql = 'SELECT factors FROM numberCache WHERE number = ? LIMIT 1';
         $factors = $this->app['dbs']['mysql_read']->fetchAssoc($sql, array($n));
-        if ($factors != false) {
-            $factors = str_replace(',', '<br />', $factors['factors']);
+        //if we have a cache entry
+        if ($factors != false && $factors['factors'] != '') {
+            $factors = str_replace(',', '<br>', $factors['factors']);
             return $factors;
         }
 
         //heavy calculation due to cache miss
-        $afactors = null;
+        $afactors = [];
         exec('../src/Bigprimes/bin/factors ' . (int)$n, $afactors);
+        $afactors = array_unique($afactors);
 
-        //update cache
         $insertString = implode($afactors, ',');
         if ($factors) {
+            //update existing cache row
             $sql = "UPDATE numberCache SET factors = ?  WHERE number = ?";
             $this->app['dbs']['mysql_write']->executeUpdate($sql, array($insertString, $n));
         } else {
+            //insert brand new cache row
             $this->app['dbs']['mysql_write']->insert('numberCache', array(
                 'number' => $n,
                 'factors' => $insertString
             ));
         }
 
-        return implode($afactors, '<br />');
+        return implode($afactors, '<br>');
     }
 
     private $ones = [
@@ -573,7 +456,39 @@ class Cruncher extends \Bigprimes\Pages
         ' sextillion',
         ' septillion',
         ' octillion',
-        ' nonillion'
+        ' nonillion',
+        ' decillion',
+        ' undecillion',
+        ' duodecillion',
+        ' tredecillion',
+        ' quattuordecillion',
+        ' quindecillion',
+        ' sexdecillion',
+        ' septendecillion',
+        ' octodecillion',
+        ' novemdecillion',
+        ' vigintillion',
+        ' unvigintillion',
+        ' duovigintillion',
+        ' tresvigintillion',
+        ' quattuorvigintillion',
+        ' quinquavigintillion',
+        ' sesvigintillion',
+        ' septemvigintillion',
+        ' octovigintillion',
+        ' novemvigintillion',
+        ' trigintillion',
+        ' untrigintillion',
+        ' duotrigintillion',
+        ' trestrigintillion',
+        ' quattuortrigintillion',
+        ' quinquatrigintillion',
+        ' sestrigintillion',
+        ' septentrigintillion',
+        ' octotrigintillion',
+        ' noventrigintillion',
+        ' quadragintillion',
+        ' ERROR ',
     ];
 
 
@@ -866,6 +781,7 @@ class Cruncher extends \Bigprimes\Pages
 
     public function getContent($n)
     {
+        $utils = new \Bigprimes\Utils();
         $return = '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <ins class="adsbygoogle"
              style="display:inline-block;width:728px;height:90px"
@@ -878,31 +794,38 @@ class Cruncher extends \Bigprimes\Pages
         $number = $n;
         if (strlen($number) > 0) {
 
-            $return .= "<div align='center'><table class=\"text\" width='75%' border='0' cellspacing='0' cellpadding='3'><tr><td align='left' class='text'><br />";
+            $return .= 
+            '<div align="center">'.
+              '<table class="text" width="75%" border="0" cellspacing="0" cellpadding="3">'.
+                '<tr>'.
+                  '<td align="left" class="text">'.
+                    '<br />';
 
-            //make sure there are no spaces, commas, charcater returns so line feeds in the number
-            $number = str_replace([' ', ',', chr(13), chr(10)], '', $number);
+            //make sure there are no spaces, commas, character returns so line feeds in the number
+            $number = $utils->convert2Number($number);
 
             $is_number = ctype_digit($number);
 
             if ($is_number && $number !== '0') {
                 $num_len = strlen($number);
-                $is_even = $this->is_even($number);
 
-                $return .= '<b>The number you submitted to be crunched was:</b>' .
-                    '<h1>' . strrev(wordwrap(strrev($number), 3, ' ', 1)) . ' - ' . $this->convertNum($number,
-                        $this->ones, $this->tens, $this->triplets) . '</h1>';
+                $return .= 
+                '<b>The number you submitted to be crunched was:</b>' .
+                '<h1>' .
+                  strrev(wordwrap(strrev($number), 3, ' ', 1)) . 
+                  ($num_len > $this->max_english_len?'':' - ' . $this->convertNum($number, $this->ones, $this->tens, $this->triplets)) . 
+                '</h1>';
 
                 $return .= "<table class=\"text\" width='100%' border='1' cellspacing='0' cellpadding='2'><tr><td>"; //begin table
                 //odd or even?
-                if ($is_even) {
+                if ($utils->is_even($number)) {
                     $return .= 'It is an even number.<br />';
                 } else {
                     $return .= 'It is an odd number.<br />';
                 }
                 //palindrome or not?
                 if ($num_len > 1) { //if its got more than 1 digit
-                    if ($this->is_palindrome($number)) {
+                    if ($utils->is_palindrome($number)) {
                         $return .= 'It is a palindrome.<br />';
                     } else {
                         $return .= 'It is not a palindrome.<br />';
@@ -910,12 +833,19 @@ class Cruncher extends \Bigprimes\Pages
                 }
                 //prime ?
                 $primes = new \Bigprimes\Primes($this->app);
-                $is_prime = $primes->checkPrime($number);
-                if ($is_prime === null) {
-                    $return .= 'This number is not in our database (Therfore I\'m unable to check for primality).<br />';
-                } elseif ($is_prime !== false) {
-                    $return .= 'It is the ' . $this->stndrd($is_prime) . ' prime number.<br />';
+                $largestInSequentialDatabase = $primes->largestNthPrime();
+                if ($largestInSequentialDatabase > $number){
+                    $is_prime = $primes->checkIfNthPrime($number);
+                    if ($is_prime !== false) {
+                      $return .= 'It is the ' . $this->stndrd($is_prime) . ' prime number.<br />';
+                    } else {
+                      $return .= 'It is not a prime number.<br />';
+                    }
+                } elseif ($this->prob_prime($number)){
+                    $is_prime = true;
+                    $return .= 'It is almost certainly a prime number.<br />';
                 } else {
+                    $is_prime = false;
                     $return .= 'It is not a prime number.<br />';
                 }
                 //mersenne prime or not?
@@ -970,10 +900,9 @@ class Cruncher extends \Bigprimes\Pages
 
                 //square number or not?
                 if ($num_len <= $this->max_len_square) {
-                    $sqrt = bcsqrt($number, 9);
-                    if (substr($sqrt, -10) === '.000000000') {
-                        $return .= 'It is the ' . $this->stndrd(number_format($sqrt, 0,
-                                '.', '')) . ' square number.<br />';
+                    $sqrt = bcsqrt($number, 99);
+                    if (substr($sqrt, -100) === '.'.str_repeat('0',99)) {
+                        $return .= 'It is the ' . $this->stndrd(substr($sqrt,0,strlen($sqrt)-100)) . ' square number.<br />';
                     } else {
                         $return .= 'It is not a square number.<br />';
                     }
@@ -1029,19 +958,19 @@ class Cruncher extends \Bigprimes\Pages
                 //converting to different bases
                 if ($num_len <= $this->max_len_convertion) {
                     $return .= "<table class=\"text\" width='100%' border='0' cellspacing='0' cellpadding='2'>";
-                    $return .= "<tr><td width='200'>Base 2 (Binary):</td><td>" . strrev(wordwrap(strrev($this->dec2base($number,
+                    $return .= "<tr><td width='200'>Base 2 (Binary):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
                             2)), 4, " ", 1)) . "</td></tr>";
-                    $return .= "<tr><td>Base 3 (Ternary):</td><td>" . strrev(wordwrap(strrev($this->dec2base($number,
+                    $return .= "<tr><td>Base 3 (Ternary):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
                             3)), 6, " ", 1)) . "</td></tr>";
-                    $return .= "<tr><td>Base 4 (Quaternary):</td><td>" . strrev(wordwrap(strrev($this->dec2base($number,
+                    $return .= "<tr><td>Base 4 (Quaternary):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
                             4)), 4, " ", 1)) . "</td></tr>";
-                    $return .= "<tr><td>Base 5 (Quintal):</td><td>" . strrev(wordwrap(strrev($this->dec2base($number,
+                    $return .= "<tr><td>Base 5 (Quintal):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
                             5)), 5, " ", 1)) . "</td></tr>";
-                    $return .= "<tr><td>Base 8 (Octal):</td><td>" . strrev(wordwrap(strrev($this->dec2base($number,
+                    $return .= "<tr><td>Base 8 (Octal):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
                             8)), 8, " ", 1)) . "</td></tr>";
                     $return .= "<tr><td>Base 10 (Denary):</td><td>" . strrev(wordwrap(strrev($number),
                             3, " ", 1)) . "</td></tr>";
-                    $return .= "<tr><td>Base 16 (Hexadecimal):</td><td>" . strrev(wordwrap(strrev($this->dec2base($number,
+                    $return .= "<tr><td>Base 16 (Hexadecimal):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
                             16)), 4, " ", 1)) . "</td></tr>";
                     $return .= '</table>';
                 } else {
@@ -1063,7 +992,7 @@ class Cruncher extends \Bigprimes\Pages
                         $return .= "<tr><td width='200'>Chinese Numerals:</td><td valign='middle' bgcolor='#FFFFFF'>" . $this->den2numerals($number,
                                 $this->numeralsChinese) . "</td></tr>";
                     }
-                    $return .= "<tr><td>Babylonian Numerals:</td><td valign='middle' bgcolor='#FFFFFF'>" . $this->dec2bab($number) . "</td></tr>";
+                    $return .= "<tr><td>Babylonian Numerals:</td><td valign='middle' bgcolor='#FFFFFF'>" . $utils->dec2bab($number) . "</td></tr>";
                     $return .= '</table><br /><br />'; //end table
                 }
             } else {
