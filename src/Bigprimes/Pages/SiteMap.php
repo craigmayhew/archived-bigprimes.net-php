@@ -8,69 +8,69 @@ class SiteMap extends \Bigprimes\Pages
     {
         $return =
             '<?xml version="1.0" encoding="UTF-8" ?>' .
-            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">' .
+            '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">' .
             '<url>
-        <loc>http://www.bigprimes.net/</loc> 
+        <loc>https://www.bigprimes.net/</loc> 
         <priority>1.00</priority> 
         <changefreq>weekly</changefreq> 
     </url>
     <url>
-        <loc>http://www.bigprimes.net/links/</loc> 
+        <loc>https://www.bigprimes.net/links/</loc> 
         <priority>0.8</priority> 
         <changefreq>monthly</changefreq> 
     </url>
     <url>
-        <loc>http://www.bigprimes.net/contact_us/</loc> 
+        <loc>https://www.bigprimes.net/contact_us/</loc> 
         <priority>0.2</priority> 
         <changefreq>yearly</changefreq> 
     </url>
     <url>
-        <loc>http://www.bigprimes.net/downloads/</loc> 
+        <loc>https://www.bigprimes.net/downloads/</loc> 
         <priority>0.5</priority> 
         <changefreq>monthly</changefreq> 
     </url>
     <url>
-        <loc>http://www.bigprimes.net/cruncher/</loc> 
+        <loc>https://www.bigprimes.net/cruncher/</loc> 
         <priority>0.5</priority> 
         <changefreq>yearly</changefreq> 
     </url>
     <url>
-        <loc>http://www.bigprimes.net/primality_test/</loc> 
+        <loc>https://www.bigprimes.net/primality_test/</loc> 
         <priority>0.5</priority> 
         <changefreq>yearly</changefreq> 
     </url>
     <url>
-        <loc>http://www.bigprimes.net/archive/prime/</loc> 
+        <loc>https://www.bigprimes.net/archive/prime/</loc> 
         <priority>0.5</priority> 
         <changefreq>yearly</changefreq> 
     </url>
     <url>
-        <loc>http://www.bigprimes.net/biggest_primes/</loc> 
+        <loc>https://www.bigprimes.net/biggest_primes/</loc> 
         <priority>0.5</priority> 
         <changefreq>monthly</changefreq> 
     </url>' .
             '<url>
-        <loc>http://www.bigprimes.net/archive/mersenne/</loc> 
+        <loc>https://www.bigprimes.net/archive/mersenne/</loc> 
         <priority>0.5</priority> 
         <changefreq>monthly</changefreq> 
     </url>
     <url>
-        <loc>http://www.bigprimes.net/archive/fermat/</loc> 
+        <loc>https://www.bigprimes.net/archive/fermat/</loc> 
         <priority>0.5</priority> 
         <changefreq>monthly</changefreq> 
     </url>
     <url>
-        <loc>http://www.bigprimes.net/archive/perfect/</loc> 
+        <loc>https://www.bigprimes.net/archive/perfect/</loc> 
         <priority>0.5</priority> 
         <changefreq>monthly</changefreq> 
     </url>
     <url>
-        <loc>http://www.bigprimes.net/archive/fibonacci/</loc> 
+        <loc>https://www.bigprimes.net/archive/fibonacci/</loc> 
         <priority>0.5</priority> 
         <changefreq>monthly</changefreq> 
     </url>
     <url>
-        <loc>http://www.bigprimes.net/archive_info/</loc> 
+        <loc>https://www.bigprimes.net/archive_info/</loc> 
         <priority>0.5</priority> 
         <changefreq>monthly</changefreq> 
     </url>';
@@ -80,7 +80,7 @@ class SiteMap extends \Bigprimes\Pages
         foreach ($rows as $row) {
             $return .=
                 '<url>' .
-                '<loc>http://www.bigprimes.net/cruncher/' . $row['number'] . '</loc>' .
+                '<loc>https://www.bigprimes.net/cruncher/' . $row['number'] . '</loc>' .
                 '<priority>0.8</priority>' .
                 '<changefreq>yearly</changefreq>' .
                 '</url>';

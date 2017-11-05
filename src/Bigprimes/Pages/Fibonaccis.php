@@ -76,7 +76,7 @@ class Fibonaccis extends \Bigprimes\Pages
 
         $return .=
             '<br /><br /><br />' .
-            'Display the <input id="num" type="text" value="" /> fibonacci number <button type="button" onclick="window.location.href=\'http://www.bigprimes.net/archive/fibonacci/\'+$(\'#num\').val()+\'/\'">Go</button>' .
+            'Display the <input id="num" type="text" value="" /> fibonacci number <button type="button" onclick="window.location.href=\'https://www.bigprimes.net/archive/fibonacci/\'+$(\'#num\').val()+\'/\'">Go</button>' .
             '<br /><br /><br />' .
             '<a class="link" href="/archive/fibonacci/100/">100th Fibonacci Number</a><br />' .
             '<a class="link" href="/archive/fibonacci/1000/">1000th Fibonacci Number</a><br />' .

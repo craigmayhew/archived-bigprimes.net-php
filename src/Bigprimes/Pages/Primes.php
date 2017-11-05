@@ -38,10 +38,10 @@ class Primes extends \Bigprimes\Pages
                 $i++;
                 $return .=
                     '<tr>'
-                    . '<td class="primeTableCell"><a class="link" href="//www.bigprimes.net/cruncher/' . ($primesList[$n]) . '/">' . $primesList[$n] . '</a></td>'
-                    . '<td class="primeTableCell"><a class="link" href="//www.bigprimes.net/cruncher/' . ($primesList[$n + 25]) . '/">' . $primesList[$n + 25] . '</a></td>'
-                    . '<td class="primeTableCell"><a class="link" href="//www.bigprimes.net/cruncher/' . ($primesList[$n + 50]) . '/">' . $primesList[$n + 50] . '</a></td>'
-                    . '<td class="primeTableCell"><a class="link" href="//www.bigprimes.net/cruncher/' . ($primesList[$n + 75]) . '/">' . $primesList[$n + 75] . '</a></td>'
+                    . '<td class="primeTableCell"><a class="link" href="//cruncher/' . ($primesList[$n]) . '/">' . $primesList[$n] . '</a></td>'
+                    . '<td class="primeTableCell"><a class="link" href="/cruncher/' . ($primesList[$n + 25]) . '/">' . $primesList[$n + 25] . '</a></td>'
+                    . '<td class="primeTableCell"><a class="link" href="/cruncher/' . ($primesList[$n + 50]) . '/">' . $primesList[$n + 50] . '</a></td>'
+                    . '<td class="primeTableCell"><a class="link" href="/cruncher/' . ($primesList[$n + 75]) . '/">' . $primesList[$n + 75] . '</a></td>'
                     . '</tr>';
                 if ($i >= 25) {
                     break 1;
@@ -69,14 +69,14 @@ class Primes extends \Bigprimes\Pages
                 '<td align="left" width="120">';
             if ($num >= 2) {
                 $return .=
-                    '<a class="link" href="//www.bigprimes.net/archive/prime/' . ($num - 1) . '/">previous 100 primes</a>';
+                    '<a class="link" href="/archive/prime/' . ($num - 1) . '/">previous 100 primes</a>';
             }
             $return .=
                 '</td>' .
                 '<td align="right" width="120">';
             if ($num < $count) {
                 $return .=
-                    '<a class="link" href="//www.bigprimes.net/archive/prime/' . ($num + 1) . '/">next 100 primes</a>';
+                    '<a class="link" href="/archive/prime/' . ($num + 1) . '/">next 100 primes</a>';
             }
             $return .=
                 '</td>' .
@@ -97,16 +97,16 @@ class Primes extends \Bigprimes\Pages
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>' .
             '<br /><br /><br />' .
-            'Display the <input id="num" type="text" value="" /> prime number <button type="button" onclick="window.location.href=\'http://www.bigprimes.net/archive/prime/\'+Math.ceil($(\'#num\').val()/100)+\'/\'">Go</button>' .
+            'Display the <input id="num" type="text" value="" /> prime number <button type="button" onclick="window.location.href=\'https://www.bigprimes.net/archive/prime/\'+Math.ceil($(\'#num\').val()/100)+\'/\'">Go</button>' .
             '<br /><br /><br />' .
-            '<a class="link" href="//www.bigprimes.net/archive/prime/1/">1st Prime</a><br />' .
-            '<a class="link" href="//www.bigprimes.net/archive/prime/2/">101st Prime</a><br />' .
-            '<a class="link" href="//www.bigprimes.net/archive/prime/11/">1001st Prime</a><br />' .
-            '<a class="link" href="//www.bigprimes.net/archive/prime/101/">10001st Prime</a><br />' .
-            '<a class="link" href="//www.bigprimes.net/archive/prime/1001/">100001st Prime</a><br />' .
-            '<a class="link" href="//www.bigprimes.net/archive/prime/10001/">1000001st Prime</a><br />' .
-            '<a class="link" href="//www.bigprimes.net/archive/prime/100001/">10000001st Prime</a><br />' .
-            '<a class="link" href="//www.bigprimes.net/archive/prime/' . $count . '/">Our Biggest Prime</a><br />';
+            '<a class="link" href="/archive/prime/1/">1st Prime</a><br />' .
+            '<a class="link" href="/archive/prime/2/">101st Prime</a><br />' .
+            '<a class="link" href="/archive/prime/11/">1001st Prime</a><br />' .
+            '<a class="link" href="/archive/prime/101/">10001st Prime</a><br />' .
+            '<a class="link" href="/archive/prime/1001/">100001st Prime</a><br />' .
+            '<a class="link" href="/archive/prime/10001/">1000001st Prime</a><br />' .
+            '<a class="link" href="/archive/prime/100001/">10000001st Prime</a><br />' .
+            '<a class="link" href="/archive/prime/' . $count . '/">Our Biggest Prime</a><br />';
 
         return $return;
 //there are 1.4*10<sup>297</sup> primes smaller than 300 digits
