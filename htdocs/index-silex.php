@@ -40,7 +40,7 @@ $app->error(function ( \Exception $e, $code ) use ($app) {
     // logStreamName is required
     'logStreamName' => 'BigPrimesEvents',
 */
-  $error = array( 'message' => '<script>'.$e->getMessage().'</script>An error occured, you have found a bug! Please raise a support request on github.' );
+  $error = 'An error occured, you have found a bug! Please raise a support request on github.<br><br>'.$e->getMessage();
 
   return $app->json( $error, 200 );
 });
