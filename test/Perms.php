@@ -9,6 +9,6 @@ class test_Perms extends TestCase
 	public function test_factors_binary_perms()
 	{
             $filePermisson = substr( sprintf( '%o', fileperms( 'src/Bigprimes/bin/factors' ) ), - 4 );
-            $this->assertEquals( "0775", $filePermisson );
+            $this->assertEquals( "0755", $filePermisson );
 	}
 }
