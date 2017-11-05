@@ -108,7 +108,7 @@ Resources:
   DomainName:
     Type: AWS::ApiGateway::DomainName
     Properties:
-      DomainName: test.bigprimes.net
+      DomainName: www.bigprimes.net
       CertificateArn: !Ref certificateARN
       
   DomainMapping:
@@ -124,7 +124,7 @@ Resources:
     Properties:
       HostedZoneName: bigprimes.net.
       Comment: Bigprimes API
-      Name: "test.bigprimes.net"
+      Name: "www.bigprimes.net"
       Type: CNAME
       TTL: '300'
       ResourceRecords:
