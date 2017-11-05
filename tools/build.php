@@ -13,16 +13,18 @@ class builder{
     if (file_exists(self::$workingdirectory.'/php-71-bin/bin/php')) {
       echo '**PHP already compiled to '.self::$workingdirectory.'/php-71-bin/**';
     } else {
+      
       exec('sudo yum -y update');
       exec('sudo yum -y install gcc gcc-c++ libxml2-devel libmcrypt-devel');
       //#download php
-      $php = file_get_contents('http://ie1.php.net/get/php-7.1.10.tar.xz/from/this/mirror');
-      file_put_contents(self::$workingdirectory.'/php-7.1.10.tar.xz', $php);
-      exec('cd '.self::$workingdirectory.' && tar xvfJ '.self::$workingdirectory.'/php-7.1.10.tar.xz');
+      $phpVersionString = 'php-7.1.11';
+      $php = file_get_contents('http://ie1.php.net/get/'.$phpVersionString.'.tar.xz/from/this/mirror');
+      file_put_contents(self::$workingdirectory.'/'.$phpVersionString.'.tar.xz', $php);
+      exec('cd '.self::$workingdirectory.' && tar xvfJ '.self::$workingdirectory.'/'.$phpVersionString.'.tar.xz');
       #compile php
       exec('mkdir -p '.self::$workingdirectory.'/php-71-bin');
-      exec('cd '.self::$workingdirectory.'/php-7.1.10 && ./configure --prefix='.self::$workingdirectory.'/php-71-bin/ --enable-bcmath --enable-mysqlnd --with-mysql-sock=/var/lib/mysql/mysql.sock --with-mysqli=mysqlnd --with-zlib-dir --with-pdo-mysql=mysqlnd');
-      exec('cd '.self::$workingdirectory.'/php-7.1.10 && make -j$((`cat /proc/cpuinfo | grep processor | wc -l` + 1)) install');
+      exec('cd '.self::$workingdirectory.'/'.$phpVersionString.' && ./configure --prefix='.self::$workingdirectory.'/php-71-bin/ --enable-bcmath --enable-mysqlnd --with-mysql-sock=/var/lib/mysql/mysql.sock --with-mysqli=mysqlnd --with-zlib-dir --with-pdo-mysql=mysqlnd');
+      exec('cd '.self::$workingdirectory.'/'.$phpVersionString.' && make -j$((`cat /proc/cpuinfo | grep processor | wc -l` + 1)) install');
       #strip out files we dont need
       exec('cd '.self::$workingdirectory.' && rm php-71-bin/bin/phpdbg');
     }
