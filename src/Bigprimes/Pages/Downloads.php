@@ -3,23 +3,8 @@ namespace Bigprimes\Pages;
 
 class Downloads extends \Bigprimes\Pages
 {
-
-    private function dl_file_size($file)
-    {
-        $bytes = filesize($file);
-        if ($bytes > 1000000) {
-            $size = round(($bytes / 1000000), 2) . ' Mb';
-        } elseif ($bytes > 1000) {
-            $size = round(($bytes / 1000), 2) . ' Kb';
-        } else {
-            $size = $bytes . ' b';
-        }
-        return $size;
-    }
-
     public function getContent()
     {
-
         $downloads = [
             [
                 'title' => 'All 44 known Mersenne primes',
@@ -34,7 +19,6 @@ class Downloads extends \Bigprimes\Pages
                 'link' => '//static.bigprimes.net/archive/perfect/Perfect Numbers'
             ]
         ];
-
 
         $return =
             '<h1>Downloads</h1>' .
@@ -56,7 +40,6 @@ class Downloads extends \Bigprimes\Pages
         $return .=
             '</table>' .
             '<br /><br />';
-
 
         return
             $return;
