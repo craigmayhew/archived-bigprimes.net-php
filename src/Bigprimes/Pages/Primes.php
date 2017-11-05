@@ -38,7 +38,7 @@ class Primes extends \Bigprimes\Pages
                 $i++;
                 $return .=
                     '<tr>'
-                    . '<td class="primeTableCell"><a class="link" href="//cruncher/' . ($primesList[$n]) . '/">' . $primesList[$n] . '</a></td>'
+                    . '<td class="primeTableCell"><a class="link" href="/cruncher/' . ($primesList[$n]) . '/">' . $primesList[$n] . '</a></td>'
                     . '<td class="primeTableCell"><a class="link" href="/cruncher/' . ($primesList[$n + 25]) . '/">' . $primesList[$n + 25] . '</a></td>'
                     . '<td class="primeTableCell"><a class="link" href="/cruncher/' . ($primesList[$n + 50]) . '/">' . $primesList[$n + 50] . '</a></td>'
                     . '<td class="primeTableCell"><a class="link" href="/cruncher/' . ($primesList[$n + 75]) . '/">' . $primesList[$n + 75] . '</a></td>'
