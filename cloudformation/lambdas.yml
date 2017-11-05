@@ -327,3 +327,33 @@ Resources:
             - "ec2:DescribeNetworkInterfaces"
             - "ec2:DeleteNetworkInterface"
             Resource: "*"
+      - PolicyName: AllowBigPrimesPushLogs
+        PolicyDocument:
+          Statement:
+            - Effect: Allow
+              Action:
+                - "logs:PutLogEvents"
+              Resource:
+                - !Sub "${BigPrimesLogGroup.Arn}"
+
+  BigPrimesLogGroup:
+    Type: "AWS::Logs::LogGroup"
+    Properties:
+      LogGroupName: "bigprimes"
+      RetentionInDays: 180
+
+  BigPrimesLogStream:
+    Type: "AWS::Logs::LogStream"
+    Properties:
+      LogStreamName: "BigPrimesEvents"
+      LogGroupName: !Ref BigPrimesLogGroup
+
+  BigPrimesEvent:
+    Type: "AWS::Logs::MetricFilter"
+    Properties:
+      FilterPattern: "."
+      LogGroupName: !Ref BigPrimesLogGroup
+      MetricTransformations:
+        - MetricName: BigPrimesEvents
+          MetricNamespace: BigPrimes/Events
+          MetricValue: 1
