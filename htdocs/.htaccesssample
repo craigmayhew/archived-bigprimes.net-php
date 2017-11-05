@@ -20,5 +20,5 @@ RewriteRule ^(.*)$ $1/ [R=301]
 RewriteRule ^contact_us/$ contactus [R=301]
 RewriteRule ^archive_info/$ archiveinfo [R=301]
 
-# home page with news
+# all pages
 RewriteRule ^(.*)$  index-silex.php [NC]

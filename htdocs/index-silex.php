@@ -2,8 +2,48 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Debug\ErrorHandler;
+use Aws\CloudWatchEvents\CloudWatchEventsClient;
+use Aws\Exception\AwsException;
+
+ErrorHandler::register();
 
 $app = new Silex\Application();
+$app->error(function ( \Exception $e, $code ) use ($app) {
+
+/*  $client = new CloudWatchEventsClient([
+    'profile' => 'default',
+    'region' => 'us-west-2',
+    'version' => '2015-10-07'
+  ]);
+
+
+  try {
+    $result = $client->putEvents([
+        'Entries' => [ // REQUIRED
+            [
+                'Detail' => $e->getMessage(),
+                'DetailType' => '<string>',
+//                'Resources' => ['<string>'],
+                'Source' => 'bigprimes',
+                'Time' => time()
+            ],
+        ],
+    ]);
+    var_dump($result);
+  } catch (AwsException $e) {
+    // output error message if fails
+    error_log($e->getMessage());
+  }
+    // logGroupName is required
+    'logGroupName' => 'BigPrimes',
+    // logStreamName is required
+    'logStreamName' => 'BigPrimesEvents',
+*/
+  $error = array( 'message' => '<script>'.$e->getMessage().'</script>An error occured, you have found a bug! Please raise a support request on github.' );
+
+  return $app->json( $error, 200 );
+});
 
 //create a read connection and a write connection
 //they are using the same mysql url currently, so this is for easy future scaling
@@ -11,18 +51,18 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'dbs.options' => array(
         'mysql_read' => array(
             'driver' => 'pdo_mysql',
-            'host' => getenv('bigprimesDBEndPoint'),
-            'dbname' => getenv('bigprimesDBName'),
-            'user' => getenv('bigprimesDBUser'),
-            'password' => getenv('bigprimesDBPass'),
+            'host' => $_ENV['bigprimesDBEndPoint'],
+            'dbname' => $_ENV['bigprimesDBName'],
+            'user' => $_ENV['bigprimesDBUser'],
+            'password' => $_ENV['bigprimesDBPass'],
             'charset'   => 'utf8mb4',
         ),
         'mysql_write' => array(
             'driver' => 'pdo_mysql',
-            'host' => getenv('bigprimesDBEndPoint'),
-            'dbname' => getenv('bigprimesDBName'),
-            'user' => getenv('bigprimesDBUser'),
-            'password' => getenv('bigprimesDBPass'),
+            'host' => $_ENV['bigprimesDBEndPoint'],
+            'dbname' => $_ENV['bigprimesDBName'],
+            'user' => $_ENV['bigprimesDBUser'],
+            'password' => $_ENV['bigprimesDBPass'],
             'charset'   => 'utf8mb4',
         ),
     ),

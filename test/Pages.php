@@ -41,6 +41,6 @@ class test_Pages extends TestCase
 
             $footer = $p->getFooter();
 
-            $this->assertContains('Hosted by the Adire Cloud Engine', $footer);
+            $this->assertContains('Hosted by Adire', $footer);
         }
 }

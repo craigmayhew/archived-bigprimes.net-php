@@ -1,0 +1,274 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Generate bigprimes api gateway.
+Parameters:
+  certificateARN:
+    Description: certificate for bigprimes.net
+    Type: String
+  phpLambdaARN:
+    Description: php lambda for bigprimes.net
+    Type: String
+Resources:
+  PHPLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:invokeFunction
+      FunctionName: !Ref phpLambdaARN
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        Fn::Join:
+        - ''
+        - - 'arn:aws:execute-api:'
+          - Ref: AWS::Region
+          - ":"
+          - Ref: AWS::AccountId
+          - ":"
+          - Ref: BigPrimesAPI
+          - "/*"
+  UsagePlan:
+    Type: "AWS::ApiGateway::UsagePlan"
+    Properties:
+      Description: "BigPrimes"
+      Quota:
+        Limit: 50000
+        Period: MONTH
+      Throttle:
+        BurstLimit: 5
+        RateLimit: 2
+      UsagePlanName: UsagePlan
+            
+  BigPrimesAPI:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: BigPrimes API
+      Description: API used for BigPrimes
+      FailOnWarnings: true
+          
+  ApiStage:
+    DependsOn:
+    - ApiGatewayAccount
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      DeploymentId:
+        Ref: ApiDeployment
+      MethodSettings:
+      - DataTraceEnabled: true
+        HttpMethod: "*"
+        LoggingLevel: INFO
+        ResourcePath: "/*"
+      RestApiId:
+        Ref: BigPrimesAPI
+      StageName: LATEST
+      
+  ApiGatewayCloudWatchLogsRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - apigateway.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Policies:
+      - PolicyName: ApiGatewayLogsPolicy
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:DescribeLogGroups
+            - logs:DescribeLogStreams
+            - logs:PutLogEvents
+            - logs:GetLogEvents
+            - logs:FilterLogEvents
+            Resource: "*"
+            
+  ApiGatewayAccount:
+    Type: AWS::ApiGateway::Account
+    Properties:
+      CloudWatchRoleArn:
+        Fn::GetAtt:
+        - ApiGatewayCloudWatchLogsRole
+        - Arn
+        
+  ApiDeployment:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn:
+    - PHPRequest
+    Properties:
+      RestApiId:
+        Ref: BigPrimesAPI
+      StageName: DummyStage
+      
+  DomainName:
+    Type: AWS::ApiGateway::DomainName
+    Properties:
+      DomainName: www.bigprimes.net
+      CertificateArn: !Ref certificateARN
+      
+  DomainMapping:
+    Type: 'AWS::ApiGateway::BasePathMapping'
+    Properties:
+      BasePath: ""
+      DomainName: !Ref DomainName
+      RestApiId: !Ref BigPrimesAPI
+      Stage: LATEST
+      
+  APIDNSRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneName: bigprimes.net.
+      Comment: Bigprimes API
+      Name: "www.bigprimes.net"
+      Type: CNAME
+      TTL: '300'
+      ResourceRecords:
+      - Fn::Join:
+        - ''
+        - - Ref: BigPrimesAPI
+          - ".execute-api."
+          - Ref: AWS::Region
+          - ".amazonaws.com."
+
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: "/"
+      Policies:
+      - PolicyName: root
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - logs:*
+            Resource: arn:aws:logs:*:*:*
+
+  PHPResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId:
+        Ref: BigPrimesAPI
+      ParentId:
+        Fn::GetAtt:
+        - BigPrimesAPI
+        - RootResourceId
+      PathPart: "{proxy+}"
+
+  PHPRequest:
+    DependsOn: PHPLambdaPermission
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: GET
+      Integration:
+        Type: AWS
+        IntegrationHttpMethod: POST
+        Uri:
+          Fn::Join:
+          - ''
+          - - 'arn:aws:apigateway:'
+            - Ref: AWS::Region
+            - ":lambda:path/2015-03-31/functions/"
+            - Ref: phpLambdaARN
+            - "/invocations"
+        IntegrationResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+            method.response.header.Access-Control-Allow-Methods: "'GET,POST,OPTIONS'"
+            method.response.header.Access-Control-Allow-Origin: "'*'"
+            method.response.header.Content-Type: "'text/html'"
+          ResponseTemplates:
+            "text/html": "$input.path('$')"
+        RequestTemplates:
+          application/json: |
+            {
+              "body" : $input.json('$'),
+              "headers": {
+              #foreach($header in $input.params().header.keySet())
+              "$header": "$util.escapeJavaScript($input.params().header.get($header))" #if($foreach.hasNext),#end
+              #end
+              },
+              "method": "$context.httpMethod",
+              "params": {
+              #foreach($param in $input.params().path.keySet())
+              "$param": "$util.escapeJavaScript($input.params().path.get($param))" #if($foreach.hasNext),#end
+              #end
+              },
+              "query": {
+              #foreach($queryParam in $input.params().querystring.keySet())
+              "$queryParam": "$util.escapeJavaScript($input.params().querystring.get($queryParam))" #if($foreach.hasNext),#end
+              #end
+              },
+              "path": "$context.resourcePath"
+            }
+      RequestParameters:
+        method.request.querystring.name: false
+      ResourceId:
+        Ref: PHPResource
+      RestApiId:
+        Ref: BigPrimesAPI
+      MethodResponses:
+      - StatusCode: 200
+        ResponseParameters:
+          method.response.header.Access-Control-Allow-Headers: true
+          method.response.header.Access-Control-Allow-Methods: true
+          method.response.header.Access-Control-Allow-Origin: true
+          method.response.header.Content-Type: "'text/html'"
+
+  PHPRequestNoPath:
+    DependsOn: PHPLambdaPermission
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      HttpMethod: GET
+      Integration:
+        Type: AWS
+        IntegrationHttpMethod: POST
+        Uri:
+          Fn::Join:
+          - ''
+          - - 'arn:aws:apigateway:'
+            - Ref: AWS::Region
+            - ":lambda:path/2015-03-31/functions/"
+            - Ref: phpLambdaARN
+            - "/invocations"
+        IntegrationResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+            method.response.header.Access-Control-Allow-Methods: "'GET,POST,OPTIONS'"
+            method.response.header.Access-Control-Allow-Origin: "'*'"
+            method.response.header.Content-Type: "'text/html'"
+          ResponseTemplates:
+            "text/html": "$input.path('$')"
+      RequestParameters:
+        method.request.querystring.name: false
+      ResourceId:
+        Fn::GetAtt:
+        - BigPrimesAPI
+        - RootResourceId
+      RestApiId:
+        Ref: BigPrimesAPI
+      MethodResponses:
+      - StatusCode: 200
+        ResponseParameters:
+          method.response.header.Access-Control-Allow-Headers: true
+          method.response.header.Access-Control-Allow-Methods: true
+          method.response.header.Access-Control-Allow-Origin: true
+          method.response.header.Content-Type: "'text/html'"
