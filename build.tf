@@ -31,7 +31,8 @@ const spawn = require('child_process').spawn;
 exports.handler = function(event, context) {
     var php = spawn('php-71-bin/bin/php', ['-c','php-71-bin/php.ini', 'htdocs/index-silex.php'], {
       env: {
-        REQUEST_URI: (event.params&&event.params.proxy?'/'+event.params.proxy+'/':''),
+        //WHEN TESTING, SET event.REQUEST_URI
+        REQUEST_URI: event.REQUEST_URI?event.REQUEST_URI:(event.params&&event.params.proxy?'/'+event.params.proxy+'/':''),
         bigprimesDBEndPoint: '${var.rdshost}',
         bigprimesDBName: '${var.rdsdb}',
         bigprimesDBUser: '${var.rdsuser}',
@@ -75,6 +76,7 @@ resource "aws_cloudformation_stack" "api" {
     phpLambdaARN = "${aws_cloudformation_stack.lambdas.outputs["LambdaARN"]}"
   }
   template_body = "${ file("cloudformation/api.yml") }"
+  timeout_in_minutes = 10
 }
 
 resource "aws_cloudformation_stack" "lambdas" {
@@ -95,6 +97,7 @@ resource "aws_cloudformation_stack" "lambdas" {
     subnetC = "${var.subnetC}"
   }
   template_body = "${ file("cloudformation/lambdas.yml") }"
+  timeout_in_minutes = 10
 }
 
 resource "aws_s3_bucket" "b" {
