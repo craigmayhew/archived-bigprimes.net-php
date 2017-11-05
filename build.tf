@@ -15,8 +15,14 @@ provider "aws" {
   region     = "eu-west-1"
 }
 
+resource "null_resource" "updatecomposer" {
+  provisioner "local-exec" {
+    command = "php composer.phar update"
+  }
+}
+
 resource "null_resource" "build" {
-  depends_on = ["local_file.phpjs"]
+  depends_on = ["local_file.phpjs", "null_resource.updatecomposer"]
   provisioner "local-exec" {
     command = "cd tools && php build.php"
   }
