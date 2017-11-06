@@ -13,13 +13,9 @@ class builder{
     if (file_exists(self::$workingdirectory.'/php-71-bin/bin/php')) {
       echo '**PHP already compiled to '.self::$workingdirectory.'/php-71-bin/**';
     } else {
-      if (file_exists('/usr/bin/apt-get')) {
-        exec('sudo apt-get -y update');
-        exec('sudo apt-get -y install build-essential git-core autoconf bison libxml2-dev libbz2-dev libmcrypt-dev libcurl4-openssl-dev libltdl-dev libpng12-dev libpspell-dev libreadline-dev libicu-dev libpng-dev libfreetype6 libfreetype6-dev imagemagick libmagickwand-dev zlib1g-dev cmake zip zlibc');
-      } else {
-        exec('sudo yum -y update');
-        exec('sudo yum -y install gcc gcc-c++ libxml2-devel libmcrypt-devel');
-      }
+      
+      exec('sudo yum -y update');
+      exec('sudo yum -y install gcc gcc-c++ libxml2-devel libmcrypt-devel');
       //#download php
       $phpVersionString = 'php-7.1.11';
       $php = file_get_contents('http://ie1.php.net/get/'.$phpVersionString.'.tar.xz/from/this/mirror');
@@ -30,7 +26,7 @@ class builder{
       exec('cd '.self::$workingdirectory.'/'.$phpVersionString.' && ./configure --prefix='.self::$workingdirectory.'/php-71-bin/ --enable-bcmath --enable-mysqlnd --with-mysql-sock=/var/lib/mysql/mysql.sock --with-mysqli=mysqlnd --with-zlib-dir --with-pdo-mysql=mysqlnd');
       exec('cd '.self::$workingdirectory.'/'.$phpVersionString.' && make -j$((`cat /proc/cpuinfo | grep processor | wc -l` + 1)) install');
       #strip out files we dont need
-      exec('cd '.self::$workingdirectory.' && rm php-71-bin/bin/phpdbg && rm -rf /tmp/php-71-bin/php/man/');
+      exec('cd '.self::$workingdirectory.' && rm php-71-bin/bin/phpdbg');
     }
     #create the lambda package
     //exec('cd '.self::$workingdirectory.' && tar -zcvf php-71-bin.tar.gz php-71-bin/');
