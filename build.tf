@@ -118,6 +118,7 @@ resource "aws_s3_bucket" "b" {
 resource "aws_s3_bucket_object" "lambda" {
   bucket = "${aws_s3_bucket.b.bucket}"
   depends_on = ["null_resource.build"]
+  etag   = "${md5(file("/tmp/lambda.zip"))}"
   key    = "lambdas/php.zip"
   source = "/tmp/lambda.zip"
 }
