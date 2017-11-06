@@ -241,8 +241,8 @@ class Cruncher extends \Bigprimes\Pages
         if ($num == 2 OR $num == 3) {
             return true;
         }
-        $numToCheck = explode('-', chunk_split($num . '.00000000', 1, '-'));
 
+        $numToCheck = explode('-', chunk_split($num . '.00000000', 1, '-'));
         $divideBy = 9; //currently only for dividing by 9!
 
         $answer = []; // to hold the answer
@@ -259,8 +259,8 @@ class Cruncher extends \Bigprimes\Pages
                     $working = $digit + ($working * 10);
                     if ($working > $divideBy) {
                         $temp = ($working % $divideBy);
-                        if ($donePoint === true) {
-                            $answer[$nthDigit - 1] = (string)(($working - $temp) / $divideBy);
+                        if ($donePoint == true) {
+                            $answer[$nthDigit - 1] = ($working - $temp) / $divideBy;
                         }
                         if ($temp == 0) {
                             $working = false;
@@ -271,12 +271,11 @@ class Cruncher extends \Bigprimes\Pages
                 } elseif ($digit > $divideBy) {
                     $temp = ($digit % $divideBy);
                     if ($donePoint == true) {
-                        $answer[$nthDigit - 1] = (string)($digit - $temp);
+                        $answer[$nthDigit - 1] = $digit - $temp;
                     }
                 } else {
                     $working = $digit;
                 }
-
             }
         }
 
@@ -818,7 +817,6 @@ class Cruncher extends \Bigprimes\Pages
                   ($num_len > $this->max_english_len?'':' - ' . $this->convertNum($number, $this->ones, $this->tens, $this->triplets)) . 
                 '</h1>';
 
-
                 $return .= "<table class=\"text\" width='100%' border='1' cellspacing='0' cellpadding='2'><tr><td>"; //begin table
                 //odd or even?
                 if ($utils->is_even($number)) {
@@ -835,7 +833,6 @@ class Cruncher extends \Bigprimes\Pages
                     }
                 }
                 //prime ?
-
                 $primes = new \Bigprimes\Primes($this->app);
                 $largestInSequentialDatabase = $primes->largestNthPrime();
                 if ($largestInSequentialDatabase > $number){
@@ -863,7 +860,6 @@ class Cruncher extends \Bigprimes\Pages
                 } else {
                     $return .= 'Numbers larger than ' . strlen(end($this->array_mersenne)) . " digits are not checked to see if they are a <a href='http://www.mersenne.org/' class='mlink' >mersenne prime</a>.<br />";
                 }
-
                 //fermat number or not?
                 if ($num_len <= strlen(end($this->array_fermat))) {
                     $fermat = array_search($number, $this->array_fermat);
@@ -914,7 +910,6 @@ class Cruncher extends \Bigprimes\Pages
                 } else {
                     $return .= 'Numbers larger than ' . $this->max_len_square . ' digits are not checked to see if they are square numbers.<br />';
                 }
-
 
                 //cube number or not?
                 if ($num_len <= $this->max_len_cube) {

@@ -40,28 +40,29 @@ $app->error(function ( \Exception $e, $code ) use ($app) {
     // logStreamName is required
     'logStreamName' => 'BigPrimesEvents',
 */
-  $error = 'An error occured, you have found a bug! Please raise a support request on github.<br><br>'.$e->getMessage().' '.$code;
+  $error = 'An error occured, you have found a bug! Please raise a support request on github.<br><br>'.$e->getMessage();
 
   return $app->json( $error, 200 );
 });
+
 //create a read connection and a write connection
 //they are using the same mysql url currently, so this is for easy future scaling
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'dbs.options' => array(
         'mysql_read' => array(
             'driver' => 'pdo_mysql',
-            'host' => getenv('bigprimesDBEndPoint'),
-            'dbname' => getenv('bigprimesDBName'),
-            'user' => getenv('bigprimesDBUser'),
-            'password' => getenv('bigprimesDBPass'),
+            'host' => $_ENV['bigprimesDBEndPoint'],
+            'dbname' => $_ENV['bigprimesDBName'],
+            'user' => $_ENV['bigprimesDBUser'],
+            'password' => $_ENV['bigprimesDBPass'],
             'charset'   => 'utf8mb4',
         ),
         'mysql_write' => array(
             'driver' => 'pdo_mysql',
-            'host' => getenv('bigprimesDBEndPoint'),
-            'dbname' => getenv('bigprimesDBName'),
-            'user' => getenv('bigprimesDBUser'),
-            'password' => getenv('bigprimesDBPass'),
+            'host' => $_ENV['bigprimesDBEndPoint'],
+            'dbname' => $_ENV['bigprimesDBName'],
+            'user' => $_ENV['bigprimesDBUser'],
+            'password' => $_ENV['bigprimesDBPass'],
             'charset'   => 'utf8mb4',
         ),
     ),
