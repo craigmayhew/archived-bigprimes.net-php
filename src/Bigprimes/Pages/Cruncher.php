@@ -250,11 +250,11 @@ class Cruncher extends \Bigprimes\Pages
 
         $donePoint = false;
         foreach ($numToCheck as $nthDigit => $digit) {
-            $digit = (int)$digit;
             if ($digit === '.') {
                 $donePoint = true;
                 $answer[] = '.';
             } else {
+                $digit = (int)$digit;
                 if ($working !== false) {
                     $working = $digit + ($working * 10);
                     if ($working > $divideBy) {
