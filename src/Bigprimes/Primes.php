@@ -249,5 +249,3 @@ class Primes
         return ($this->maxPrime / 100);
     }
 }
-
-?>
