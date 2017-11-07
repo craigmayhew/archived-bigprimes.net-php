@@ -31,6 +31,9 @@ class builder{
     #create the lambda package
     //exec('cd '.self::$workingdirectory.' && tar -zcvf php-71-bin.tar.gz php-71-bin/');
     #compress into zip file for deploy to aws lambda 
+    if (file_exists(self::$workingdirectory.'/'.self::$zipName.'.zip')){
+      exec('rm '.self::$workingdirectory.'/'.self::$zipName.'.zip');
+    }
     exec('cd '.self::$workingdirectory.' && zip -9 '.self::$workingdirectory.'/'.self::$zipName.'.zip -r php-71-bin');
     exec('cd '.$scriptPath.'/../ && zip -9 '.self::$workingdirectory.'/'.self::$zipName.'.zip php.ini php-71-bin/php.ini');
     exec('cd '.$scriptPath.'/../ && zip -9 '.self::$workingdirectory.'/'.self::$zipName.'.zip php.js htdocs/index-silex.php');
