@@ -753,7 +753,8 @@ class Cruncher extends \Bigprimes\Pages
                 if ($number === '0' || $number === '1') {  
                   $return .= 'It is the 1st and 2nd factorial number (0! and 1!).<br />';
                 } else {
-                  $factorial = $primes->isFactorial($number);
+                  $factorials = new \Bigprimes\Factorials($this->app);
+                  $factorial = $factorials->isFactorial($number);
                   if ($factorial) {
                     $return .= 'It is the ' . $this->stndrd($factorial) . ' factorial number (' . $factorial . '!).<br />';
                   } else {
