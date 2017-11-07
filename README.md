@@ -4,7 +4,6 @@ bigprimes.net
 PHP 7 codebase for bigprimes.net written using the [Silex micro-framework](https://github.com/silexphp/Silex).
 
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.0-8892BF.svg?style=flat-square)](https://php.net/)
-[![Dependency Status](https://www.versioneye.com/user/projects/5932825c22f278006540a1f0/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5932825c22f278006540a1f0)
 [![Codecov branch](https://img.shields.io/codecov/c/github/craigmayhew/bigprimes.net/master.svg)](https://codecov.io/gh/craigmayhew/bigprimes.net)
 [![Build Status](https://travis-ci.org/craigmayhew/bigprimes.net.svg?branch=master)](https://travis-ci.org/craigmayhew/bigprimes.net)
 
