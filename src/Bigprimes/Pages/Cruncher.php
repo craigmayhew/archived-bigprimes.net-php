@@ -9,7 +9,7 @@ class Cruncher extends \Bigprimes\Pages
     private $max_len_cube = 17;
     private $max_len_square = 100;
     private $max_len_triangle = 17;
-    private $max_len_convertion = 500; //converting the number to binary and hex ...
+    private $max_len_convertion = 500; //converting the number to binary and hex
     private $max_len_factorization = 9;
     private $max_len_roman_numerals = 6;
     private $max_len_egypt_numerals = 7;
@@ -534,37 +534,37 @@ class Cruncher extends \Bigprimes\Pages
             'M',
             'MM',
             'MMM',
-            "M<span class='u'>V</span>",
-            "<span class='u'>V</span>",
-            "<span class='u'>V</span>M",
-            "<span class='u'>V</span>MM",
-            "<span class='u'>V</span>MMM",
-            "M<span class='u'>X</span>",
-            "<span class='u'>X</span>"
+            'M<span class="u">V</span>',
+            '<span class="u">V</span>',
+            '<span class="u">V</span>M',
+            '<span class="u">V</span>MM',
+            '<span class="u">V</span>MMM',
+            'M<span class="u">X</span>',
+            '<span class="u">X</span>'
         ], //THOUSANDS
         [
-            "<span class='u'>X</span>",
-            "<span class='u'>X</span><span class='u'>X</span>",
-            "<span class='u'>X</span><span class='u'>X</span><span class='u'>X</span>",
-            "<span class='u'>X</span><span class='u'>L</span>",
-            "<span class='u'>L</span>",
-            "<span class='u'>L</span><span class='u'>X</span>",
-            "<span class='u'>L</span><span class='u'>X</span><span class='u'>X</span>",
-            "<span class='u'>L</span><span class='u'>X</span><span class='u'>X</span><span class='u'>X</span>",
-            "<span class='u'>X</span><span class='u'>C</span>",
-            "<span class='u'>C</span>"
+            '<span class="u">X</span>',
+            '<span class="u">X</span><span class="u">X</span>',
+            '<span class="u">X</span><span class="u">X</span><span class="u">X</span>',
+            '<span class="u">X</span><span class="u">L</span>',
+            '<span class="u">L</span>',
+            '<span class="u">L</span><span class="u">X</span>',
+            '<span class="u">L</span><span class="u">X</span><span class="u">X</span>',
+            '<span class="u">L</span><span class="u">X</span><span class="u">X</span><span class="u">X</span>',
+            '<span class="u">X</span><span class="u">C</span>',
+            '<span class="u">C</span>'
         ], //TEN THOUSANDS
         [
-            "<span class='u'>C</span>",
-            "<span class='u'>C</span><span class='u'>C</span>",
-            "<span class='u'>C</span><span class='u'>C</span><span class='u'>C</span>",
-            "<span class='u'>C</span><span class='u'>D</span>",
-            "<span class='u'>D</span>",
-            "<span class='u'>D</span><span class='u'>C</span>",
-            "<span class='u'>D</span><span class='u'>C</span><span class='u'>C</span>",
-            "<span class='u'>D</span><span class='u'>C</span><span class='u'>D</span><span class='u'>C</span>",
-            "<span class='u'>C</span><span class='u'>M</span>",
-            "<span class='u'>M</span>"
+            '<span class="u">C</span>',
+            '<span class="u">C</span><span class="u">C</span>',
+            '<span class="u">C</span><span class="u">C</span><span class="u">C</span>',
+            '<span class="u">C</span><span class="u">D</span>',
+            '<span class="u">D</span>',
+            '<span class="u">D</span><span class="u">C</span>',
+            '<span class="u">D</span><span class="u">C</span><span class="u">C</span>',
+            '<span class="u">D</span><span class="u">C</span><span class="u">D</span><span class="u">C</span>',
+            '<span class="u">C</span><span class="u">M</span>',
+            '<span class="u">M</span>'
         ] //HUNDRED THOUSANDS
     ];
     private $numeralsEgyptian = [
@@ -648,70 +648,70 @@ class Cruncher extends \Bigprimes\Pages
     ];
     private $numeralsChinese = [
         [
-            "&#22777;",
-            "&#36019;",
-            "&#21444;",
-            "&#32902;",
-            "&#20237;",
-            "&#38520;",
-            "&#26578;",
-            "&#25420;",
-            "&#29590;"
+            '&#22777;',
+            '&#36019;',
+            '&#21444;',
+            '&#32902;',
+            '&#20237;',
+            '&#38520;',
+            '&#26578;',
+            '&#25420;',
+            '&#29590;'
         ], //units
         [
-            "&#22777;&#25342;",
-            "&#36019;&#25342;",
-            "&#21444;&#25342;",
-            "&#32902;&#25342;",
-            "&#20237;&#25342;",
-            "&#38520;&#25342;",
-            "&#26578;&#25342;",
-            "&#25420;&#25342;",
-            "&#29590;&#25342;"
+            '&#22777;&#25342;',
+            '&#36019;&#25342;',
+            '&#21444;&#25342;',
+            '&#32902;&#25342;',
+            '&#20237;&#25342;',
+            '&#38520;&#25342;',
+            '&#26578;&#25342;',
+            '&#25420;&#25342;',
+            '&#29590;&#25342;'
         ], //tens
         [
-            "&#22777;&#20336;",
-            "&#36019;&#20336;",
-            "&#21444;&#20336;",
-            "&#32902;&#20336;",
-            "&#20237;&#20336;",
-            "&#38520;&#20336;",
-            "&#26578;&#20336;",
-            "&#25420;&#20336;",
-            "&#29590;&#20336;"
+            '&#22777;&#20336;',
+            '&#36019;&#20336;',
+            '&#21444;&#20336;',
+            '&#32902;&#20336;',
+            '&#20237;&#20336;',
+            '&#38520;&#20336;',
+            '&#26578;&#20336;',
+            '&#25420;&#20336;',
+            '&#29590;&#20336;'
         ], //hundreds
         [
-            "&#22777;&#20191;",
-            "&#36019;&#20191;",
-            "&#21444;&#20191;",
-            "&#32902;&#20191;",
-            "&#20237;&#20191;",
-            "&#38520;&#20191;",
-            "&#26578;&#20191;",
-            "&#25420;&#20191;",
-            "&#29590;&#20191;"
+            '&#22777;&#20191;',
+            '&#36019;&#20191;',
+            '&#21444;&#20191;',
+            '&#32902;&#20191;',
+            '&#20237;&#20191;',
+            '&#38520;&#20191;',
+            '&#26578;&#20191;',
+            '&#25420;&#20191;',
+            '&#29590;&#20191;'
         ], //thousands
         [
-            "&#22777;&#33836;",
-            "&#36019;&#33836;",
-            "&#21444;&#33836;",
-            "&#32902;&#33836;",
-            "&#20237;&#33836;",
-            "&#38520;&#33836;",
-            "&#26578;&#33836;",
-            "&#25420;&#33836;",
-            "&#29590;&#33836;"
+            '&#22777;&#33836;',
+            '&#36019;&#33836;',
+            '&#21444;&#33836;',
+            '&#32902;&#33836;',
+            '&#20237;&#33836;',
+            '&#38520;&#33836;',
+            '&#26578;&#33836;',
+            '&#25420;&#33836;',
+            '&#29590;&#33836;'
         ], //tenthousands
         [
-            "&#22777;&#25342;&#33836;",
-            "&#36019;&#25342;&#33836;",
-            "&#21444;&#25342;&#33836;",
-            "&#32902;&#25342;&#33836;",
-            "&#20237;&#25342;&#33836;",
-            "&#38520;&#25342;&#33836;",
-            "&#26578;&#25342;&#33836;",
-            "&#25420;&#25342;&#33836;",
-            "&#29590;&#25342;&#33836;"
+            '&#22777;&#25342;&#33836;',
+            '&#36019;&#25342;&#33836;',
+            '&#21444;&#25342;&#33836;',
+            '&#32902;&#25342;&#33836;',
+            '&#20237;&#25342;&#33836;',
+            '&#38520;&#25342;&#33836;',
+            '&#26578;&#25342;&#33836;',
+            '&#25420;&#25342;&#33836;',
+            '&#29590;&#25342;&#33836;'
         ] //hundred thousands
     ];
 
@@ -817,7 +817,7 @@ class Cruncher extends \Bigprimes\Pages
                   ($num_len > $this->max_english_len?'':' - ' . $this->convertNum($number, $this->ones, $this->tens, $this->triplets)) . 
                 '</h1>';
 
-                $return .= "<table class=\"text\" width='100%' border='1' cellspacing='0' cellpadding='2'><tr><td>"; //begin table
+                $return .= '<table class="text" width="100%" border="1" cellspacing="0" cellpadding="2"><tr><td>';
                 //odd or even?
                 if ($utils->is_even($number)) {
                     $return .= 'It is an even number.<br />';
@@ -853,40 +853,40 @@ class Cruncher extends \Bigprimes\Pages
                 if ($num_len <= strlen(end($this->array_mersenne))) {
                     $mersenne = array_search($number, $this->array_mersenne);
                     if ($mersenne !== false) {
-                        $return .= 'It is the ' . $this->stndrd($mersenne + 1) . " <a href='http://en.wikipedia.org/wiki/Mersenne_prime' class='link'>mersenne prime</a> number.<br />";
+                        $return .= 'It is the ' . $this->stndrd($mersenne + 1) . ' <a href="http://en.wikipedia.org/wiki/Mersenne_prime" class="link">mersenne prime</a> number.<br />';
                     } else {
-                        $return .= "It is not a <a href='http://en.wikipedia.org/wiki/Mersenne_prime' class='link'>mersenne prime</a> number.<br />";
+                        $return .= 'It is not a <a href="http://en.wikipedia.org/wiki/Mersenne_prime" class="link">mersenne prime</a> number.<br />';
                     }
                 } else {
-                    $return .= 'Numbers larger than ' . strlen(end($this->array_mersenne)) . " digits are not checked to see if they are a <a href='http://www.mersenne.org/' class='mlink' >mersenne prime</a>.<br />";
+                    $return .= 'Numbers larger than ' . strlen(end($this->array_mersenne)) . ' digits are not checked to see if they are a <a href="http://www.mersenne.org/" class="mlink" >mersenne prime</a>.<br />';
                 }
                 //fermat number or not?
                 if ($num_len <= strlen(end($this->array_fermat))) {
                     $fermat = array_search($number, $this->array_fermat);
                     if ($fermat !== false) {
-                        $return .= 'It is the ' . $this->stndrd($fermat + 1) . " <a href='http://en.wikipedia.org/wiki/Fermat_number'>fermat number</a>.<br />";
+                        $return .= 'It is the ' . $this->stndrd($fermat + 1) . ' <a href="http://en.wikipedia.org/wiki/Fermat_number">fermat number</a>.<br />';
                     } else {
-                        $return .= "It is not a <a class=\"link\" href='http://en.wikipedia.org/wiki/Fermat_number'>fermat number</a>.<br />";
+                        $return .= 'It is not a <a class="link" href="http://en.wikipedia.org/wiki/Fermat_number">fermat number</a>.<br />';
                     }
                 } else {
-                    $return .= 'Numbers larger than ' . strlen(end($this->array_fermat)) . " digits are not checked to see if they are a fermat number.<br />";
+                    $return .= 'Numbers larger than ' . strlen(end($this->array_fermat)) . ' digits are not checked to see if they are a fermat number.<br />';
                 }
                 //perfect number or not?
                 if ($num_len <= strlen(end($this->array_perfect))) {
                     $perfect = $this->is_perfect($number, $this->array_perfect);
                     if ($perfect) {
-                        $return .= 'It is the ' . $this->stndrd($perfect) . " <a href='http://en.wikipedia.org/wiki/Perfect_number' class='link'>perfect number</a>.<br />";
+                        $return .= 'It is the ' . $this->stndrd($perfect) . ' <a href="http://en.wikipedia.org/wiki/Perfect_number" class="link">perfect number</a>.<br />';
                     } else {
-                        $return .= "It is not a <a href='http://en.wikipedia.org/wiki/Perfect_number' class='link'>perfect number</a>.<br />";
+                        $return .= 'It is not a <a href="http://en.wikipedia.org/wiki/Perfect_number" class="link">perfect number</a>.<br />';
                     }
                 } else {
-                    $return .= 'Numbers larger than ' . strlen(end($array_perfect)) . " digits are not checked to see if they are perfect.<br />";
+                    $return .= 'Numbers larger than ' . strlen(end($array_perfect)) . ' digits are not checked to see if they are perfect.<br />';
                 }
 
                 $return .= '</td></tr></table><br /><br />'; //end table
 
 
-                $return .= "<table class=\"text\" width='100%' border='1' cellspacing='0' cellpadding='2'><tr><td>"; //begin table
+                $return .= '<table class="text" width="100%" border="1" cellspacing="0" cellpadding="2"><tr><td>';
                 //triangle number or not?
                 if ($num_len <= $this->max_len_triangle) {
                     $triangle_num = $this->is_triangle($number);
@@ -924,12 +924,12 @@ class Cruncher extends \Bigprimes\Pages
                     $return .= 'Numbers larger than ' . $this->max_len_cube . ' digits are not checked to see if they are cube numbers.<br />';
                 }
 
-                $return .= "<br />";
+                $return .= '<br />';
                 //factorial number or not?
                 if ($num_len <= strlen(end($this->array_factorial))) {
                     $factorial = array_search($number, $this->array_factorial);
                     if ($factorial !== false) {
-                        $return .= "It is the " . $this->stndrd($factorial + 1) . " factorial number (" . $factorial . "!).<br />";
+                        $return .= 'It is the ' . $this->stndrd($factorial + 1) . ' factorial number (' . $factorial . '!).<br />';
                     } else {
                         $return .= 'It is not a factorial number.<br />';
                     }
@@ -938,7 +938,7 @@ class Cruncher extends \Bigprimes\Pages
                 }
                 $return .= '</td></tr></table><br /><br />'; //end table
 
-                $return .= "<table class=\"text\" width='100%' border='1' cellspacing='0' cellpadding='2'><tr><td>"; //begin table
+                $return .= '<table class="text" width="100%" border="1" cellspacing="0" cellpadding="2"><tr><td>';
                 if ($is_prime == false) {
                     if ($num_len <= $this->max_len_factorization) {
                         if ($is_prime == false) {
@@ -953,48 +953,42 @@ class Cruncher extends \Bigprimes\Pages
                 } else {
                     $return .= 'It it has no factors except itself and 1.';
                 }
-                $return .= '</td></tr></table><br /><br />'; //end table
+                $return .= '</td></tr></table><br /><br />';
 
-                $return .= "<table class=\"text\" width='100%' border='1' cellspacing='0' cellpadding='2'><tr><td>"; //begin table
+                $return .= '<table class="text" width="100%" border="1" cellspacing="0" cellpadding="2"><tr><td>';
                 //converting to different bases
                 if ($num_len <= $this->max_len_convertion) {
-                    $return .= "<table class=\"text\" width='100%' border='0' cellspacing='0' cellpadding='2'>";
-                    $return .= "<tr><td width='200'>Base 2 (Binary):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
-                            2)), 4, " ", 1)) . "</td></tr>";
-                    $return .= "<tr><td>Base 3 (Ternary):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
-                            3)), 6, " ", 1)) . "</td></tr>";
-                    $return .= "<tr><td>Base 4 (Quaternary):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
-                            4)), 4, " ", 1)) . "</td></tr>";
-                    $return .= "<tr><td>Base 5 (Quintal):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
-                            5)), 5, " ", 1)) . "</td></tr>";
-                    $return .= "<tr><td>Base 8 (Octal):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
-                            8)), 8, " ", 1)) . "</td></tr>";
-                    $return .= "<tr><td>Base 10 (Denary):</td><td>" . strrev(wordwrap(strrev($number),
-                            3, " ", 1)) . "</td></tr>";
-                    $return .= "<tr><td>Base 16 (Hexadecimal):</td><td>" . strrev(wordwrap(strrev($utils->dec2base($number,
-                            16)), 4, " ", 1)) . "</td></tr>";
-                    $return .= '</table>';
+                    $return .= 
+                    '<table class="text" width="100%" border="0" cellspacing="0" cellpadding="2">'.
+                      '<tr><td width="200">Base 2 (Binary):</td><td>' . strrev(wordwrap(strrev($utils->dec2base($number, 2)), 4, ' ', 1)) . '</td></tr>'.
+                      '<tr><td>Base 3 (Ternary):</td><td>' . strrev(wordwrap(strrev($utils->dec2base($number, 3)), 6, ' ', 1)) . '</td></tr>'.
+                      '<tr><td>Base 4 (Quaternary):</td><td>' . strrev(wordwrap(strrev($utils->dec2base($number, 4)), 4, ' ', 1)) . '</td></tr>'.
+                      '<tr><td>Base 5 (Quintal):</td><td>' . strrev(wordwrap(strrev($utils->dec2base($number, 5)), 5, ' ', 1)) . '</td></tr>'.
+                      '<tr><td>Base 8 (Octal):</td><td>' . strrev(wordwrap(strrev($utils->dec2base($number, 8)), 8, ' ', 1)) . '</td></tr>'.
+                      '<tr><td>Base 10 (Denary):</td><td>' . strrev(wordwrap(strrev($number), 3, ' ', 1)) . '</td></tr>'.
+                      '<tr><td>Base 16 (Hexadecimal):</td><td>' . strrev(wordwrap(strrev($utils->dec2base($number, 16)), 4, ' ', 1)) . '</td></tr>'.
+                    '</table>';
                 } else {
                     $return .= 'Numbers larger than ' . $this->max_len_convertion . ' digits in length are not converted to different bases.';
                 }
-                $return .= '</td></tr></table><br /><br />'; //end table
+                $return .= '</td></tr></table><br /><br />';
                 //roman, egyptian, chinese and babylonian numerals
                 if ($num_len <= $this->max_len_babylonian_numerals) {
-                    $return .= "<table class=\"text\" width='100%' border='1' cellspacing='0' cellpadding='2'>"; //begin table
+                    $return .= '<table class="text" width="100%" border="1" cellspacing="0" cellpadding="2">';
                     if ($num_len <= $this->max_len_roman_numerals) {
-                        $return .= "<tr><td width='200'>Roman Numerals:</td><td>" . $this->den2numerals($number,
-                                $this->numeralsRoman) . "</td></tr>";
+                        $return .= '<tr><td width="200">Roman Numerals:</td><td>' . $this->den2numerals($number,
+                                $this->numeralsRoman) . '</td></tr>';
                     }
                     if ($num_len <= $this->max_len_egypt_numerals) {
-                        $return .= "<tr><td width='200'>Egyptian Numerals:</td><td style='font-size:40px;'>" . $this->den2numerals($number,
-                                $this->numeralsEgyptian) . "</td></tr>";
+                        $return .= '<tr><td width="200">Egyptian Numerals:</td><td style="font-size:40px;">' . $this->den2numerals($number,
+                                $this->numeralsEgyptian) . '</td></tr>';
                     }
                     if ($num_len <= $this->max_len_chinese_numerals) {
-                        $return .= "<tr><td width='200'>Chinese Numerals:</td><td valign='middle' bgcolor='#FFFFFF'>" . $this->den2numerals($number,
-                                $this->numeralsChinese) . "</td></tr>";
+                        $return .= '<tr><td width="200">Chinese Numerals:</td><td valign="middle" bgcolor="#FFF">' . $this->den2numerals($number,
+                                $this->numeralsChinese) . '</td></tr>';
                     }
-                    $return .= "<tr><td>Babylonian Numerals:</td><td valign='middle' bgcolor='#FFFFFF'>" . $utils->dec2bab($number) . "</td></tr>";
-                    $return .= '</table><br /><br />'; //end table
+                    $return .= '<tr><td>Babylonian Numerals:</td><td valign="middle" bgcolor="#FFF">' . $utils->dec2bab($number) . '</td></tr>';
+                    $return .= '</table><br /><br />';
                 }
             } else {
                 $return .= '<b>\'' . $number . '\' is not a positive integer.<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />';
@@ -1010,35 +1004,35 @@ class Cruncher extends \Bigprimes\Pages
 	<li>Is it odd or even?</li>
 	<li>Is it a palindrome?</li>
 	<li>Is it a prime number? (Checks numbers upto ' . $this->max_len_prime . ' digits in length)</li>
-	<li>Is it a <a class="link mlink" href="http://en.wikipedia.org/wiki/Mersenne_prime">mersenne prime</a>? (Checks numbers upto ' . strlen(end($this->array_mersenne)) . " digits in length)</li>
-	<li>Is it a <a class=\"link mlink\" href='http://www.fermatsearch.org/'>fermat prime</a>? (Checks numbers upto " . strlen(end($this->array_fermat)) . " digits in length)</li>
-	<li>Is it a <a class=\"link mlink\" href='http://en.wikipedia.org/wiki/Perfect_number'>perfect number</a>? (Checks numbers upto " . strlen(end($this->array_perfect)) . " digits in length)</li>
-	<li>Is it a triangle number? (Checks numbers upto " . $this->max_len_triangle . " digits in length)</li>
-	<li>Is it a square number? (Checks numbers upto " . $this->max_len_square . " digits in length)</li>
-	<li>Is it a cube number? (Checks numbers upto " . $this->max_len_cube . " digits in length)</li>
-	<li>Is it a factorial number? (Checks numbers upto " . strlen(end($this->array_factorial)) . " digits in length)<br /><br /></li>
-	<li>All factors of the number will be listed (for numbers upto " . $this->max_len_factorization . " digits)</li>
-	<li>The page will also show a list of base conversions. e.g. binary, octal and hexadecimal (Numbers upto " . $this->max_len_convertion . " digits in length)</li>
-	<li>The number will be converted to roman numerals (Upto " . $this->max_len_roman_numerals . " digits in length)</li>
-	<li>The number will be converted to egyptian numerals (Upto " . $this->max_len_egypt_numerals . " digits in length)</li>
-	<li>The number will be converted to chinese numerals (Upto " . $this->max_len_chinese_numerals . " digits in length)</li>
-	<li>The number will be converted to babylonian numerals (Upto " . $this->max_len_babylonian_numerals . " digits in length)</li>
+	<li>Is it a <a class="link mlink" href="http://en.wikipedia.org/wiki/Mersenne_prime">mersenne prime</a>? (Checks numbers upto ' . strlen(end($this->array_mersenne)) . ' digits in length)</li>
+	<li>Is it a <a class="link mlink" href="http://www.fermatsearch.org/">fermat prime</a>? (Checks numbers upto ' . strlen(end($this->array_fermat)) . ' digits in length)</li>
+	<li>Is it a <a class="link mlink" href="http://en.wikipedia.org/wiki/Perfect_number">perfect number</a>? (Checks numbers upto ' . strlen(end($this->array_perfect)) . ' digits in length)</li>
+	<li>Is it a triangle number? (Checks numbers upto ' . $this->max_len_triangle . ' digits in length)</li>
+	<li>Is it a square number? (Checks numbers upto ' . $this->max_len_square . ' digits in length)</li>
+	<li>Is it a cube number? (Checks numbers upto ' . $this->max_len_cube . ' digits in length)</li>
+	<li>Is it a factorial number? (Checks numbers upto ' . strlen(end($this->array_factorial)) . ' digits in length)<br /><br /></li>
+	<li>All factors of the number will be listed (for numbers upto ' . $this->max_len_factorization . ' digits)</li>
+	<li>The page will also show a list of base conversions. e.g. binary, octal and hexadecimal (Numbers upto ' . $this->max_len_convertion . ' digits in length)</li>
+	<li>The number will be converted to roman numerals (Upto ' . $this->max_len_roman_numerals . ' digits in length)</li>
+	<li>The number will be converted to egyptian numerals (Upto ' . $this->max_len_egypt_numerals . ' digits in length)</li>
+	<li>The number will be converted to chinese numerals (Upto ' . $this->max_len_chinese_numerals . ' digits in length)</li>
+	<li>The number will be converted to babylonian numerals (Upto ' . $this->max_len_babylonian_numerals . ' digits in length)</li>
     </ul>
 	
 	<br /><br />
 	
 	Please type your number here:
-	<form name=\"crunchy\" action='/cruncher/' method='get' target='_top'>
-	<table width='200' border='0' cellspacing='0' cellpadding='2'>
+	<form name="crunchy" action="/cruncher/" method="get" target="_top">
+	<table width="200" border="0" cellspacing="0" cellpadding="2">
 	  <tr>
-		<td><textarea name='number' cols='85' rows='10' onkeydown=\"if (event.keyCode == 13){document.location='/cruncher/'+crunchy.number.value+'/'}\"></textarea></td>
+		<td><textarea name="number" cols="85" rows="10" onkeydown="if (event.keyCode == 13){document.location=\'/cruncher/\'+crunchy.number.value+\'/\'}"></textarea></td>
 	  </tr>
 	  <tr>
-		<td align='center'><input type='button' value='Crunch' onclick=\"document.location='/cruncher/'+crunchy.number.value+'/'\" /></td>
+		<td align="center"><input type="button" value="Crunch" onclick="document.location=\'/cruncher/\'+crunchy.number.value+\'/\'" /></td>
 	  </tr>
 	</table>
 	</form>
-	</td></tr></table></div>";
+	</td></tr></table></div>';
         }
 
         return $return;
