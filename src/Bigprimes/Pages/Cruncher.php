@@ -858,13 +858,13 @@ class Cruncher extends \Bigprimes\Pages
                         $return .= 'It is not a <a href="http://en.wikipedia.org/wiki/Mersenne_prime" class="link">mersenne prime</a> number.<br />';
                     }
                 } else {
-                    $return .= 'Numbers larger than ' . strlen(end($this->array_mersenne)) . ' digits are not checked to see if they are a <a href="http://www.mersenne.org/" class="mlink" >mersenne prime</a>.<br />';
+                    $return .= 'Numbers larger than ' . strlen(end($this->array_mersenne)) . ' digits are not checked to see if they are a <a href="http://www.mersenne.org/" class="link">mersenne prime</a>.<br />';
                 }
                 //fermat number or not?
                 if ($num_len <= strlen(end($this->array_fermat))) {
                     $fermat = array_search($number, $this->array_fermat);
                     if ($fermat !== false) {
-                        $return .= 'It is the ' . $this->stndrd($fermat + 1) . ' <a href="http://en.wikipedia.org/wiki/Fermat_number">fermat number</a>.<br />';
+                        $return .= 'It is the ' . $this->stndrd($fermat + 1) . ' <a href="http://en.wikipedia.org/wiki/Fermat_number" class="link">fermat number</a>.<br />';
                     } else {
                         $return .= 'It is not a <a class="link" href="http://en.wikipedia.org/wiki/Fermat_number">fermat number</a>.<br />';
                     }
@@ -1004,9 +1004,9 @@ class Cruncher extends \Bigprimes\Pages
 	<li>Is it odd or even?</li>
 	<li>Is it a palindrome?</li>
 	<li>Is it a prime number? (Checks numbers upto ' . $this->max_len_prime . ' digits in length)</li>
-	<li>Is it a <a class="link mlink" href="http://en.wikipedia.org/wiki/Mersenne_prime">mersenne prime</a>? (Checks numbers upto ' . strlen(end($this->array_mersenne)) . ' digits in length)</li>
-	<li>Is it a <a class="link mlink" href="http://www.fermatsearch.org/">fermat prime</a>? (Checks numbers upto ' . strlen(end($this->array_fermat)) . ' digits in length)</li>
-	<li>Is it a <a class="link mlink" href="http://en.wikipedia.org/wiki/Perfect_number">perfect number</a>? (Checks numbers upto ' . strlen(end($this->array_perfect)) . ' digits in length)</li>
+	<li>Is it a <a class="link" href="http://en.wikipedia.org/wiki/Mersenne_prime">mersenne prime</a>? (Checks numbers upto ' . strlen(end($this->array_mersenne)) . ' digits in length)</li>
+	<li>Is it a <a class="link" href="http://www.fermatsearch.org/">fermat prime</a>? (Checks numbers upto ' . strlen(end($this->array_fermat)) . ' digits in length)</li>
+	<li>Is it a <a class="link" href="http://en.wikipedia.org/wiki/Perfect_number">perfect number</a>? (Checks numbers upto ' . strlen(end($this->array_perfect)) . ' digits in length)</li>
 	<li>Is it a triangle number? (Checks numbers upto ' . $this->max_len_triangle . ' digits in length)</li>
 	<li>Is it a square number? (Checks numbers upto ' . $this->max_len_square . ' digits in length)</li>
 	<li>Is it a cube number? (Checks numbers upto ' . $this->max_len_cube . ' digits in length)</li>
