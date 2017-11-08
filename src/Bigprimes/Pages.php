@@ -15,11 +15,11 @@ class Pages
     {
         switch ($n) {
             case 1:
-                return $n . 'st';
+                return '1st';
             case 2:
-                return $n . 'nd';
+                return '2nd';
             case 3:
-                return $n . 'rd';
+                return '3rd';
             case 11:
             case 12:
             case 13:
