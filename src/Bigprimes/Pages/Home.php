@@ -8,23 +8,23 @@ class Home extends \Bigprimes\Pages
         $news = \Bigprimes\Rss\News::$news;
 
         $return =
-            '<br><br>' .
-            '<table cellpadding="3" cellspacing="0" border="1" class="text" bgcolor="#E0FAED" style="width:80%;">' .
-            '<tr>' .
+        '<br><br>' .
+        '<table cellpadding="3" cellspacing="0" border="1" class="text" style="width:80%;">' .
+          '<tr>' .
             '<td width="100">Date</td>' .
             '<td width="300">News</td>' .
-            '</tr>';
+          '</tr>';
         foreach ($news as $item) {
             $return .=
-                '<tr>' .
-                '<td>' . $item['date'] . '</td>' .
-                '<td>' . $item['description'] . '</td>' .
-                '</tr>';
+            '<tr>' .
+              '<td>' . $item['date'] . '</td>' .
+              '<td>' . $item['description'] . '</td>' .
+            '</tr>';
         }
         $return .=
-            '</table>';
+        '</table>';
 
         return
-            $return;
+        $return;
     }
 }
