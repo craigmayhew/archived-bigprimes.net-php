@@ -19,4 +19,14 @@ class test_Primes extends TestCase
     // known false positives:
     $this->assertEquals(true, $p->prob_prime('427'));
   }
+  
+  public function test_cpuCheckNthPrime()
+  {
+    $p = new \Bigprimes\Primes(new \stdClass());
+    $this->assertEquals(3, $p->cpuCheckNthPrime('5'));
+    $this->assertEquals(7, $p->cpuCheckNthPrime('17'));
+    $this->assertEquals(42, $p->cpuCheckNthPrime('181'));
+    $this->assertEquals(821, $p->cpuCheckNthPrime('6311'));
+    $this->assertEquals(7950, $p->cpuCheckNthPrime('81223'));
+  }
 }
