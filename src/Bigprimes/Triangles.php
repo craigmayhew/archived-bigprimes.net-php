@@ -12,7 +12,7 @@ class Triangles
     
     //check if a number is a triangle number or not. if not then return false.
     //if true return which triangle number it is
-    public function is_triangle($num)
+    public function isTriangle($num)
     {
         $n = 2;
         $n_too_small = 1;
@@ -33,7 +33,7 @@ class Triangles
                 $n_too_big = $n;
                 $n = round(abs(mt_rand($n_too_small, $n_too_big)), 0);
             } else { // its a triangle number!!!
-                return $n;
+                return (int)$n;
             }
         }
         return false;

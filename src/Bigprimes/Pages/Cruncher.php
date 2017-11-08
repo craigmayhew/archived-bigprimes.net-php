@@ -684,7 +684,7 @@ class Cruncher extends \Bigprimes\Pages
                 //triangle number or not?
                 if ($num_len <= $this->max_len_triangle) {
                     $triangles = new \Bigprimes\Triangles($this->app);
-                    $triangle_num = $triangles->is_triangle($number);
+                    $triangle_num = $triangles->isTriangle($number);
                     if ($triangle_num) {
                         $return .= 'It is the ' . $this->stndrd($triangle_num) . ' triangle number.<br />';
                     } else {
