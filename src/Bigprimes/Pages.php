@@ -90,7 +90,6 @@ class Pages
         return
             '</div>' .
             '<footer>' .
-              '<a href="https://www.adire.co.uk/">Hosted by Adire</a>' .
             '</footer>' .
           '</body>' .
         '</html>';
