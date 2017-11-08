@@ -760,6 +760,8 @@ class Cruncher extends \Bigprimes\Pages
                 } else {
                     $return .= 'Numbers larger than ' . $this->max_len_convertion . ' digits in length are not converted to different bases.';
                 }
+
+                $return .= '<br /><br />';
                 
                 //roman, egyptian, chinese and babylonian numerals
                 if ($num_len <= $this->max_len_babylonian_numerals) {
