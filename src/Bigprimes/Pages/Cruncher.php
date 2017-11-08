@@ -577,20 +577,20 @@ class Cruncher extends \Bigprimes\Pages
     public function getContent($n)
     {
         $utils = new \Bigprimes\Utils();
-        $return = '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:728px;height:90px"
-             data-ad-client="ca-pub-9286138628337172"
-             data-ad-slot="8513669215"></ins>
-        <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>';
+        $return =
+          '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>'.
+          '<ins class="adsbygoogle"'.
+            ' style="display:inline-block;width:728px;height:90px"'.
+            ' data-ad-client="ca-pub-9286138628337172"'.
+            ' data-ad-slot="8513669215"></ins>'.
+          '<script>'.
+            '(adsbygoogle = window.adsbygoogle || []).push({});'.
+          '</script>';
 
         $number = $n;
         if (strlen($number) > 0) {
 
             $return .= 
-            '<div align="center">'.
               '<table class="text" width="75%" border="0" cellspacing="0" cellpadding="3">'.
                 '<tr>'.
                   '<td align="left" class="text">'.
@@ -785,9 +785,9 @@ class Cruncher extends \Bigprimes\Pages
             } else {
                 $return .= '<b>\'' . $number . '\' is not a positive integer.<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />';
             }
-            $return .= '</td></tr></table></div>';
+            $return .= '</td></tr></table>';
         } else {
-            $return .= '<div align="center"><table width="75%" border="0" cellspacing="0" cellpadding="3"><tr><td align="left" class="text">
+            $return .= '<table width="75%" border="0" cellspacing="0" cellpadding="3"><tr><td align="left" class="text">
     <h1>Number Cruncher</h1>
 	Welcome to the number cruncher.
 	Type in a number in the box below and we will crunch it for you.<br /><br />
@@ -824,7 +824,7 @@ class Cruncher extends \Bigprimes\Pages
 	  </tr>
 	</table>
 	</form>
-	</td></tr></table></div>';
+	</td></tr></table>';
         }
 
         return $return;
