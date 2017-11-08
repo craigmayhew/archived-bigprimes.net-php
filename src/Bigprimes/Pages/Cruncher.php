@@ -591,10 +591,8 @@ class Cruncher extends \Bigprimes\Pages
         if (strlen($number) > 0) {
 
             $return .= 
-              '<table class="text" width="75%" border="0" cellspacing="0" cellpadding="3">'.
-                '<tr>'.
-                  '<td align="left" class="text">'.
-                    '<br />';
+            '<div style="width:75%; padding: 3px;">'.
+            '<br />';
 
             //make sure there are no spaces, commas, character returns so line feeds in the number
             $number = $utils->convert2Number($number);
@@ -747,7 +745,6 @@ class Cruncher extends \Bigprimes\Pages
                 }
                 $return .= '</td></tr></table><br /><br />';
 
-                $return .= '<table class="text" width="100%" border="1" cellspacing="0" cellpadding="2"><tr><td>';
                 //converting to different bases
                 if ($num_len <= $this->max_len_convertion) {
                     $return .= 
@@ -763,7 +760,7 @@ class Cruncher extends \Bigprimes\Pages
                 } else {
                     $return .= 'Numbers larger than ' . $this->max_len_convertion . ' digits in length are not converted to different bases.';
                 }
-                $return .= '</td></tr></table><br /><br />';
+                
                 //roman, egyptian, chinese and babylonian numerals
                 if ($num_len <= $this->max_len_babylonian_numerals) {
                     $return .= '<table class="text" width="100%" border="1" cellspacing="0" cellpadding="2">';
@@ -785,7 +782,7 @@ class Cruncher extends \Bigprimes\Pages
             } else {
                 $return .= '<b>\'' . $number . '\' is not a positive integer.<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />';
             }
-            $return .= '</td></tr></table>';
+            $return .= '</div>';
         } else {
             $return .= '<table width="75%" border="0" cellspacing="0" cellpadding="3"><tr><td align="left" class="text">
     <h1>Number Cruncher</h1>

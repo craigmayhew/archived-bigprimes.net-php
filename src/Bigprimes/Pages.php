@@ -49,7 +49,6 @@ class Pages
           '<head>'.
             '<meta charset="UTF-8">'.
             '<title>' . $title . '</title>' .
-            '<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />' .
             '<meta name="keywords" content="' . $metaTagKeywords . '" />' .
             '<meta name="description" content="' . $metaTagDescription . '" />' .
             '<link rel="alternate" type="application/rss+xml" title="Big Primes RSS Feed" href="/rss/news/" />' .
