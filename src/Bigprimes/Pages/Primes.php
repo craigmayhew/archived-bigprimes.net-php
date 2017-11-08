@@ -66,14 +66,14 @@ class Primes extends \Bigprimes\Pages
                 '<br /><br />' .
                 '<table cellpadding="0" cellspacing="0" border="0">' .
                 '<tr>' .
-                '<td align="left" width="120">';
+                '<td align="left" class="primeTableCell" style="width:120px">';
             if ($num >= 2) {
                 $return .=
                     '<a class="link" href="/archive/prime/' . ($num - 1) . '/">previous 100 primes</a>';
             }
             $return .=
                 '</td>' .
-                '<td align="right" width="120">';
+                '<td align="right" class="primeTableCell" style="width:120px">';
             if ($num < $count) {
                 $return .=
                     '<a class="link" href="/archive/prime/' . ($num + 1) . '/">next 100 primes</a>';
