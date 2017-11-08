@@ -44,8 +44,10 @@ class Pages
     public function getHeader($title, $metaTagDescription, $metaTagKeywords)
     {
         return
-            '<html xmlns="http://www.w3.org/1999/xhtml">' .
-            '<head>' .
+        '<!DOCTYPE html>'.
+        '<html>'.
+          '<head>'.
+            '<meta charset="UTF-8">'.
             '<title>' . $title . '</title>' .
             '<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />' .
             '<meta name="keywords" content="' . $metaTagKeywords . '" />' .
@@ -53,75 +55,44 @@ class Pages
             '<link rel="alternate" type="application/rss+xml" title="Big Primes RSS Feed" href="/rss/news/" />' .
             '<link href="//static.bigprimes.net/css/css.css" rel="stylesheet" type="text/css" />' .
             '<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>' .
-            '</head>' .
-            '<body class="text">' .
-
-
-            '<table cellpadding="0" cellspacing="0" border="0" width="100%" class="text">
- <tr>
-  <td align="left" valign="top" colspan="2">
-        <a href="/index.php"><img src="//static.bigprimes.net/imgs/title.gif" alt="BigPrimes.net" /></a>
-  </td>
- </tr>
- <tr>
-  <td valign="top" width="160">
-    <br />
-        <table bgcolor="#e0faed" border="1" cellpadding="10" cellspacing="0" class="sidebarlink" width="180">
-                <tr>
-                        <td valign="top">
-                                <a class="sidebarlink" href="/">Home</a><br />
-                                <a class="sidebarlink" href="/contactus/">Contact Us</a><br />
-                                <a class="sidebarlink" href="/faq/">FAQ</a><br />
-                        </td>
-                </tr>
-        </table>
-                <br />
-        <table bgcolor="#e0faed" border="1" cellpadding="10" cellspacing="0" class="sidebarlink" width="180">
-                <tr>
-                        <td valign="top">
-                <a class="sidebarlink" href="/downloads/">Downloads</a><br />
-                                <a class="sidebarlink" href="/status/">Status</a><br />
-                        </td>
-                </tr>
-        </table>
-            <br />
-        <table bgcolor="#e0faed" border="1" cellpadding="10" cellspacing="0" class="sidebarlink" width="180">
-                <tr>
-                        <td valign="top">
-                                <div align="center" class="sidebartitle">Crunchers</div><br />
-                                <a class="sidebarlink" href="/cruncher/">Number Cruncher</a><br />
-                                <a class="sidebarlink" href="/primalitytest/">Primality Checker</a><br />
-                        </td>
-                </tr>
-        </table>
-            <br />
-        <table bgcolor="#e0faed" border="1" cellpadding="10" cellspacing="0" class="sidebarlink" width="180">
-                <tr>
-                        <td valign="top">
-                                <div align="center" class="sidebartitle">Archives</div><br />
-                                <a class="sidebarlink" href="/archive/prime/">Prime Numbers Archive</a><br />
-                                <a class="sidebarlink" href="/archive/mersenne/">Mersenne Prime Archive</a><br />
-                                <a class="sidebarlink" href="/archive/fermat/">Fermat Archive</a><br />
-                                <a class="sidebarlink" href="/archive/perfect/">Perfect Archive</a><br />
-                                <a class="sidebarlink" href="/archive/fibonacci/">Fibonacci Archive</a><br />
-                        </td>
-                </tr>
-        </table>
-  </td>
-  <td align="center" valign="top">
-';
-
-
+          '</head>' .
+          '<body>' .
+            '<header>'.
+              '<a href="/"><img src="//static.bigprimes.net/imgs/title.gif" alt="BigPrimes.net" /></a>'.
+            '</header>'.
+            '<nav>'.
+              '<div>'.
+                '<a href="/">Home</a>'.
+                '<a href="/contactus/">Contact Us</a>'.
+                '<a href="/faq/">FAQ</a>'.
+              '</div>'.
+              '<div>'.
+                '<a href="/downloads/">Downloads</a>'.
+                '<a href="/status/">Status</a>'.
+              '</div>'.
+              '<div>'.
+                '<a href="/cruncher/">Number Cruncher</a>'.
+                '<a href="/primalitytest/">Primality Checker</a>'.
+              '</div>'.
+              '<div>'.
+                '<a href="/archive/prime/">Prime Numbers Archive</a>'.
+                '<a href="/archive/mersenne/">Mersenne Prime Archive</a>'.
+                '<a href="/archive/fermat/">Fermat Archive</a>'.
+                '<a href="/archive/perfect/">Perfect Archive</a>'.
+                '<a href="/archive/fibonacci/">Fibonacci Archive</a>'.
+              '</div>'.
+            '</nav>'.
+            '<div id="content">';
     }
 
     public function getFooter()
     {
         return
-            '</td>' .
-            '</tr>' .
-            '</table>' .
-            '<div align="center"><br /><br /><a href="https://www.adire.co.uk/" class="sidebarlink">Hosted by Adire</a></div>' .
-            '</body>' .
-            '</html>';
+            '</div>' .
+            '<footer>' .
+              '<a href="https://www.adire.co.uk/">Hosted by Adire</a>' .
+            '</footer>' .
+          '</body>' .
+        '</html>';
     }
 }
