@@ -39,14 +39,14 @@ class Fibonaccis extends \Bigprimes\Pages
             '<br /><br />' .
             '<table cellpadding="0" cellspacing="0" border="0">' .
               '<tr>' .
-                '<td align="left" width="180">';
+                '<td align="left" class="primeTableCell" width="180">';
                 if (($num - 25) >= 0) {
                   $return .=
                   '<a class="link" href="/archive/fibonacci/' . ($num - 25) . '/">previous 25 fibonacci numbers</a>';
                 }
                 $return .=
                 '</td>' .
-                '<td align="right" width="180">';
+                '<td align="right" class="primeTableCell" width="180">';
                 if (($num + 25) <= $count) {
                   $return .=
                   '<a class="link" href="/archive/fibonacci/' . ($num + 25) . '/">next 25 fibonacci numbers</a>';
