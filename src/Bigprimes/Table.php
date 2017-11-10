@@ -5,11 +5,13 @@ class Table
 {
     private $app;
     private $data;
-
-    public function __construct($app, $data)
+    private $header;
+    
+    public function __construct($app, $data, $header)
     {
         $this->app = $app;
         $this->data = $data;
+        $this->header = $header;
     }
 
     public function getHTML($prevItemsPerPage = false, $nextItemsPerPage = false){ 
@@ -47,7 +49,7 @@ class Table
       return
       '<table id="tbl">'.
         '<tr>'.
-          '<th>'.implode('</th><th>', array_keys($this->data[0])).'</th>'.
+          '<th>'.implode('</th><th>', $this->header).'</th>'.
         '</tr>';
     }
 

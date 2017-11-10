@@ -8,14 +8,16 @@ class test_Table extends TestCase
 {
 	public function test_getHTML()
 	{
+            $header = ['COLUMN HEADER 1','COLUMN HEADER 2'];
+
             $data = 
             [
-              ['COLUMN HEADER 1'=>'DATA 1', 'COLUMN HEADER 2'=>'DATA 2'],
-              ['COLUMN HEADER 1'=>'DATA 3', 'COLUMN HEADER 2'=>'DATA 4'],
-              ['COLUMN HEADER 1'=>'DATA 5', 'COLUMN HEADER 2'=>'DATA 6']
+              ['DATA 1', 'DATA 2'],
+              ['DATA 3', 'DATA 4'],
+              ['DATA 5', 'DATA 6']
             ];
             
-            $table = new \Bigprimes\Table(new \stdClass(), $data);
+            $table = new \Bigprimes\Table(new \stdClass(), $data, $header);
             $content = $table->getHTML('50 awesome numbers', '70 amazing numbers');
 
             $this->assertRegexp('/Previous 50 awesome numbers/', $content);
