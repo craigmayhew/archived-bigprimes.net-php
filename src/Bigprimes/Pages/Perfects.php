@@ -9,7 +9,7 @@ class Perfects extends \Bigprimes\Pages
 
         $return =
             '<h1>Perfect Numbers</h1>
-<table cellpadding="0" cellspacing="0" border="0" class="text">
+<table cellpadding="0" cellspacing="0" border="0" class="perfecttable text">
 <tr>
 	<td width="60"><b>Rank</b></td>
 	<td width="170"><b>Perfect Number</b></td>

@@ -9,7 +9,7 @@ class Mersennes extends \Bigprimes\Pages
 
         $return =
             '<h1>The Mersenne Primes</h1>
-<table cellpadding="0" cellspacing="0" border="0" class="text">
+<table cellpadding="0" cellspacing="0" border="0" class="mersennetable text">
 <tr>
  <td width="70"><b>No.</b></td>	
  <td width="130"><b>Prime</b></td>
@@ -70,7 +70,6 @@ class Mersennes extends \Bigprimes\Pages
  <td width="30"></td>
  <td width="30"></td>
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M44.zip">ZIP</a></td>
- <td width="30"></td>
 </tr>
 <tr>
  <td>43</td>
@@ -98,7 +97,6 @@ class Mersennes extends \Bigprimes\Pages
  <td width="30"></td>
  <td width="30"></td>
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M41.zip">ZIP</a></td>
- <td width="30"></td>
 </tr>
 <tr>
  <td>40</td>
@@ -207,7 +205,6 @@ class Mersennes extends \Bigprimes\Pages
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M29.txt">TXT</a></td>
  <td width="30"></td>
  <td width="30"></td>
- <td width="30"></td>
 </tr>
 <tr>
  <td>28</td>
@@ -215,7 +212,6 @@ class Mersennes extends \Bigprimes\Pages
  <td>25962</td>
  <td>25-Sep-1982</td>
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M28.txt">TXT</a></td>
- <td width="30"></td>
  <td width="30"></td>
  <td width="30"></td>
 </tr>
@@ -227,7 +223,6 @@ class Mersennes extends \Bigprimes\Pages
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M27.txt">TXT</a></td>
  <td width="30"></td>
  <td width="30"></td>
- <td width="30"></td>
 </tr>
 <tr>
  <td>26</td>
@@ -235,7 +230,6 @@ class Mersennes extends \Bigprimes\Pages
  <td>6987</td>
  <td>9-Feb-1979</td>
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M26.txt">TXT</a></td>
- <td width="30"></td>
  <td width="30"></td>
  <td width="30"></td>
 </tr>
@@ -247,7 +241,6 @@ class Mersennes extends \Bigprimes\Pages
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M25.txt">TXT</a></td>
  <td width="30"></td>
  <td width="30"></td>
- <td width="30"></td>
 </tr>
 <tr>
  <td>24</td>
@@ -255,7 +248,6 @@ class Mersennes extends \Bigprimes\Pages
  <td>6002</td>
  <td>4-Mar-1971</td>
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M24.txt">TXT</a></td>
- <td width="30"></td>
  <td width="30"></td>
  <td width="30"></td>
 </tr>
@@ -267,7 +259,6 @@ class Mersennes extends \Bigprimes\Pages
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M23.txt">TXT</a></td>
  <td width="30"></td>
  <td width="30"></td>
- <td width="30"></td>
 </tr>
 <tr>
  <td>22</td>
@@ -275,7 +266,6 @@ class Mersennes extends \Bigprimes\Pages
  <td>2993</td>
  <td>16-May-1963</td>
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M22.txt">TXT</a></td>
- <td width="30"></td>
  <td width="30"></td>
  <td width="30"></td>
 </tr>
@@ -287,7 +277,6 @@ class Mersennes extends \Bigprimes\Pages
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M21.txt">TXT</a></td>
  <td width="30"></td>
  <td width="30"></td>
- <td width="30"></td>
 </tr>
 <tr>
  <td>20</td>
@@ -295,7 +284,6 @@ class Mersennes extends \Bigprimes\Pages
  <td>1332</td>
  <td>3-Nov-1961</td>
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M20.txt">TXT</a></td>
- <td width="30"></td>
  <td width="30"></td>
  <td width="30"></td>
 </tr>
@@ -308,7 +296,6 @@ class Mersennes extends \Bigprimes\Pages
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M19.txt">TXT</a></td>
  <td width="30"></td>
  <td width="30"></td>
- <td width="30"></td>
 </tr>
 <tr>
  <td>18</td>
@@ -316,7 +303,6 @@ class Mersennes extends \Bigprimes\Pages
  <td>969</td>
  <td>8-Sep-1957</td>
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M18.txt">TXT</a></td>
- <td width="30"></td>
  <td width="30"></td>
  <td width="30"></td>
 </tr>
@@ -328,7 +314,6 @@ class Mersennes extends \Bigprimes\Pages
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M17.txt">TXT</a></td>
  <td width="30"></td>
  <td width="30"></td>
- <td width="30"></td>
 </tr>
 <tr>
  <td>16</td>
@@ -336,7 +321,6 @@ class Mersennes extends \Bigprimes\Pages
  <td>664</td>
  <td>7-Oct-1952</td>
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M16.txt">TXT</a></td>
- <td width="30"></td>
  <td width="30"></td>
  <td width="30"></td>
 </tr>
@@ -348,7 +332,6 @@ class Mersennes extends \Bigprimes\Pages
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M15.txt">TXT</a></td>
  <td width="30"></td>
  <td width="30"></td>
- <td width="30"></td>
 </tr>
 <tr>
  <td>14</td>
@@ -356,7 +339,6 @@ class Mersennes extends \Bigprimes\Pages
  <td>183</td>
  <td>30-Jan-1952</td>
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M14.txt">TXT</a></td>
- <td width="30"></td>
  <td width="30"></td>
  <td width="30"></td>
 </tr>
@@ -368,7 +350,6 @@ class Mersennes extends \Bigprimes\Pages
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M13.txt">TXT</a></td>
  <td width="30"></td>
  <td width="30"></td>
- <td width="30"></td>
 </tr>
 <tr>
  <td>12</td>
@@ -376,7 +357,6 @@ class Mersennes extends \Bigprimes\Pages
  <td>39</td>
  <td>1876</td>
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M12.txt">TXT</a></td>
- <td width="30"></td>
  <td width="30"></td>
  <td width="30"></td>
 </tr>
@@ -388,7 +368,6 @@ class Mersennes extends \Bigprimes\Pages
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M11.txt">TXT</a></td>
  <td width="30"></td>
  <td width="30"></td>
- <td width="30"></td>
 </tr>
 <tr>
  <td>10</td>
@@ -396,7 +375,6 @@ class Mersennes extends \Bigprimes\Pages
  <td>27</td>
  <td>1911</td>
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M10.txt">TXT</a></td>
- <td width="30"></td>
  <td width="30"></td>
  <td width="30"></td>
 </tr>
@@ -408,7 +386,6 @@ class Mersennes extends \Bigprimes\Pages
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M9.txt">TXT</a></td>
  <td width="30"></td>
  <td width="30"></td>
- <td width="30"></td>
 </tr>
 <tr>
  <td>8</td>
@@ -416,7 +393,6 @@ class Mersennes extends \Bigprimes\Pages
  <td>10</td>
  <td>1772</td>
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M8.txt">TXT</a></td>
- <td width="30"></td>
  <td width="30"></td>
  <td width="30"></td>
 </tr>
@@ -428,7 +404,6 @@ class Mersennes extends \Bigprimes\Pages
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M7.txt">TXT</a></td>
  <td width="30"></td>
  <td width="30"></td>
- <td width="30"></td>
 </tr>
 <tr>
  <td>6</td>
@@ -436,7 +411,6 @@ class Mersennes extends \Bigprimes\Pages
  <td>6</td>
  <td>1588</td>
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M6.txt">TXT</a></td>
- <td width="30"></td>
  <td width="30"></td>
  <td width="30"></td>
 </tr>
@@ -448,7 +422,6 @@ class Mersennes extends \Bigprimes\Pages
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M5.txt">TXT</a></td>
  <td width="30"></td>
  <td width="30"></td>
- <td width="30"></td>
 </tr>
 <tr>
  <td>4</td>
@@ -456,7 +429,6 @@ class Mersennes extends \Bigprimes\Pages
  <td>3</td>
  <td>275BC</td>
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M4.txt">TXT</a></td>
- <td width="30"></td>
  <td width="30"></td>
  <td width="30"></td>
 </tr>
@@ -468,7 +440,6 @@ class Mersennes extends \Bigprimes\Pages
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M3.txt">TXT</a></td>
  <td width="30"></td>
  <td width="30"></td>
- <td width="30"></td>
 </tr>
 <tr>
  <td>2</td>
@@ -478,7 +449,6 @@ class Mersennes extends \Bigprimes\Pages
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M2.txt">TXT</a></td>
  <td width="30"></td>
  <td width="30"></td>
- <td width="30"></td>
 </tr>
 <tr>
  <td>1</td>
@@ -486,7 +456,6 @@ class Mersennes extends \Bigprimes\Pages
  <td>1</td>
  <td>500BC</td>
  <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M1.txt">TXT</a></td>
- <td width="30"></td>
  <td width="30"></td>
  <td width="30"></td>
 </tr>

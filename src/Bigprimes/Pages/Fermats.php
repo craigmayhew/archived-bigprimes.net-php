@@ -9,7 +9,7 @@ class Fermats extends \Bigprimes\Pages
 
         $return =
             '<h1>The Fermat Numbers</h1>
-<table cellpadding="3" cellspacing="0" border="0" class="text">
+<table cellpadding="3" cellspacing="0" border="0" class="fermattable text">
 <tr>
  <td width="28">&nbsp;</td>
  <td width="70"><b>No.</b></td>	
