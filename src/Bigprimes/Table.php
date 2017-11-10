@@ -7,7 +7,7 @@ class Table
     private $data;
     private $header;
     
-    public function __construct($app, $data, $header)
+    public function __construct($app, $data, $header = false)
     {
         $this->app = $app;
         $this->data = $data;
@@ -46,11 +46,17 @@ class Table
      */
     private function header()
     {
-      return
-      '<table id="tbl">'.
-        '<tr>'.
-          '<th>'.implode('</th><th>', $this->header).'</th>'.
-        '</tr>';
+      $return =
+      '<table id="tbl">';
+
+       if (is_array($this->header)) {
+         $return .=
+         '<tr>'.
+           '<th>'.implode('</th><th>', $this->header).'</th>'.
+         '</tr>';
+       }
+
+       return $return;
     }
 
     /**
