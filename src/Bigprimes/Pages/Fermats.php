@@ -16,12 +16,12 @@ class Fermats extends \Bigprimes\Pages
         ['&nbsp;', '8', '2<sup>256</sup>+1', '78', '1238926361552897 &times; <a href="/cruncher/293/">P62</a>', '<a href="//static.bigprimes.net/archive/fermat/F8.txt">TXT</a>'],
         ['&nbsp;', '7', '2<sup>128</sup>+1', '39', '59649589127497217 &times; 5704689200685129054721', '<a href="//static.bigprimes.net/archive/fermat/F7.txt">TXT</a>'],
         ['&nbsp;', '6', '2<sup>64</sup>+1', '20', '274177 &times; 67280421310721', '<a href="//static.bigprimes.net/archive/fermat/F6.txt">TXT</a>'],
-        ['&nbsp;', '5', '2<sup>32</sup>+1', '10', '641 &times; 6700417', '<a href="//static.bigprimes.net/archive/fermat/F5.txt">TXT</a>'],
-        ['&nbsp;', '4', '2<sup>16</sup>+1', '5', '6543rd Prime', '<a href="//static.bigprimes.net/archive/fermat/F4.txt">TXT</a>'],
-        ['&nbsp;', '3', '2<sup>8</sup>+1', '3', '55th Prime', '<a href="//static.bigprimes.net/archive/fermat/F3.txt">TXT</a>'],
-        ['&nbsp;', '2', '2<sup>4</sup>+1', '2', '7th Prime', '<a href="//static.bigprimes.net/archive/fermat/F2.txt">TXT</a>'],
-        ['&nbsp;', '1', '2<sup>2</sup>+1', '1', '3rd Prime', '<a href="//static.bigprimes.net/archive/fermat/F1.txt">TXT</a>'],
-        ['&nbsp;', '0', '2<sup>1</sup>+1', '1', '2nd Prime', '<a href="//static.bigprimes.net/archive/fermat/F0.txt">TXT</a>']
+        ['&nbsp;', '5', '2<sup>32</sup>+1', '10', '<a href="/cruncher/641/">P116</a> &times; 6700417', '<a href="//static.bigprimes.net/archive/fermat/F5.txt">TXT</a>'],
+        ['&nbsp;', '4', '2<sup>16</sup>+1', '5', '<a href="/cruncher/65537/">P6543</a>', '<a href="//static.bigprimes.net/archive/fermat/F4.txt">TXT</a>'],
+        ['&nbsp;', '3', '2<sup>8</sup>+1', '3', '<a href="/cruncher/257/">P55</a>', '<a href="//static.bigprimes.net/archive/fermat/F3.txt">TXT</a>'],
+        ['&nbsp;', '2', '2<sup>4</sup>+1', '2', '<a href="/cruncher/17/">P7</a>', '<a href="//static.bigprimes.net/archive/fermat/F2.txt">TXT</a>'],
+        ['&nbsp;', '1', '2<sup>2</sup>+1', '1', '<a href="/cruncher/5/">P3</a>', '<a href="//static.bigprimes.net/archive/fermat/F1.txt">TXT</a>'],
+        ['&nbsp;', '0', '2<sup>1</sup>+1', '1', '<a href="/cruncher/3/">P2</a>', '<a href="//static.bigprimes.net/archive/fermat/F0.txt">TXT</a>']
       ];
 
       $return = 
