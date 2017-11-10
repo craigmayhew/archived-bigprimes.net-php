@@ -11,5 +11,6 @@ class test_Pages_Fermats extends TestCase
             $fermats = new \Bigprimes\Pages\Fermats(new \stdClass());
             $pageContent = $fermats->getContent();
             $this->assertContains('The Fermat Numbers', $pageContent);
+            $this->assertContains('167988556341760475137', $pageContent);
 	}
 }
