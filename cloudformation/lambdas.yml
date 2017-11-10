@@ -291,7 +291,7 @@ Resources:
         - LambdaExecutionRole
         - Arn
       Runtime: nodejs4.3
-      Timeout: 3
+      Timeout: 1
       VpcConfig:
         SecurityGroupIds:
         - Ref: securityGroup
