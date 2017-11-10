@@ -26,6 +26,8 @@ class Fermats extends \Bigprimes\Pages
 
       $return = 
       '<style>'.
+        '#tbl tr th, #tbl tr td {background-color: #fff; border: 0;}'.
+        '#tbl tr th, #tbl tr td {padding: 2px 12px 2px 12px; text-align: left;}'.
         '#tbl tr td:nth-child(1) {width: 28px;}'.
         '#tbl tr td:nth-child(2) {width: 70px;}'.
         '#tbl tr td:nth-child(3) {width: 70px;}'.
@@ -33,7 +35,8 @@ class Fermats extends \Bigprimes\Pages
         '#tbl tr td:nth-child(5) {width: 130px;}'.
         '#tbl tr td:nth-child(6) {width: 130px;}'.
       '</style>'.
-      '<h1>The Fermat Numbers</h1>';
+      '<h1>The Fermat Numbers</h1>'.
+      '<br>';
       $table = new \Bigprimes\Table($this->app, $data, $header);
       $return .= $table->getHTML(false, false);
       return $return;
