@@ -109,8 +109,5 @@ class Primes extends \Bigprimes\Pages
             '<a class="link" href="/archive/prime/' . $count . '/">Our Biggest Prime</a><br />';
 
         return $return;
-//there are 1.4*10<sup>297</sup> primes smaller than 300 digits
-//
-//there is// always a prime between n^2 and (n+1)^2.
     }
 }
