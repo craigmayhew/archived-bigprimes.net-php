@@ -17,6 +17,14 @@ class test_Triangles extends TestCase
     $this->assertEquals('4', $s->nthTriangle(10));
     $this->assertEquals('9', $s->nthTriangle(45));
     $this->assertEquals('100', $s->nthTriangle(5050));
+    $this->assertEquals('1000', $s->nthTriangle(500500));
+    $this->assertEquals('10000', $s->nthTriangle(50005000));
+    $this->assertEquals('100000', $s->nthTriangle(5000050000));
+    $this->assertEquals('1000000', $s->nthTriangle(500000500000));
+    $this->assertEquals('10000000', $s->nthTriangle(50000005000000));
+    $this->assertEquals('100000000', $s->nthTriangle(5000000050000000));
+//    $this->assertEquals('1000000000', $s->nthTriangle(500000000500000000));
+//    $this->assertEquals('10000000000', $s->nthTriangle(50000000005000000000));
     
     //negative matches
     $this->assertEquals(false, $s->nthTriangle(7));
