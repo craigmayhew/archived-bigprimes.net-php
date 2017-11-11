@@ -7,7 +7,7 @@ class Cruncher extends \Bigprimes\Pages
     private $max_english_len = 126;
     private $max_len_prime = 11;
     private $max_len_cube = 17;
-    private $max_len_triangle = 13;
+    private $max_len_triangle = 40;
     private $max_len_square = 13;
     private $max_len_convertion = 500; //converting the number to binary and hex
     private $max_len_factorization = 9;
