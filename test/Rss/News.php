@@ -6,7 +6,6 @@ require_once __DIR__.'/../../src/Bigprimes/SumOfDigits.php';
 
 class test_Rss_News extends TestCase
 {
-
 	public function test_get()
 	{
             $rssNews = new \Bigprimes\Rss\News(new \stdClass());
@@ -17,6 +16,8 @@ class test_Rss_News extends TestCase
 	public function test_buildXML()
 	{
             $rssNews = new \Bigprimes\Rss\News(new \stdClass());
+
+            //normal test
             $news = [
                       [
                         'description' => 'Site source code has been converted to PHP7 with Silex framework. Some methods have also been moved to cpp from PHP <a class="link" href="https://github.com/craigmayhew/bigprimes.net/">https://github.com/craigmayhew/bigprimes.net/</a>',
@@ -25,17 +26,33 @@ class test_Rss_News extends TestCase
                         'link' => 'http://testLink.bigprimes.net/'
                       ]
                     ];
-
             $pageContent = $rssNews->buildXML($news, 
                                               $testTitle = 'testTitle',
                                               $testLink = 'http://testLink.bigprimes.net',
                                               $testDescription = 'testDescription', 
                                               $testImg = 'testimage');
-            $this->assertContains('Site source code has been converted to PHP7', $pageContent);
+            $this->assertContains('<description>Site source code has been converted to PHP7', $pageContent);
             $this->assertContains($testTitle, $pageContent);
             $this->assertContains($testLink, $pageContent);
             $this->assertContains($testDescription, $pageContent);
             $this->assertContains($testImg, $pageContent);
-	}
 
+            //rows with empty title test
+            $news[0]['title'] = '';
+            $pageContent = $rssNews->buildXML($news, 
+                                              $testTitle = 'testTitle',
+                                              $testLink = 'http://testLink.bigprimes.net',
+                                              $testDescription = 'testDescription', 
+                                              $testImg = 'testimage');
+            $this->assertContains('<title>Site source code has been converted</title>', $pageContent);
+            $this->assertContains($testTitle, $pageContent);
+            
+            //empty rows test
+            $pageContent = $rssNews->buildXML(false, 
+                                              $testTitle = 'testTitle',
+                                              $testLink = 'http://testLink.bigprimes.net',
+                                              $testDescription = 'testDescription', 
+                                              $testImg = 'testimage');
+            $this->assertEquals('', $pageContent);
+	}
 }
