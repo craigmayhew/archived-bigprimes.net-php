@@ -10,7 +10,16 @@ class Squares
         $this->app = $app;
     }
 
-    public function isSquare($number)
+    public function isSquare($number, $precision)
+    {
+      $sqrt = bcsqrt($number, $precision);
+      if (substr($sqrt, -$precision) === str_repeat('0', $precision)) {
+        return true;
+      }
+      return false;
+    }
+
+    public function nthSquare($number)
     {
       $square = '1';
       $number = (string)$number;

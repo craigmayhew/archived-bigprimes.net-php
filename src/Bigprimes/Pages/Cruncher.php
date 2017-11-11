@@ -8,6 +8,7 @@ class Cruncher extends \Bigprimes\Pages
     private $max_len_prime = 11;
     private $max_len_cube = 17;
     private $max_len_triangle = 17;
+    private $max_len_square = 17;
     private $max_len_convertion = 500; //converting the number to binary and hex
     private $max_len_factorization = 9;
     private $max_len_roman_numerals = 6;
@@ -694,10 +695,16 @@ class Cruncher extends \Bigprimes\Pages
 
                 //square number or not?
                 $squares = new \Bigprimes\Squares($this->app);
-                if ($sqr = $squares->isSquare($number)) {
-                    $return .= 'It is the ' . $this->stndrd($sqr) . ' square number.<br />';
-                } else {
+                if ($num_len >= $this->max_len_square) {
+                  if ($squares->isSquare($number, $num_len)) {
+                    $return .= 'It is a square number.<br />';
+                  } else {
                     $return .= 'It is not a square number.<br />';
+                  }
+                } elseif ($sqr = $squares->nthSquare($number)) {
+                  $return .= 'It is the ' . $this->stndrd($sqr) . ' square number.<br />';
+                } else {
+                  $return .= 'It is not a square number.<br />';
                 }
 
                 //cube number or not?
