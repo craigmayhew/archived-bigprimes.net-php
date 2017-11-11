@@ -7,8 +7,8 @@ class Cruncher extends \Bigprimes\Pages
     private $max_english_len = 126;
     private $max_len_prime = 11;
     private $max_len_cube = 17;
-    private $max_len_triangle = 17;
-    private $max_len_square = 17;
+    private $max_len_triangle = 13;
+    private $max_len_square = 13;
     private $max_len_convertion = 500; //converting the number to binary and hex
     private $max_len_factorization = 9;
     private $max_len_roman_numerals = 6;
@@ -683,8 +683,7 @@ class Cruncher extends \Bigprimes\Pages
                 //triangle number or not?
                 if ($num_len <= $this->max_len_triangle) {
                     $triangles = new \Bigprimes\Triangles($this->app);
-                    $triangle_num = $triangles->isTriangle($number);
-                    if ($triangle_num) {
+                    if ($triangle_num = $triangles->nthTriangle($number)) {
                         $return .= 'It is the ' . $this->stndrd($triangle_num) . ' triangle number.<br />';
                     } else {
                         $return .= 'It is not a triangle number.<br />';
