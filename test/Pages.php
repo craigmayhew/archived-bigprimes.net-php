@@ -16,7 +16,10 @@ class test_Pages extends TestCase
             $this->assertEquals('4th', $p->stndrd(4));
             $this->assertEquals('5th', $p->stndrd(5));
             $this->assertEquals('10th', $p->stndrd(10));
+            $this->assertEquals('12th', $p->stndrd(12));
             $this->assertEquals('19th', $p->stndrd(19));
+            $this->assertEquals('21st', $p->stndrd(21));
+            $this->assertEquals('22nd', $p->stndrd(22));
             $this->assertEquals('723rd', $p->stndrd(723));
             $this->assertEquals('1463rd', $p->stndrd(1463));
 	}
