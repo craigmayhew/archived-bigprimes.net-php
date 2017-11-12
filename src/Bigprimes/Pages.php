@@ -47,6 +47,13 @@ class Pages
         '<!DOCTYPE html>'.
         '<html>'.
           '<head>'.
+            '<script async src="https://www.googletagmanager.com/gtag/js?id=UA-6215762-7"></script>'.
+            '<script>'.
+              'window.dataLayer = window.dataLayer || [];'.
+              'function gtag(){dataLayer.push(arguments);}'.
+              'gtag(\'js\', new Date());'.
+              'gtag(\'config\', \'UA-6215762-7\');'.
+            '</script>'.
             '<meta charset="UTF-8">'.
             '<title>' . $title . '</title>' .
             '<meta name="keywords" content="' . $metaTagKeywords . '" />' .
