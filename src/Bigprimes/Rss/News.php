@@ -5,6 +5,10 @@ class News extends \Bigprimes\Rss
 {
     public static $news = [
         [
+            'description' => 'Site is now running on AWS Lambda, but can still fallback to regular VM hosting if ever needed. Site is now ~40% convered by unit tests.',
+            'date' => '12th November 2017'
+        ],
+        [
             'description' => 'Site source code has been converted to PHP7 with Silex framework. Some methods have also been moved to cpp from PHP <a class="link" href="https://github.com/craigmayhew/bigprimes.net/">https://github.com/craigmayhew/bigprimes.net/</a>',
             'date' => '13th November 2016'
         ],
