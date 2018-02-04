@@ -10,7 +10,7 @@ class test_Pages_Faq extends TestCase
         {
             $faq = new \Bigprimes\Pages\Faq(new \stdClass());
             $pageContent = $faq->getContent();
-            $this->assertContains('1.4 billion', $pageContent);
+            $this->assertContains('Please try our', $pageContent);
             $this->assertContains('bug/mistake', $pageContent);
         }
 }
