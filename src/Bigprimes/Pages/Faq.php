@@ -14,12 +14,8 @@ class Faq extends \Bigprimes\Pages
 <p>Please try our <a href="/cruncher/">number cruncher</a>. If your question is more complex then try using the <a href="/contact_us/">contact form</a>. I can\'t promise a quick response though.</p>
 
 <br /><br />
-<b>Can I have a copy of all 1.4 billion prime numbers that are on this site?</b>
-<p>Yes, but due to it\'s size it is only available as a bit torrent. The file is in the format of 1 prime number per line and can be downloaded here: <a href="//static.bigprimes.net/archive/hostingaccounts-bigprimes.net-1400000000-primes.7z.torrent">Torrent</a>. We have also compressed it using 7zip, if you don\'t have this fantastic open source software then it can be downloaded from <a href="http://www.7-zip.org/">http://www.7-zip.org/</a></p>
-
-<br /><br />
 <b>I\'ve taken the time to send you an email. Why haven\'t you responded?!</b>
-<p>I apologise, I run this site in what little spare time I have. I read every email and do intend to respond to all emails. I have a backlog of about 6 months at the moment.</p>
+<p>I apologise, I run this site in what little spare time I have. You will get a response.</p>
 
 <br /><br />
 <b>I\'ve found a bug/mistake on bigprimes.net!</b>

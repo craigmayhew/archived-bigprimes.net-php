@@ -16,14 +16,6 @@ class News extends \Bigprimes\Rss
             'description' => 'You can now find the websites php source code here <a class="link" href="https://github.com/craigmayhew/bigprimes.net/">https://github.com/craigmayhew/bigprimes.net/</a>',
             'date' => '28th February 2014'
         ],
-        [
-            'description' => 'I\'ve moved the database torrent to Amazons S3 to ensure the file always has peers available for download.',
-            'date' => '26th January 2014'
-        ],
-        [
-            'description' => 'The complete database is now available for download as a torrent, please see the <a class="link" href="/faq/">FAQ</a> for details.',
-            'date' => '3rd September 2012'
-        ],
         ['description' => 'Thank you to Yu Kwong Yiu Wilson for the donation!', 'date' => '19th November 2011'],
         [
             'description' => 'We are retiring the distributed computing client. Thank you all for your help and processing cycles.
