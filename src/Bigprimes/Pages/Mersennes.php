@@ -18,6 +18,15 @@ class Mersennes extends \Bigprimes\Pages
  <td colspan="3" align="center"><b>Download</b></td>
 </tr>
 <tr>
+ <td>50</td>
+ <td>2<sup>77232917</sup>-1</td>
+ <td>23249425</td>
+ <td>26-Dec-2017</td>
+ <td width="30"></td>
+ <td width="30"></td>
+ <td width="30"><a href="//static.bigprimes.net/archive/mersenne/M50.zip">ZIP</a></td>
+</tr>
+<tr>
  <td>49</td>
  <td>2<sup>74207281</sup>-1</td>
  <td>22338618</td>

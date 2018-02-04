@@ -18,6 +18,14 @@ class Perfects extends \Bigprimes\Pages
 	<td align="center" colspan="2"><b>Downloads</b></td>
 </tr>
 <tr>
+  <td>50</td>
+  <td>2<sup>77232917</sup> &times; (2<sup>74207281</sup>-1)</td>
+  <td>46498850</td>
+  <td>2017 Jonathan Pace, George Woltman, Scott Kurowski, Aaron Blosser, et al..</td>
+  <td></td>
+  <td><a href="//static.bigprimes.net/archive/perfect/50.zip">ZIP</a></td>
+</tr>
+<tr>
   <td>49</td>
   <td>2<sup>74207281</sup> &times; (2<sup>74207281</sup>-1)</td>
   <td>44677235</td>
