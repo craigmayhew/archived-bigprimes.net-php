@@ -35,7 +35,7 @@ process.env['PATH'] = process.env['PATH'] + ':' + process.env['LAMBDA_TASK_ROOT'
 const spawn = require('child_process').spawn;
 
 exports.handler = function(event, context) {
-    var php = spawn('php-71-bin/bin/php', ['-c','php-71-bin/php.ini', 'htdocs/index-silex.php'], {
+    var php = spawn('php-72-bin/bin/php', ['-c','php-72-bin/php.ini', 'htdocs/index-silex.php'], {
       env: {
         //WHEN TESTING, SET event.REQUEST_URI
         REQUEST_URI: event.REQUEST_URI?event.REQUEST_URI:(event.params&&event.params.proxy?'/'+event.params.proxy+'/':''),
@@ -82,7 +82,7 @@ resource "aws_cloudformation_stack" "api" {
     phpLambdaARN = "${aws_cloudformation_stack.lambdas.outputs["LambdaARN"]}"
   }
   template_body = "${ file("cloudformation/api.yml") }"
-  timeout_in_minutes = 10
+  timeout_in_minutes = 20
 }
 
 resource "aws_cloudformation_stack" "lambdas" {
