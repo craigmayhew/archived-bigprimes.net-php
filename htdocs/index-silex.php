@@ -233,7 +233,7 @@ $app->get('/', function () use ($app) {
     $page->getFooter();
 });
 
-$app->get('/rss/{name}/', function ($name) use ($app) {
+$app->get('/rss/{name}/', function () use ($app) {
     //we only have one rss feed at the moment, so direct everything to that one class
     $pageName = '\\Bigprimes\\Rss\\News';
     $page = new $pageName($app);
@@ -245,15 +245,15 @@ $app->get('/rss/{name}/', function ($name) use ($app) {
     );
 })->assert('name', '[a-z0-9]+');
 
-$app->get('/sitemap/', function ($name) use ($app) {
+$app->get('/sitemap/', function () use ($app) {
     //we only have one rss feed at the moment, so direct everything to that one class
     $pageName = '\\Bigprimes\\Pages\\SiteMap';
     $page = new $pageName($app);
 
     return new Response(
-            $page->getContent(),
-            200,
-            ['Content-Type' => 'application/xml']
+        $page->getContent(),
+        200,
+        ['Content-Type' => 'application/xml']
     );
 });
 
