@@ -2,9 +2,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Generate bigprimes api gateway.
 Parameters:
-  certificateARN:
-    Description: certificate for bigprimes.net
-    Type: String
   phpLambdaARN:
     Description: php lambda for bigprimes.net
     Type: String
@@ -104,20 +101,6 @@ Resources:
       RestApiId:
         Ref: BigPrimesAPI
       StageName: DummyStage
-      
-  DomainName:
-    Type: AWS::ApiGateway::DomainName
-    Properties:
-      DomainName: www.bigprimes.net
-      CertificateArn: !Ref certificateARN
-      
-  DomainMapping:
-    Type: 'AWS::ApiGateway::BasePathMapping'
-    Properties:
-      BasePath: ""
-      DomainName: !Ref DomainName
-      RestApiId: !Ref BigPrimesAPI
-      Stage: LATEST
       
   APIDNSRecord:
     Type: AWS::Route53::RecordSet
