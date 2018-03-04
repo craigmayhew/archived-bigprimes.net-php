@@ -5,7 +5,7 @@ class News extends \Bigprimes\Rss
 {
     public static $news = [
         [
-            'description' => 'Site is now running on AWS Lambda, but can still fallback to regular VM hosting if ever needed. Site is now ~40% convered by unit tests.',
+            'description' => 'Site is now running on AWS Lambda, but can still fallback to regular VM hosting if ever needed. Site is now ~40% covered by unit tests.',
             'date' => '12th November 2017'
         ],
         [
