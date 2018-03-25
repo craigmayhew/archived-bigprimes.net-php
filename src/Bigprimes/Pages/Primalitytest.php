@@ -8,6 +8,7 @@ class Primalitytest extends \Bigprimes\Pages
     {
 
         $return =
+            '<h1>Calculate Primes</h1><br><br>'.
             '<script src="//static.bigprimes.net/j.js"></script>' .
 
             '<table cellpadding="10" cellspacing="0" class="text" width="200" style="border:1px solid #444; background-color:#e0faed">' .
