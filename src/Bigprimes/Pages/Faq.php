@@ -6,7 +6,6 @@ class Faq extends \Bigprimes\Pages
     public function getContent()
     {
         return
-            '<br><br>' .
             '<h1>FAQ</h1>
 
 <br /><br /><br />
