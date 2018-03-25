@@ -792,7 +792,7 @@ class Cruncher extends \Bigprimes\Pages
             }
             $return .= '</div>';
         } else {
-            $return .= '<table width="75%" border="0" cellspacing="0" cellpadding="3"><tr><td align="left" class="text">
+            $return .= '<div>
     <h1>Number Cruncher</h1>
 	Welcome to the number cruncher.
 	Type in a number in the box below and we will crunch it for you.<br /><br />
@@ -829,7 +829,7 @@ class Cruncher extends \Bigprimes\Pages
 	  </tr>
 	</table>
 	</form>
-	</td></tr></table>';
+	</div>';
         }
 
         return $return;
