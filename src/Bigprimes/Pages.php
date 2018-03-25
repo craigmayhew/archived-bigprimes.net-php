@@ -64,9 +64,30 @@ class Pages
           '</head>' .
           '<body>' .
             '<header>'.
-              '<a href="/"><img src="//static.bigprimes.net/imgs/title.gif" alt="BigPrimes.net" /></a>'.
+                '<a href="/" id="logolink">'.
+                    '<svg height="60" width="38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" '.
+                    'x="0px" y="0px" viewBox="268 381 50 38" xml:space="preserve">'.
+                        '<style type="text/css">'.
+                            '.st0{fill:#71B291;} '.
+                            '.st1{fill:#A4D3BB;} '.
+                            '#igprimes{font-size:51px; vertical-align:top; font-family: monospace;} '.
+                            '#logolink{font-size:8px; color:#000; text-decoration:none;}'.
+                        '</style>'.
+                        '<g>'.
+                            '<g>'.
+                                '<polygon class="st0" points="288.4,379 307.5,390.9 300.2,396.8 292.5,392.1 310.4,403.1 317.6,397.1" />'.
+                                '<polygon class="st1" points="317.6,397.1 317.6,382.6 288.4,364.5 288.4,379" />'.
+                                '<polygon class="st0" points="288.4,364.5 277.2,373.5 277.2,431.3 288.4,440.3 288.4,425.8 288.4,379" />'.
+                                '<path class="st0" d="M310.4,403.1L310.4,403.1l-17.8-11c0,2.4,0,4.8,0,7.2c0,2.4,0,4.8,0,7.2l13.4,8.3l11.7-7.3L310.4,403.1z" />'.
+                                '<polygon class="st1" points="305.9,414.9 305.9,414.9 288.4,425.8 288.4,440.3 317.6,422.2 317.6,407.6" />'.
+                            '</g>'.
+                        '</g>'.
+                    '</svg>'.
+                    '<span id="igprimes">igprimes</span>'.
+                '</a>'.
             '</header>'.
             '<nav>'.
+              '<br><br>'.
               '<div>'.
                 '<a href="/">Home</a>'.
                 '<a href="/contactus/">Contact Us</a>'.
