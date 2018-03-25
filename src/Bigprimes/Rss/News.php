@@ -5,6 +5,10 @@ class News extends \Bigprimes\Rss
 {
     public static $news = [
         [
+            'description' => 'Added torrents for the <a class="link" href="//static.bigprimes.net/archive/one-million-primes.7z.torrent">first million primes</a> and <a class="link" href="//static.bigprimes.net/archive/one-billion-primes.7z.torrent">first billion prime numbers</a>.',
+            'date' => '10th March 2018'
+        ],
+        [
             'description' => 'Site is now running on AWS Lambda, but can still fallback to regular VM hosting if ever needed. Site is now ~40% covered by unit tests.',
             'date' => '12th November 2017'
         ],
