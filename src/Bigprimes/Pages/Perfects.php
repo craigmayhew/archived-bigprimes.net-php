@@ -19,7 +19,7 @@ class Perfects extends \Bigprimes\Pages
 </tr>
 <tr>
   <td>50</td>
-  <td>2<sup>77232917</sup> &times; (2<sup>74207281</sup>-1)</td>
+  <td>2<sup>77232916</sup> &times; (2<sup>77232917</sup>-1)</td>
   <td>46498850</td>
   <td>2017 Jonathan Pace, George Woltman, Scott Kurowski, Aaron Blosser, et al..</td>
   <td></td>
@@ -27,7 +27,7 @@ class Perfects extends \Bigprimes\Pages
 </tr>
 <tr>
   <td>49</td>
-  <td>2<sup>74207281</sup> &times; (2<sup>74207281</sup>-1)</td>
+  <td>2<sup>74207280</sup> &times; (2<sup>74207281</sup>-1)</td>
   <td>44677235</td>
   <td>2016 Cooper, Woltman, Kurowski, Blosser et al.</td>
   <td></td>
@@ -35,7 +35,7 @@ class Perfects extends \Bigprimes\Pages
 </tr>
 <tr>
   <td>48</td>
-  <td>2<sup>57885161</sup> &times; (2<sup>57885161</sup>-1)</td>
+  <td>2<sup>57885160</sup> &times; (2<sup>57885161</sup>-1)</td>
   <td>34850340</td>
   <td>2013 Cooper, Woltman, Kurowski, et al.</td>
   <td></td>
@@ -43,7 +43,7 @@ class Perfects extends \Bigprimes\Pages
 </tr>
 <tr>
   <td>47</td>
-  <td>2<sup>43112609</sup> &times; (2<sup>43112609</sup>-1)</td>
+  <td>2<sup>43112608</sup> &times; (2<sup>43112609</sup>-1)</td>
   <td>25956377</td>
   <td>2008 Smith, Woltman, Kurowski, et al.</td>
   <td></td>
@@ -51,7 +51,7 @@ class Perfects extends \Bigprimes\Pages
 </tr>
 <tr>
   <td>46</td>
-  <td>2<sup>42643801</sup> &times; (2<sup>42643801</sup>-1)</td>
+  <td>2<sup>42643800</sup> &times; (2<sup>42643801</sup>-1)</td>
   <td>42643801</td>
   <td>2009 Strindmo, Woltman, Kurowski, et al.</td>
   <td></td>
@@ -59,7 +59,7 @@ class Perfects extends \Bigprimes\Pages
 </tr>
 <tr>
   <td>45</td>
-  <td>2<sup>37156667</sup> &times; (2<sup>37156667</sup>-1)</td>
+  <td>2<sup>37156666</sup> &times; (2<sup>37156667</sup>-1)</td>
   <td>22370543</td>
   <td>2008 Elvenich, Woltman, Kurowski, et al.</td>
   <td></td>
