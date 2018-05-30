@@ -21,4 +21,6 @@ RewriteRule ^contact_us/$ contactus [R=301]
 RewriteRule ^archive_info/$ archiveinfo [R=301]
 
 # all pages
+RewriteRule ^robots.txt - [L]
+RewriteRule ^favicon.ico - [L]
 RewriteRule ^(.*)$  index-silex.php [NC]
