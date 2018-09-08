@@ -9,5 +9,8 @@
         "doctrine/dbal": "~2.2",
         "phpunit/phpunit": "^6.1",
         "silex/silex": "2.2.*"
+    },
+    "require-dev": {
+        "phpro/grumphp": "^0.14.2"
     }
 }
