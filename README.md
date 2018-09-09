@@ -37,7 +37,7 @@ install mocha, nightwatchjs and other dependencies
 
 run tests
 `Xvfb :0 -ac -screen 0 1024x768x24 &`
-`npm run test-nightwatch` or `node_modules/.bin/nightwatch --config nightwatch.conf.js --env chrome`
+`npm run test-nightwatch` or if debugging `node_modules/.bin/nightwatch --config nightwatch.conf.js --env chrome`
 
 Related projects
 ===
