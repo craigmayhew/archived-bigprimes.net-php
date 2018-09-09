@@ -3,6 +3,10 @@
 .terraform
 composer.phar
 htdocs/.htaccess
+node_modules
 php.js
+reports
+screenshots
+selenium-server.log
 terraform*
 vendor
