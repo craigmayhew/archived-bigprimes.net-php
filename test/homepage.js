@@ -1,4 +1,5 @@
 var config = require('../nightwatch.conf.js');
+const chromedriver = require("chromedriver");
 
 module.exports = {
     'Homepage' : function (client) {

@@ -20,7 +20,7 @@ module.exports = {
   "test_settings": {
     "default": {
       "screenshots": {
-        "enabled": true,
+        "enabled": false,
         "path": SCREENSHOT_PATH
       },
       "globals": {
@@ -28,7 +28,9 @@ module.exports = {
       },
       "desiredCapabilities": {
         "browserName": "chrome"
-      }
+      },
+      "selenium_port": 9515,
+      "selenium_host": "localhost",
     },
     "chrome": {
       "desiredCapabilities": {
@@ -39,7 +41,9 @@ module.exports = {
               "binary": "/usr/bin/chromium-browser"
           },
           "acceptSslCerts": true
-      }
+      },
+      "selenium_port": 9515,
+      "selenium_host": "localhost",
     }
   }
 }
