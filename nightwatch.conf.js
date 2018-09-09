@@ -31,19 +31,27 @@ module.exports = {
       },
       "selenium_port": 9515,
       "selenium_host": "localhost",
+      "test_workers": {
+          "enabled": true,
+          "workers": "auto"
+      }
     },
     "chrome": {
       "desiredCapabilities": {
         "browserName": "chrome",
         "javascriptEnabled": true,
           "chromeOptions": {
-              "args": ['--headless', '--no-sandbox', '--disable-gpu=true', '--disable-dev-shm-usage', '--disable-extensions'],
+              "args": ['--headless', '--no-sandbox', '--disable-dev-shm-usage', '--disable-extensions'],
               "binary": "/usr/bin/chromium-browser"
           },
           "acceptSslCerts": true
       },
       "selenium_port": 9515,
       "selenium_host": "localhost",
+      "test_workers": {
+          "enabled": true,
+          "workers": "auto"
+      }
     }
   }
 }
