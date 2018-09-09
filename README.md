@@ -26,6 +26,19 @@ All of that has been wrapped up into running the following on an Amazon linux bo
 
 make sure you have your aws credentials in your home directory and you have terraform installed (or referenced in the bin directory, or the repo directory)
 
+Developing & Running Tests
+===
+
+install java
+`apt install default-jre chromium-browser xvfb`
+
+install mocha, nightwatchjs and other dependencies
+`node install`
+
+run tests
+`Xvfb :0 -ac -screen 0 1024x768x24 &`
+`npm run test-nightwatch` or `node_modules/.bin/nightwatch --config nightwatch.conf.js --env chrome`
+
 Related projects
 ===
 
