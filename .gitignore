@@ -1,5 +1,6 @@
 .htaccess
 .idea
+.org.chromium*
 .terraform
 composer.phar
 htdocs/.htaccess
