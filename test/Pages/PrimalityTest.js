@@ -17,6 +17,7 @@ module.exports = {
             $("input[name=start]").val("77777");
             return true;
         })
+        .waitForElementVisible('form[name=primelist]')
         .execute(function () {
             $("form[name=primelist] > input[type=button]:nth-child(5)").click();
             return true;
