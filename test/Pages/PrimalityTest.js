@@ -10,8 +10,8 @@ module.exports = {
         .waitForElementVisible('input[name=primes]')
         .execute('$("input[name=primes]").val("1")')
         .execute('$("input[name=start]").val("77777")')
-        //.click('form[name=primelist] > input[type="button"]:nth-child(5)')
-        //.assert.containsText('#javascriptlistoutput', "77783 is a (proven) prime!", 1000)
+        .click('form[name=primelist] > input[type="button"]:nth-child(5)')
+        .assert.containsText('#javascriptlistoutput', "77783 is a (proven) prime!", 1000)
         .end();
     }
 };
