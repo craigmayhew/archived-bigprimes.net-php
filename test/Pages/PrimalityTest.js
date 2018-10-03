@@ -19,7 +19,7 @@ module.exports = {
         })
         .waitForElementVisible('form[name=primelist]')
         .execute(function () {
-            $("form[name=primelist] > input[type=button]:nth-child(5)").click();
+            //$("form[name=primelist] > input[type=button]:nth-child(5)").click();
             return true;
         })
         .assert.containsText('#javascriptlistoutput', "77783 is a (proven) prime!", 1000)
