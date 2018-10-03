@@ -29,15 +29,9 @@ make sure you have your aws credentials in your home directory and you have terr
 Developing & Running Tests
 ===
 
-install java
-`apt install default-jre chromium-browser xvfb`
-
-install mocha, nightwatchjs and other dependencies
-`node install`
-
-run tests
-`Xvfb :0 -ac -screen 0 1024x768x24 &`
-`npm run test-nightwatch` or if debugging `node_modules/.bin/nightwatch --config nightwatch.conf.js --env chrome`
+run tests and/or build project in docker
+`docker build -t bigprimestest .`
+`docker run bigprimestest`
 
 Related projects
 ===
