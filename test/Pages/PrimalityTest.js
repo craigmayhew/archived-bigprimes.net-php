@@ -17,7 +17,10 @@ module.exports = {
             $("input[name=start]").val("77777");
             return true;
         })
-        .click('form[name=primelist] > input[type=button]:nth-child(5)')
+        .execute(function () {
+            $("form[name=primelist] > input[type=button]:nth-child(5)").click();
+            return true;
+        })
         .assert.containsText('#javascriptlistoutput', "77783 is a (proven) prime!", 1000)
         .end();
     }
