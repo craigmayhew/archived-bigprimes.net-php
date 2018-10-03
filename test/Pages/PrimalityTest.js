@@ -22,7 +22,7 @@ module.exports = {
             $("form[name=primelist] > input[type=button]:nth-child(5)").click();
             return true;
         })
-        .assert.value('#javascriptlistoutput', "77783 is a (proven) prime!")
+        .assert.value('#javascriptlistoutput', "77783 is a (proven) prime!\n")
         .end();
     }
 };
