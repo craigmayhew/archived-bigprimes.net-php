@@ -54,7 +54,7 @@ module.exports = {
       }
     }
   }
-}
+};
 
 function padLeft (count) { // theregister.co.uk/2016/03/23/npm_left_pad_chaos/
   return count < 10 ? '0' + count : count.toString();
