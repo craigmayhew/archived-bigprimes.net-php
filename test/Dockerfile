@@ -13,4 +13,5 @@ RUN cd bigprimes.net && curl --silent --show-error https://getcomposer.org/insta
 RUN cd bigprimes.net && php composer.phar install
 
 CMD Xvfb :0 -ac -screen 0 1024x768x24 &
+RUN cd bigprimes.net && git pull && git checkout master && echo "branch checked out"
 CMD cd bigprimes.net && npm run test-nightwatch
