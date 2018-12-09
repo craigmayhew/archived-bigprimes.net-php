@@ -29,12 +29,16 @@ before_script:
   - travis_retry composer update --no-interaction --no-ansi --no-progress --no-suggest --optimize-autoloader --prefer-stable
   - git config --global user.name travis-ci
   - git config --global user.email travis@example.com
+  # install ethereum so we can compile .sol files with solc
+  - sudo apt-get install -y ethereum
 
 script:
   # todo: generate a deploy script that includes setting binarys to 755
   - chmod 755 src/Bigprimes/bin/factors
   - ./vendor/bin/phpunit --coverage-clover=coverage.xml
   - echo "Running {} tests"; ./vendor/bin/phpunit -c phpunit.xml --testsuite tests --colors=always || (echo -e "\e[41mFAILED\e[0m {}" && $(exit 1));
+  # check we can compile our ethereum contracts
+  - solc --bin contracts/33.sol
 
 git:
   depth: 3
