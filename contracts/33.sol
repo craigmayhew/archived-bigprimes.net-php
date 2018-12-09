@@ -27,10 +27,9 @@ contract ethForAnswersBounty is owned {
     function attempt(int256 a, int256 b, int256 c) public returns (bool) {
         int256 result = safeFormula(a, b, c);
         if (33 == result) {
-            //return true;
             payout();
         }
-        //return false;
+        return false;
     }
 
     // owner withdraws all ETH
