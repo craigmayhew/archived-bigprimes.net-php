@@ -41,7 +41,10 @@ script:
   - ./vendor/bin/phpunit --coverage-clover=coverage.xml
   - echo "Running {} tests"; ./vendor/bin/phpunit -c phpunit.xml --testsuite tests --colors=always || (echo -e "\e[41mFAILED\e[0m {}" && $(exit 1));
   # check we can compile our ethereum contracts
-  - solc --bin contracts/33.sol
+  - solc contracts/33.sol
+  # deploy the compiled contract
+  # TODO: Only deploy on change to solc output
+  - ./contracts/deployContract.sh
 
 git:
   depth: 3
