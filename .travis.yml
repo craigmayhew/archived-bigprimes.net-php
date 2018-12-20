@@ -27,7 +27,7 @@ before_install:
 install: true
 
 before_script:
-  - travis_retry composer update --no-interaction --no-ansi --no-dev --no-progress --no-suggest --optimize-autoloader --prefer-stable
+  - travis_retry composer update --no-interaction --no-ansi --no-dev --no-progress --no-suggest --optimize-autoloader --prefer-dist --prefer-stable
   - git config --global user.name travis-ci
   - git config --global user.email travis@example.com
   # install ethereum so we can compile .sol files with solc
