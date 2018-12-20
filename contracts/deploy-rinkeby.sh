@@ -8,14 +8,18 @@ geth --rinkeby --exec 'eth.getGasPrice(function(e,r){console.log("gas price: ",r
 geth --rinkeby --exec 'console.log("last block: ",eth.blockNumber)' attach
 
 # compile 33.sol
-echo 'storageOutput = ' > 33.js
-solc --optimize --combined-json abi,bin contracts/33.sol >> 33.js
+echo 'storageOutput = ' > /tmp/33.js
+solc --optimize --combined-json abi,bin contracts/33.sol >> /tmp/33.js
 # write js deployment script for 33.sol
 cat >> /tmp/33.js <<EOL
 storageContractAbi = storageOutput.contracts['33.sol:ethForAnswersBounty'].abi
 storageContract = eth.contract(JSON.parse(storageContractAbi))
 storageBinCode = "0x" + storageOutput.contracts['33.sol:ethForAnswersBounty'].bin
-personal.unlockAccount($RINKEBY_PUBLIC_ETH_ADDRESS, $RINKEBY_PRIVATE_PASS)
+personal.unlockAccount(
+EOL
+echo printf "personal.unlockAccount(%s,%s)" $RINKEBY_PUBLIC_ETH_ADDRESS $RINKEBY_PRIVATE_PASS >> /tmp/33.js
+cat >> /tmp/33.js <<EOL
+)
 deployTransactionObject = { from: eth.accounts[0], data: storageBinCode, gas: 1000000 }
 storageInstance = storageContract.new(deployTransactionObject)
 EOL
