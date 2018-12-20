@@ -1,7 +1,8 @@
 # may turn out to be a terrible idea, but let's try a deployment pipeline that get's us to rinkeby
 
 # import rinkeby test account
-echo $RINKEBY_PRIVATE_ACCOUNT_JSON >  $HOME/.ethereum/testnet/keystore/encrypted-rinkeby-account
+mkdir -p $HOME/.ethereum/rinkeby/keystore/
+echo $RINKEBY_PRIVATE_ACCOUNT_JSON >  $HOME/.ethereum/rinkeby/keystore/encrypted-rinkeby-account
 
 # connect to rinkeby
 geth --rinkeby --cache 4096 --nousb --syncmode light --rpc --rpcapi eth,web3,personal &
