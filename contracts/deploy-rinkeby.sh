@@ -1,7 +1,7 @@
-# load up our test wallet
+# connect to rinkeby
 geth --rinkeby --cache 1024 --nousb --syncmode light --rpc --rpcapi eth,web3,personal &
 # sleep to allow rinkeby to connect
-sleep 10s
+sleep 20s
 
 # attempt to use geth
 geth --rinkeby --exec "eth.getGasPrice(function(e,r){console.log('gas price: ',r)})" attach
