@@ -15,11 +15,9 @@ cat >> /tmp/33.js <<EOL
 storageContractAbi = storageOutput.contracts['33.sol:ethForAnswersBounty'].abi
 storageContract = eth.contract(JSON.parse(storageContractAbi))
 storageBinCode = "0x" + storageOutput.contracts['33.sol:ethForAnswersBounty'].bin
-personal.unlockAccount(
 EOL
-echo printf "personal.unlockAccount(%s,%s)" $RINKEBY_PUBLIC_ETH_ADDRESS $RINKEBY_PRIVATE_PASS >> /tmp/33.js
+printf "personal.unlockAccount(eth.accounts[0],'%s')\n" $RINKEBY_PRIVATE_PASS >> /tmp/33.js
 cat >> /tmp/33.js <<EOL
-)
 deployTransactionObject = { from: eth.accounts[0], data: storageBinCode, gas: 1000000 }
 storageInstance = storageContract.new(deployTransactionObject)
 EOL
