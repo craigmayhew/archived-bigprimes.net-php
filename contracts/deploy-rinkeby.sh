@@ -1,5 +1,5 @@
 # connect to rinkeby
-geth --rinkeby --cache 1024 --nousb --syncmode light --rpc --rpcapi eth,web3,personal &
+geth --rinkeby --cache 4096 --nousb --syncmode light --rpc --rpcapi eth,web3,personal &
 # sleep to allow rinkeby to connect
 sleep 40s
 
