@@ -7,7 +7,7 @@ echo $RINKEBY_PRIVATE_ACCOUNT_JSON >  $HOME/.ethereum/rinkeby/keystore/encrypted
 # connect to rinkeby
 geth --rinkeby --cache 4096 --nousb --syncmode light --rpc --rpcapi eth,web3,personal &
 # sleep to allow rinkeby to connect
-sleep 60s
+sleep 120s
 
 # attempt to use geth
 geth --rinkeby --exec 'eth.getGasPrice(function(e,r){console.log("gas price: ",r)})' attach
