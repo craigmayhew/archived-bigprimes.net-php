@@ -20,6 +20,6 @@ deployTransactionObject = { from: eth.accounts[0], data: storageBinCode, gas: 10
 storageInstance = storageContract.new(deployTransactionObject)
 EOL
 # run js deployment script for 33.sol
-geth --rinkeby --exec 'loadscript("/tmp/33.js")' attach
+geth --rinkeby --exec 'loadScript("/tmp/33.js")' attach
 # cleanup for 33.sol
 rm /tmp/33.js
