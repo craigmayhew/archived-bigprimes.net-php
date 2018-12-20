@@ -9,7 +9,7 @@ geth --rinkeby --exec 'console.log("last block: ",eth.blockNumber)' attach
 
 # compile 33.sol
 echo 'storageOutput = ' > 33.json
-solc --optimize --combined-json --abi --bin 33.sol >> 33.json
+solc --optimize --combined-json abi,bin 33.sol >> 33.json
 # write js deployment script for 33.sol
 cat > /tmp/33.js <<EOL
 storageContractAbi = storageOutput.contracts['33.sol:ethForAnswersBounty'].abi
