@@ -1,9 +1,12 @@
-
+# save our geth password to a file
+echo $RINKEBY_PRIVATE_PASS > gethpasword.file
 # load up our test wallet
-geth --rinkeby --cache 1024 --nousb --syncmode light --unlock $RINKEBY_PUBLIC_ETH_ADDRESS --password $RINKEBY_PRIVATE_PASS --rpc --rpcapi eth,web3,personal &
+geth --rinkeby --cache 1024 --nousb --syncmode light --unlock $RINKEBY_PUBLIC_ETH_ADDRESS --password gethpassword.file --rpc --rpcapi eth,web3,personal &
 # sleep to allow rinkeby to connect
 sleep 10s
-
+# remove password file
+rm gethpasword.file
+# attempt to use geth
 geth --rinkeby --exec "eth.getGasPrice(function(e,r){console.log(r)})" attach
 
 # 33.sol
