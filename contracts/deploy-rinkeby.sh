@@ -1,3 +1,8 @@
+# may turn out to be a terrible idea, but let's try a deployment pipeline that get's us to rinkeby
+
+# import rinkeby test account
+echo $RINKEBY_PRIVATE_ACCOUNT_JSON >  $HOME/.ethereum/testnet/keystore/encrypted-rinkeby-account
+
 # connect to rinkeby
 geth --rinkeby --cache 4096 --nousb --syncmode light --rpc --rpcapi eth,web3,personal &
 # sleep to allow rinkeby to connect
@@ -25,3 +30,6 @@ EOL
 geth --rinkeby --exec 'loadScript("/tmp/33.js")' attach
 # cleanup for 33.sol
 rm /tmp/33.js
+
+# cleanup sensitive files
+rm $HOME/.ethereum/testnet/keystore/encrypted-rinkeby-account
