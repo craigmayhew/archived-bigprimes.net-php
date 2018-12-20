@@ -8,10 +8,10 @@ geth --rinkeby --exec 'eth.getGasPrice(function(e,r){console.log("gas price: ",r
 geth --rinkeby --exec 'console.log("last block: ",eth.blockNumber)' attach
 
 # compile 33.sol
-echo 'storageOutput = ' > 33.json
-solc --optimize --combined-json abi,bin 33.sol >> 33.json
+echo 'storageOutput = ' > 33.js
+solc --optimize --combined-json abi,bin contracts/33.sol >> 33.js
 # write js deployment script for 33.sol
-cat > /tmp/33.js <<EOL
+cat >> /tmp/33.js <<EOL
 storageContractAbi = storageOutput.contracts['33.sol:ethForAnswersBounty'].abi
 storageContract = eth.contract(JSON.parse(storageContractAbi))
 storageBinCode = "0x" + storageOutput.contracts['33.sol:ethForAnswersBounty'].bin
