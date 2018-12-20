@@ -4,8 +4,8 @@ geth --rinkeby --cache 4096 --nousb --syncmode light --rpc --rpcapi eth,web3,per
 sleep 40s
 
 # attempt to use geth
-geth --rinkeby --exec "eth.getGasPrice(function(e,r){console.log('gas price: ',r)})" attach
-geth --rinkeby --exec "console.log('last block: ',eth.blockNumber)" attach
+geth --rinkeby --exec 'eth.getGasPrice(function(e,r){console.log("gas price: ",r)})' attach
+geth --rinkeby --exec 'console.log("last block: ",eth.blockNumber)' attach
 
 # compile 33.sol
 echo 'storageOutput = ' > 33.json
