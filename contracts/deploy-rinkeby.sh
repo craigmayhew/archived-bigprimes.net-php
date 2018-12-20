@@ -2,7 +2,7 @@
 
 # import rinkeby test account
 mkdir -p $HOME/.ethereum/rinkeby/keystore/
-echo $RINKEBY_PRIVATE_ACCOUNT_JSON >  $HOME/.ethereum/rinkeby/keystore/encrypted-rinkeby-account
+echo $RINKEBY_PRIVATE_ACCOUNT_JSON > $HOME/.ethereum/rinkeby/keystore/encrypted-rinkeby-account
 
 # connect to rinkeby
 geth --rinkeby --cache 4096 --nousb --syncmode light --rpc --rpcapi eth,web3,personal &
@@ -33,4 +33,4 @@ geth --rinkeby --exec 'loadScript("/tmp/33.js")' attach
 rm /tmp/33.js
 
 # cleanup sensitive files
-rm $HOME/.ethereum/testnet/keystore/encrypted-rinkeby-account
+rm $HOME/.ethereum/rinkeby/keystore/encrypted-rinkeby-account
