@@ -13,7 +13,7 @@ geth --rinkeby --exec 'eth.getGasPrice(function(e,r){console.log("gas price: ",r
 geth --rinkeby --exec 'console.log("last block: ",eth.blockNumber)' attach
 
 # compile 33.sol
-echo 'storageOutput = ' > /tmp/33.js
+printf "%s" 'storageOutput = ' > /tmp/33.js
 solc --optimize --combined-json abi,bin contracts/33.sol >> /tmp/33.js
 # write js deployment script for 33.sol
 cat >> /tmp/33.js <<EOL
