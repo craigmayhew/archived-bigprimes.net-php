@@ -18,9 +18,9 @@ printf "%s" 'storageOutput = ' > /tmp/33.js
 solc --optimize --combined-json abi,bin contracts/33.sol >> /tmp/33.js
 # write js deployment script for 33.sol
 cat >> /tmp/33.js <<EOL
-storageContractAbi = storageOutput.contracts['33.sol:ethForAnswersBounty'].abi
+storageContractAbi = storageOutput.contracts['contracts/33.sol:ethForAnswersBounty'].abi
 storageContract = eth.contract(JSON.parse(storageContractAbi))
-storageBinCode = "0x" + storageOutput.contracts['33.sol:ethForAnswersBounty'].bin
+storageBinCode = "0x" + storageOutput.contracts['contracts/33.sol:ethForAnswersBounty'].bin
 EOL
 printf "personal.unlockAccount(eth.accounts[0],'%s')\n" $RINKEBY_PRIVATE_PASS >> /tmp/33.js
 cat >> /tmp/33.js <<EOL
