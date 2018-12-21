@@ -1,3 +1,6 @@
+// this contract exists just to prove the logic of contract 33.sol
+// in future these two contracts should be combined so we pass in the desired answer
+// at contract creation time
 pragma solidity ^0.5;
 
 contract owned {
@@ -27,7 +30,7 @@ contract owned {
 contract ethForAnswersBounty is owned {
     function attempt(int256 a, int256 b, int256 c) public returns (bool) {
         int256 result = safeFormula(a, b, c);
-        if (33 == result) {
+        if (29 == result) {
             payout();
         }
         return false;
