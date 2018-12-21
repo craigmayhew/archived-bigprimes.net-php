@@ -44,7 +44,7 @@ script:
   - solc contracts/33.sol
   # deploy the compiled contract
   # only for one php version of our build, no point creating contracts for every parallel run of travis
-  # TODO: Only deploy on change to solc output
+  # TODO: Only deploy on change to contracts directory
   - if [[ $(phpenv version-name) == '7.1' ]]; then chmod +x ./contracts/deploy-rinkeby.sh && ./contracts/deploy-rinkeby.sh ; fi
 
 git:
