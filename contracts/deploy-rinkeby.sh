@@ -28,6 +28,21 @@ printf "personal.unlockAccount(eth.accounts[0],'%s')\n" $RINKEBY_PRIVATE_PASS >>
 cat >> /tmp/29.js <<EOL
 var deployTransactionObject = { from: eth.accounts[0], data: storageBinCode, gas: 1000000 }
 var storageInstance = storageContract.new(deployTransactionObject)
+
+//sleep for two blocks to allow contract to deploy
+admin.sleepBlocks(2)
+console.log("Sending prize fund ether to 29.sol on rinkeby")
+eth.sendTransaction({from:eth.accounts[0], to:storageInstance.address, value: web3.toWei(0.05, "ether")})
+
+admin.sleepBlocks(2)
+console.log("Running test transactions for 29.sol on rinkeby")
+contractAbi = eth.contract(storageInstance.abi)
+myContract = contractAbi.at(storageInstance.address)
+getData = myContract.attempt.getData(2220422932,-2128888517,-283059956)
+//send "correct answer" input transaction to 29.sol
+eth.sendTransaction({from:eth.accounts[0], to:storageInstance.address, data: getData})
+
+//TODO: now we should check to make make sure the ether has arrived back in our account
 EOL
 # run js deployment script for 29.sol
 echo "Deploying 29.sol to rinkeby"
