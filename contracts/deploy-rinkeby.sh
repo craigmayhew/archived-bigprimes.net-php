@@ -1,5 +1,4 @@
 # may turn out to be a terrible idea, but let's try a deployment pipeline that get's us to rinkeby
-geth --version
 
 # import rinkeby test account
 mkdir -p $HOME/.ethereum/rinkeby/keystore/
@@ -33,7 +32,7 @@ printf "personal.unlockAccount(eth.accounts[0],'%s')\n" $RINKEBY_PRIVATE_PASS >>
 cat >> /tmp/29.js <<EOL
 var storageInstance = storageContract.new(
     29,
-    {from: eth.accounts[0], data: storageBinCode, gas: 100000000},
+    {from: eth.accounts[0], data: storageBinCode, gas: 1000000},
     function(err, contract29){
         if(!err) {
             // NOTE: The callback will fire twice!
