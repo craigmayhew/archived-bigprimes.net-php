@@ -27,13 +27,14 @@ EOL
 printf "personal.unlockAccount(eth.accounts[0],'%s')\n" $RINKEBY_PRIVATE_PASS >> /tmp/29.js
 cat >> /tmp/29.js <<EOL
 var deployTransactionObject = { from: eth.accounts[0], data: storageBinCode, gas: 1000000 }
-console.log("Deploying transaction object ", deployTransactionObject)
 var storageInstance = storageContract.new(deployTransactionObject)
 
 //sleep for two blocks to allow contract to deploy
 admin.sleepBlocks(2)
 console.log("Sending prize fund ether to 29.sol on rinkeby")
-eth.sendTransaction({from:eth.accounts[0], to:storageInstance.address, value: web3.toWei(0.05, "ether")})
+console.log("To: ",storageInstance.address)
+console.log("StorageInstance: ",storageInstance)
+eth.sendTransaction({from:eth.accounts[0], to:storageInstance.address, value: 500000})
 
 admin.sleepBlocks(2)
 console.log("Running test transactions for 29.sol on rinkeby")
