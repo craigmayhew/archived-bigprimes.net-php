@@ -46,24 +46,29 @@ var storageInstance = storageContract.new(
                 //console.log(contract29.address) // the contract address
                 console.log("Sending prize fund ether to 29.sol on rinkeby to: ", contract29.address)
                 eth.sendTransaction({from:eth.accounts[0], to:contract29.address, value: 555529})
+                .on('receipt', function(receipt){
+                    console.log("Send correct answer for 29.sol")
+                    var getData = contract29.attempt.getData(2220422932,-2128888517,-283059956)
+                    eth.sendTransaction({from:eth.accounts[0], to:contract29.address, data: getData})
+                })
             }
         }
     }
 )
 
 //sleep for two blocks to allow contract to deploy and tests to run
-console.log("sleep for 2 blocks")
-admin.sleepBlocks(2)
+console.log("sleep for 5 blocks")
+admin.sleepBlocks(5)
 
-console.log("sleep for 2 blocks")
-admin.sleepBlocks(2)
-
-console.log("Running test transactions for 29.sol on rinkeby")
+/*console.log("Running test transactions for 29.sol on rinkeby")
 contractAbi = eth.contract(storageInstance.abi)
 myContract = contractAbi.at(storageInstance.address)
 getData = myContract.attempt.getData(2220422932,-2128888517,-283059956)
 //send "correct answer" input transaction to 29.sol
-eth.sendTransaction({from:eth.accounts[0], to:storageInstance.address, data: getData})
+eth.sendTransaction({from:eth.accounts[0], to:storageInstance.address, data: getData})*/
+
+console.log("sleep for 5 blocks")
+admin.sleepBlocks(5)
 
 //TODO: now we should check to make make sure the ether has arrived back in our account
 EOL
