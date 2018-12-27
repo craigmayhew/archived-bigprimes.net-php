@@ -33,7 +33,7 @@ var storageInstance = storageContract.new(deployTransactionObject)
 admin.sleepBlocks(2)
 console.log("Sending prize fund ether to 29.sol on rinkeby")
 console.log("To: ",storageInstance.address)
-console.log("StorageInstance: ",JSON.stringify(storageInstance)
+console.log("StorageInstance: ",JSON.stringify(storageInstance))
 eth.sendTransaction({from:eth.accounts[0], to:storageInstance.address, value: 500000})
 
 admin.sleepBlocks(2)
