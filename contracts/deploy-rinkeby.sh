@@ -38,12 +38,12 @@ var storageInstance = storageContract.new(
             // Once the contract has the transactionHash property set and once its deployed on an address.
             // e.g. check tx hash on the first call (transaction send)
             if(!myContract.address) {
-                console.log(myContract.transactionHash) // The hash of the transaction, which deploys the contract
+                //console.log(myContract.transactionHash)
             
             // check address on the second call (contract deployed)
             } else {
-                console.log(myContract.address) // the contract address
-                console.log("Sending prize fund ether to 29.sol on rinkeby to: ",myContract.address)
+                //console.log(myContract.address) // the contract address
+                console.log("Sending prize fund ether to 29.sol on rinkeby to: ", myContract.address)
                 eth.sendTransaction({from:eth.accounts[0], to:myContract.address, value: 500000})
             }
         }
