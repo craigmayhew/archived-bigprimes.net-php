@@ -28,6 +28,12 @@ contract owned {
   if you wish to test this contract, 29 = (2220422932)^3+(-2128888517)^3+(-283059956)^3
 */
 contract ethForAnswersBounty is owned {
+    
+    int256 winningAnswer;
+
+    constructor(int256 _winningAnswer) public payable {
+        winningAnswer = _winningAnswer;
+    }
 
     // allow anyone to send ether to this contract and for it to be added to the prize fund
     function () external payable { }
@@ -35,7 +41,7 @@ contract ethForAnswersBounty is owned {
     // allow someone to attempt to win the prize by submitting 3 integers
     function attempt(int256 a, int256 b, int256 c) public returns (bool) {
         int256 result = safeFormula(a, b, c);
-        if (29 == result) {
+        if (winningAnswer == result) {
             payout();
         }
         return false;
