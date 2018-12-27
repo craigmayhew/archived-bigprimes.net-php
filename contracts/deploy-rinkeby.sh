@@ -33,19 +33,19 @@ cat >> /tmp/29.js <<EOL
 var storageInstance = storageContract.new(
     29,
     {from: eth.accounts[0], data: storageBinCode, gas: 100000000, gasPrice: 20000000000},
-    function(err, myContract){
+    function(err, contract29){
         if(!err) {
             // NOTE: The callback will fire twice!
             // Once the contract has the transactionHash property set and once its deployed on an address.
             // e.g. check tx hash on the first call (transaction send)
-            if(!myContract.address) {
-                //console.log(myContract.transactionHash)
+            if(!contract29.address) {
+                //console.log(contract29.transactionHash)
             
             // check address on the second call (contract deployed)
             } else {
-                //console.log(myContract.address) // the contract address
-                console.log("Sending prize fund ether to 29.sol on rinkeby to: ", myContract.address)
-                eth.sendTransaction({from:eth.accounts[0], to:myContract.address, value: 500000})
+                //console.log(contract29.address) // the contract address
+                console.log("Sending prize fund ether to 29.sol on rinkeby to: ", contract29.address)
+                eth.sendTransaction({from:eth.accounts[0], to:contract29.address, value: 555529})
             }
         }
     }
