@@ -34,11 +34,13 @@ var storageInstance = storageContract.new(
     29,
     {from: eth.accounts[0], data: storageBinCode, gas: 1000000}
 )
-.then(function (txnHash) {
-    // now you have the unmined transaction hash, return receipt promise
-    console.log(txnhash); // follow along
-    return web3.eth.getTransactionReceiptMined(txnHash);
-}).then(function (receipt) {
+storageContract.deploy({
+    data: storageBinCode,
+    arguments: [29]
+}).send({
+    from: eth.accounts[0],
+    gas: 1000000
+}).then(function (contract29) {
     //console.log(contract29.address) // the contract address
     console.log("Sending prize fund ether to 29.sol on rinkeby to: ", contract29.address)
     eth.sendTransaction({from:eth.accounts[0], to:contract29.address, value: 555529000})
