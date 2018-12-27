@@ -52,7 +52,7 @@ var storageInstance = storageContract.new(
         var getData = contract29.attempt.getData(2220422932,-2128888517,-283059956)
         return web3.eth.sendTransaction({from:eth.accounts[0], to:contract29.address, data: getData})
     })
-}
+})
 
 //sleep for two blocks to allow contract to deploy and tests to run
 console.log("sleep for 5 blocks")
