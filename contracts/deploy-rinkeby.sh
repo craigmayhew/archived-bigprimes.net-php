@@ -32,45 +32,31 @@ printf "personal.unlockAccount(eth.accounts[0],'%s')\n" $RINKEBY_PRIVATE_PASS >>
 cat >> /tmp/29.js <<EOL
 var storageInstance = storageContract.new(
     29,
-    {from: eth.accounts[0], data: storageBinCode, gas: 1000000},
-    function(err, contract29){
-        if(!err) {
-            // NOTE: The callback will fire twice!
-            // Once the contract has the transactionHash property set and once its deployed on an address.
-            // e.g. check tx hash on the first call (transaction send)
-            if(!contract29.address) {
-                //console.log(contract29.transactionHash)
-            
-            // check address on the second call (contract deployed)
-            } else {
-                //console.log(contract29.address) // the contract address
-                console.log("Sending prize fund ether to 29.sol on rinkeby to: ", contract29.address)
-                eth.sendTransaction({from:eth.accounts[0], to:contract29.address, value: 555529000})
-                .then(function (txnHash) {
-                    // now you have the unmined transaction hash, return receipt promise
-                    console.log(txnhash); // follow along
-                    return web3.eth.getTransactionReceiptMined(txnHash);
-                })
-                .then(function (receipt) {
-                    console.log("Send correct answer for 29.sol")
-                    var getData = contract29.attempt.getData(2220422932,-2128888517,-283059956)
-                    return web3.eth.sendTransaction({from:eth.accounts[0], to:contract29.address, data: getData})
-                })
-            }
-        }
-    }
+    {from: eth.accounts[0], data: storageBinCode, gas: 1000000}
 )
+.then(function (txnHash) {
+    // now you have the unmined transaction hash, return receipt promise
+    console.log(txnhash); // follow along
+    return web3.eth.getTransactionReceiptMined(txnHash);
+}).then(function (receipt) {
+    //console.log(contract29.address) // the contract address
+    console.log("Sending prize fund ether to 29.sol on rinkeby to: ", contract29.address)
+    eth.sendTransaction({from:eth.accounts[0], to:contract29.address, value: 555529000})
+    .then(function (txnHash) {
+        // now you have the unmined transaction hash, return receipt promise
+        console.log(txnhash); // follow along
+        return web3.eth.getTransactionReceiptMined(txnHash);
+    })
+    .then(function (receipt) {
+        console.log("Send correct answer for 29.sol")
+        var getData = contract29.attempt.getData(2220422932,-2128888517,-283059956)
+        return web3.eth.sendTransaction({from:eth.accounts[0], to:contract29.address, data: getData})
+    })
+}
 
 //sleep for two blocks to allow contract to deploy and tests to run
 console.log("sleep for 5 blocks")
 admin.sleepBlocks(5)
-
-/*console.log("Running test transactions for 29.sol on rinkeby")
-contractAbi = eth.contract(storageInstance.abi)
-myContract = contractAbi.at(storageInstance.address)
-getData = myContract.attempt.getData(2220422932,-2128888517,-283059956)
-//send "correct answer" input transaction to 29.sol
-eth.sendTransaction({from:eth.accounts[0], to:storageInstance.address, data: getData})*/
 
 console.log("sleep for 5 blocks")
 admin.sleepBlocks(5)
