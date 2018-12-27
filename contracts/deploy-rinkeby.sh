@@ -6,10 +6,13 @@ echo $RINKEBY_PRIVATE_ACCOUNT_JSON > $HOME/.ethereum/rinkeby/keystore/encrypted-
 
 # connect to rinkeby
 geth --rinkeby --cache 4096 --nousb --syncmode light --rpc --rpcapi eth,web3,personal &
-# sleep for 20 minutes to allow rinkeby to sync
-sleep 5m
-# TODO: Add a loop here checking geth to see if it's synced and pausing for 20 seconds if not
-# if (eth.syncing.highestBlock - eth.syncing.currentBlock > 0){print "no"}
+# sleep to allow rinkeby to sync
+sleep 30s
+while [ $(geth --rinkeby --exec 'if(eth.syncing == false){2}else{0}' attach) -lt 2 ]
+do
+print "sleeping 20s" && sleep 20s
+done
+print "synced!"
 
 # attempt to use geth
 geth --rinkeby --exec 'eth.getGasPrice(function(e,r){console.log("gas price: ",r)})' attach
