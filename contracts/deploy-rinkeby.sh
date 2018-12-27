@@ -30,16 +30,33 @@ var storageBinCode = "0x" + storageOutput.contracts['contracts/29.sol:ethForAnsw
 EOL
 printf "personal.unlockAccount(eth.accounts[0],'%s')\n" $RINKEBY_PRIVATE_PASS >> /tmp/29.js
 cat >> /tmp/29.js <<EOL
-var storageInstance = storageContract.new({ from: eth.accounts[0], data: storageBinCode, gas: 1000000 })
+var storageInstance = storageContract.new(
+    {from: eth.accounts[0], data: storageBinCode, gas: 1000000},
+    function(err, myContract){
+        if(!err) {
+            // NOTE: The callback will fire twice!
+            // Once the contract has the transactionHash property set and once its deployed on an address.
+            // e.g. check tx hash on the first call (transaction send)
+            if(!myContract.address) {
+                console.log(myContract.transactionHash) // The hash of the transaction, which deploys the contract
+            
+            // check address on the second call (contract deployed)
+            } else {
+                console.log(myContract.address) // the contract address
+                console.log("Sending prize fund ether to 29.sol on rinkeby to: ",myContract.address)
+                eth.sendTransaction({from:eth.accounts[0], to:myContract.address, value: 500000})
+            }
+        }
+    }
+)
 
-//sleep for two blocks to allow contract to deploy
+//sleep for two blocks to allow contract to deploy and tests to run
+console.log("sleep for 2 blocks")
 admin.sleepBlocks(2)
-console.log("Sending prize fund ether to 29.sol on rinkeby")
-console.log("To: ",storageInstance.address)
-storageInstance
-eth.sendTransaction({from:eth.accounts[0], to:storageInstance.address, value: 500000})
 
+console.log("sleep for 2 blocks")
 admin.sleepBlocks(2)
+
 console.log("Running test transactions for 29.sol on rinkeby")
 contractAbi = eth.contract(storageInstance.abi)
 myContract = contractAbi.at(storageInstance.address)
