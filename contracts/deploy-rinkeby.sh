@@ -78,8 +78,11 @@ var storageBinCode = "0x" + storageOutput.contracts['contracts/33.sol:ethForAnsw
 EOL
 printf "personal.unlockAccount(eth.accounts[0],'%s')\n" $RINKEBY_PRIVATE_PASS >> /tmp/33.js
 cat >> /tmp/33.js <<EOL
-var deployTransactionObject = { from: eth.accounts[0], data: storageBinCode, gas: 1000000 }
-var storageInstance = storageContract.new(deployTransactionObject)
+var storageInstance = storageContract.new({
+    from: eth.accounts[0],
+    data: storageBinCode,
+    gas: 1000000
+})
 EOL
 # run js deployment script for 33.sol
 echo "Deploying 33.sol to rinkeby"
