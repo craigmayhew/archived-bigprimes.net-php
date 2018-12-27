@@ -29,14 +29,13 @@ var storageBinCode = "0x" + storageOutput.contracts['contracts/29.sol:ethForAnsw
 EOL
 printf "personal.unlockAccount(eth.accounts[0],'%s')\n" $RINKEBY_PRIVATE_PASS >> /tmp/29.js
 cat >> /tmp/29.js <<EOL
-var deployTransactionObject = { from: eth.accounts[0], data: storageBinCode, gas: 1000000 }
-var storageInstance = storageContract.new(deployTransactionObject)
+var storageInstance = storageContract.new({ from: eth.accounts[0], data: storageBinCode, gas: 1000000 })
 
 //sleep for two blocks to allow contract to deploy
 admin.sleepBlocks(2)
 console.log("Sending prize fund ether to 29.sol on rinkeby")
 console.log("To: ",storageInstance.address)
-console.log("StorageInstance: ",JSON.stringify(storageInstance))
+storageInstance
 eth.sendTransaction({from:eth.accounts[0], to:storageInstance.address, value: 500000})
 
 admin.sleepBlocks(2)
