@@ -7,7 +7,7 @@ echo $RINKEBY_PRIVATE_ACCOUNT_JSON > $HOME/.ethereum/rinkeby/keystore/encrypted-
 # connect to rinkeby
 geth --rinkeby --cache 4096 --nousb --syncmode light --rpc --rpcapi eth,web3,personal &
 # sleep for 20 minutes to allow rinkeby to sync
-sleep 20m
+sleep 5m
 # TODO: Add a loop here checking geth to see if it's synced and pausing for 20 seconds if not
 # if (eth.syncing.highestBlock - eth.syncing.currentBlock > 0){print "no"}
 
