@@ -27,6 +27,7 @@ EOL
 printf "personal.unlockAccount(eth.accounts[0],'%s')\n" $RINKEBY_PRIVATE_PASS >> /tmp/29.js
 cat >> /tmp/29.js <<EOL
 var deployTransactionObject = { from: eth.accounts[0], data: storageBinCode, gas: 1000000 }
+console.log("Deploying transaction object ", deployTransactionObject)
 var storageInstance = storageContract.new(deployTransactionObject)
 
 //sleep for two blocks to allow contract to deploy
