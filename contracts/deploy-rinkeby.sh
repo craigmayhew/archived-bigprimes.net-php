@@ -31,6 +31,7 @@ EOL
 printf "personal.unlockAccount(eth.accounts[0],'%s')\n" $RINKEBY_PRIVATE_PASS >> /tmp/29.js
 cat >> /tmp/29.js <<EOL
 var storageInstance = storageContract.new(
+    29,
     {from: eth.accounts[0], data: storageBinCode, gas: 1000000},
     function(err, myContract){
         if(!err) {
