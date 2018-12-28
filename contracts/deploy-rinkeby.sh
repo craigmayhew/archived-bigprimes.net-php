@@ -2,13 +2,15 @@
 # TODO: Consider rewriting the js elements of this as nodejs rather than entirely through geth console
 
 # Add PPA for installing nodejs 11
-sudo apt-get install curl python-software-properties
+sudo apt-get install curl python-software-properties make -y
 curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
 
 # TODO: perhaps we ditch solc binary and entirely switch to the npm version
 sudo apt-get install -y solc geth nodejs
-npm install --save web3@1.0.0-beta.37
-npm install --save solc@0.5.0
+npm install -g node-gyp
+npm install scrypt
+npm install web3@1.0.0-beta.37
+npm install solc@0.5.0
 
 # output versions for any future debugging
 geth version
@@ -21,6 +23,7 @@ echo $RINKEBY_PRIVATE_ACCOUNT_JSON > $HOME/.ethereum/rinkeby/keystore/encrypted-
 
 # connect to rinkeby
 geth --rinkeby --cache 4096 --nousb --syncmode light --rpc --rpcapi eth,web3,personal &
+
 # sleep to allow rinkeby to sync
 sleep 60s
 CHECK="$(geth --rinkeby --exec 'if(eth.syncing == false){2}else{0}' attach)"
