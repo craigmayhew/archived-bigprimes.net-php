@@ -60,7 +60,7 @@ then
 fi
 
 # cleanup for 29.sol
-rm /tmp/29.js
+rm /tmp/29.compiled.js
 
 # compile 33.sol
 printf "%s" 'storageOutput = ' > /tmp/33.js
