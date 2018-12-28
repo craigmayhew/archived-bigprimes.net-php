@@ -8,7 +8,7 @@ curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
 # TODO: perhaps we ditch solc binary and entirely switch to the npm version
 sudo apt-get install -y solc geth nodejs
 npm install -g node-gyp
-npm install scrypt
+npm install scrypt && npm rebuild scrypt
 npm install web3@1.0.0-beta.37
 npm install solc@0.5.0
 
