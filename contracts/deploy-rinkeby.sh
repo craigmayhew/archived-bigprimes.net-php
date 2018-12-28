@@ -15,6 +15,8 @@ echo "sleeping 20s" && sleep 20s
 done
 echo "synced!"
 
+STARTINGBALANCE="$(geth --rinkeby --exec 'web3.fromWei(eth.getBalance(eth.accounts[0]))' attach)"
+
 # attempt to use geth
 geth --rinkeby --exec 'eth.getGasPrice(function(e,r){console.log("gas price: ",r)})' attach
 geth --rinkeby --exec 'console.log("last block: ",eth.blockNumber)' attach
@@ -58,12 +60,26 @@ admin.sleepBlocks(5)
 
 console.log("sleep for 5 blocks")
 admin.sleepBlocks(5)
-
-//TODO: now we should check to make make sure the ether has arrived back in our account
 EOL
 # run js deployment script for 29.sol
 echo "Deploying 29.sol to rinkeby"
 geth --rinkeby --exec 'loadScript("/tmp/29.js")' attach
+
+# TODO: Check the exact number of transactions on the account matches expectations
+
+# TODO: Check the before/after balances on wallet
+ENDINGBALANCE="$(geth --rinkeby --exec 'web3.fromWei(eth.getBalance(eth.accounts[0]))' attach)"
+
+echo "Starting balance:"
+echo STARTINGBALANCE
+echo "Final balance:"
+echo ENDINGBALANCE
+
+if [ "${STARTINGBALANCE}" -lt "${ENDINGBALANCE}" ]
+  # fail build as we don't have the expected balance
+  $(exit 1)
+fi
+
 # cleanup for 29.sol
 rm /tmp/29.js
 
@@ -92,6 +108,3 @@ rm /tmp/33.js
 
 # cleanup sensitive files
 rm $HOME/.ethereum/rinkeby/keystore/encrypted-rinkeby-account
-
-# fail build as at the moment 
-$(exit 1)
