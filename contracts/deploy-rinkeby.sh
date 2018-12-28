@@ -10,6 +10,7 @@ sudo apt-get install -y solc geth nodejs
 npm install -g node-gyp
 npm install web3@1.0.0-beta.37
 npm install solc@0.5.0
+npm rebuild
 
 # output versions for any future debugging
 geth version
