@@ -1,6 +1,14 @@
 # may turn out to be a terrible idea, but lets try a deployment pipeline that gets us to rinkeby
 # TODO: Consider rewriting the js elements of this as nodejs rather than entirely through geth console
 
+# TODO: perhaps we ditch solc binary and entirely switch to the npm version
+apt-get install -y solc geth nodejs
+npm install --save web3@1.0.0-beta.37
+npm install --save solc@0.5.0
+
+# output versions for any future debugging
+geth version
+
 # import rinkeby test account
 mkdir -p $HOME/.ethereum/rinkeby/keystore/
 echo $RINKEBY_PRIVATE_ACCOUNT_JSON > $HOME/.ethereum/rinkeby/keystore/encrypted-rinkeby-account
@@ -27,45 +35,14 @@ UNLOCK=$(printf "personal.unlockAccount(eth.accounts[0],'%s')" $RINKEBY_PRIVATE_
 geth --rinkeby --exec $UNLOCK attach
 
 # compile 29.sol
-printf "%s" 'storageOutput = ' > /tmp/29.js
-solc --optimize --combined-json abi,bin contracts/29.sol >> /tmp/29.js
-# write js deployment script for 29.sol
-cat >> /tmp/29.js <<EOL
-var storageContractAbi = storageOutput.contracts['contracts/29.sol:ethForAnswersBounty'].abi
-var storageContract = new web3.eth.Contract(JSON.parse(storageContractAbi))
-var storageBinCode = "0x" + storageOutput.contracts['contracts/29.sol:ethForAnswersBounty'].bin
-storageContract.deploy({
-    data: storageBinCode,
-    arguments: [29]
-}).send({
-    from: eth.accounts[0],
-    gas: 1000000
-}).then(function (contract29) {
-    //console.log(contract29.address) // the contract address
-    console.log("Sending prize fund ether to 29.sol on rinkeby to: ", contract29.address)
-    eth.sendTransaction({from:eth.accounts[0], to:contract29.address, value: 555529000})
-    .then(function (txnHash) {
-        // now you have the unmined transaction hash, return receipt promise
-        console.log(txnhash); // follow along
-        return web3.eth.getTransactionReceiptMined(txnHash);
-    })
-    .then(function (receipt) {
-        console.log("Send correct answer for 29.sol")
-        var getData = contract29.attempt.getData(2220422932,-2128888517,-283059956)
-        return web3.eth.sendTransaction({from:eth.accounts[0], to:contract29.address, data: getData})
-    })
-})
+solc --optimize --combined-json abi,bin contracts/29.sol > /tmp/29.compiled.js
 
-//sleep for two blocks to allow contract to deploy and tests to run
-console.log("sleep for 5 blocks")
-admin.sleepBlocks(5)
+# deploy 29.sol
+nodejs 29.deploy.js
 
-console.log("sleep for 5 blocks")
-admin.sleepBlocks(5)
-EOL
-# run js deployment script for 29.sol
-echo "Deploying 29.sol to rinkeby"
-geth --rinkeby --exec 'loadScript("/tmp/29.js")' attach
+#sleep for two blocks to allow contract to deploy and tests to run
+echo "sleep for 5 blocks" && geth --rinkeby --exec 'admin.sleepBlocks(5)' attach
+echo "sleep for 5 blocks" && geth --rinkeby --exec 'admin.sleepBlocks(5)' attach
 
 # TODO: Check the exact number of transactions on the account matches expectations
 
