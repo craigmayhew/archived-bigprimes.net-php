@@ -3,8 +3,8 @@
 
 # TODO: perhaps we ditch solc binary and entirely switch to the npm version
 sudo apt-get install -y solc geth nodejs
-sudo npm install --save web3@1.0.0-beta.37
-sudo npm install --save solc@0.5.0
+npm install --save web3@1.0.0-beta.37
+npm install --save solc@0.5.0
 
 # output versions for any future debugging
 geth version
