@@ -6,6 +6,7 @@ sudo apt-get install curl python-software-properties make -y
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 
 # TODO: perhaps we ditch solc binary and entirely switch to the npm version
+sudo apt-get remove -y node
 sudo apt-get install -y solc geth nodejs
 npm install -g node-gyp
 npm install web3@1.0.0-beta.37
@@ -14,7 +15,7 @@ npm rebuild
 
 # output versions for any future debugging
 geth version
-node -v
+nodejs -v
 npm -v
 
 # import rinkeby test account
