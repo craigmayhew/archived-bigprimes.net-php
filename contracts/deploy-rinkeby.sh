@@ -1,6 +1,10 @@
 # may turn out to be a terrible idea, but lets try a deployment pipeline that gets us to rinkeby
 # TODO: Consider rewriting the js elements of this as nodejs rather than entirely through geth console
 
+# Add PPA for installing nodejs 11
+sudo apt-get install curl python-software-properties
+curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
+
 # TODO: perhaps we ditch solc binary and entirely switch to the npm version
 sudo apt-get install -y solc geth nodejs
 npm install --save web3@1.0.0-beta.37
@@ -8,6 +12,8 @@ npm install --save solc@0.5.0
 
 # output versions for any future debugging
 geth version
+node -v
+npm -v
 
 # import rinkeby test account
 mkdir -p $HOME/.ethereum/rinkeby/keystore/
