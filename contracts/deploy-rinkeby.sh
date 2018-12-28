@@ -66,7 +66,7 @@ if [ "${STARTINGBALANCE}" = "${ENDINGBALANCE}" ]
 # consider using php -r "echo (2.981587915886330942-2.981587915886330942);"
 then
   # fail build as we don't have the expected balance
-  $(exit 1)
+  exit 1
 fi
 
 # cleanup for 29.sol
