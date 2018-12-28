@@ -74,6 +74,7 @@ printf "Starting balance: %s" $STARTINGBALANCE
 printf "Final balance: %s" $ENDINGBALANCE
 
 if [ "${STARTINGBALANCE}" -lt "${ENDINGBALANCE}" ]
+then
   # fail build as we don't have the expected balance
   $(exit 1)
 fi
