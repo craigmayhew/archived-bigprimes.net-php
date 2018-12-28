@@ -19,7 +19,7 @@ STARTINGBALANCE="$(geth --rinkeby --exec 'web3.fromWei(eth.getBalance(eth.accoun
 
 # attempt to use geth
 geth --rinkeby --exec 'eth.getGasPrice(function(e,r){console.log("gas price: ",r)})' attach
-geth --rinkeby --exec 'console.log("last block: ",eth.blockNumber)' attach
+geth --rinkeby --exec '"last block: " + eth.blockNumber' attach
 
 # compile 29.sol
 printf "%s" 'storageOutput = ' > /tmp/29.js
