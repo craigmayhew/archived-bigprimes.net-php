@@ -63,9 +63,10 @@ printf "Starting balance: %s\n" $STARTINGBALANCE
 printf "Final balance: %s\n" $ENDINGBALANCE
 
 if [ "${STARTINGBALANCE}" = "${ENDINGBALANCE}" ]
-# consider using php -r "echo (2.981587915886330942-2.981587915886330942);"
+# TODO: consider using php -r "echo (2.981587915886330942-2.981587915886330942);"
 then
   # fail build as we don't have the expected balance
+  printf "Error: Starting balance %s should not be the same as final balance %s\n" $STARTINGBALANCE $ENDINGBALANCE
   exit 1
 fi
 
