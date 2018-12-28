@@ -18,8 +18,8 @@ echo "synced!"
 
 STARTINGBALANCE="$(geth --rinkeby --exec 'web3.fromWei(eth.getBalance(eth.accounts[0]))' attach)"
 
-# attempt to use geth
-geth --rinkeby --exec 'eth.getGasPrice(function(e,r){console.log("gas price: ",r)})' attach
+# attempt to use geth, check some fundamentals
+geth --rinkeby --exec '"gas price: " + eth.gasPrice' attach
 geth --rinkeby --exec '"last block: " + eth.blockNumber' attach
 
 # compile 29.sol
