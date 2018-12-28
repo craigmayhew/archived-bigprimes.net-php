@@ -22,6 +22,9 @@ STARTINGBALANCE="$(geth --rinkeby --exec 'web3.fromWei(eth.getBalance(eth.accoun
 geth --rinkeby --exec '"gas price: " + eth.gasPrice' attach
 geth --rinkeby --exec '"last block: " + eth.blockNumber' attach
 
+#unlock wallet
+geth --rinkeby --exec "personal.unlockAccount(eth.accounts[0],$RINKEBY_PRIVATE_PASS" attach
+
 # compile 29.sol
 printf "%s" 'storageOutput = ' > /tmp/29.js
 solc --optimize --combined-json abi,bin contracts/29.sol >> /tmp/29.js
@@ -30,9 +33,6 @@ cat >> /tmp/29.js <<EOL
 var storageContractAbi = storageOutput.contracts['contracts/29.sol:ethForAnswersBounty'].abi
 var storageContract = new web3.eth.Contract(JSON.parse(storageContractAbi))
 var storageBinCode = "0x" + storageOutput.contracts['contracts/29.sol:ethForAnswersBounty'].bin
-EOL
-printf "personal.unlockAccount(eth.accounts[0],'%s')\n" $RINKEBY_PRIVATE_PASS >> /tmp/29.js
-cat >> /tmp/29.js <<EOL
 storageContract.deploy({
     data: storageBinCode,
     arguments: [29]
@@ -92,9 +92,6 @@ cat >> /tmp/33.js <<EOL
 var storageContractAbi = storageOutput.contracts['contracts/33.sol:ethForAnswersBounty'].abi
 var storageContract = eth.contract(JSON.parse(storageContractAbi))
 var storageBinCode = "0x" + storageOutput.contracts['contracts/33.sol:ethForAnswersBounty'].bin
-EOL
-printf "personal.unlockAccount(eth.accounts[0],'%s')\n" $RINKEBY_PRIVATE_PASS >> /tmp/33.js
-cat >> /tmp/33.js <<EOL
 var storageInstance = storageContract.new({
     from: eth.accounts[0],
     data: storageBinCode,
