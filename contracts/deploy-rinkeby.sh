@@ -61,7 +61,7 @@ ENDINGBALANCE="$(geth --rinkeby --exec 'web3.fromWei(eth.getBalance(eth.accounts
 printf "Starting balance: %s\n" $STARTINGBALANCE
 printf "Final balance: %s\n" $ENDINGBALANCE
 
-if [ "${STARTINGBALANCE}" -lt "${ENDINGBALANCE}" ]
+if [ "${STARTINGBALANCE}" = "${ENDINGBALANCE}" ]
 # consider using php -r "echo (2.981587915886330942-2.981587915886330942);"
 then
   # fail build as we don't have the expected balance
