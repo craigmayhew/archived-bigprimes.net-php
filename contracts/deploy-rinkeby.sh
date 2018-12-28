@@ -1,14 +1,13 @@
 # may turn out to be a terrible idea, but lets try a deployment pipeline that gets us to rinkeby
 # TODO: Consider rewriting the js elements of this as nodejs rather than entirely through geth console
 
-# Add PPA for installing nodejs 11
+# Add PPA for installing nodejs 10
 sudo apt-get install curl python-software-properties make -y
-curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 
 # TODO: perhaps we ditch solc binary and entirely switch to the npm version
 sudo apt-get install -y solc geth nodejs
 npm install -g node-gyp
-npm install scrypt && npm rebuild scrypt
 npm install web3@1.0.0-beta.37
 npm install solc@0.5.0
 
