@@ -1,4 +1,5 @@
-# may turn out to be a terrible idea, but let's try a deployment pipeline that get's us to rinkeby
+# may turn out to be a terrible idea, but lets try a deployment pipeline that gets us to rinkeby
+# TODO: Consider rewriting the js elements of this as nodejs rather than entirely through geth console
 
 # import rinkeby test account
 mkdir -p $HOME/.ethereum/rinkeby/keystore/
@@ -74,6 +75,7 @@ printf "Starting balance: %s\n" $STARTINGBALANCE
 printf "Final balance: %s\n" $ENDINGBALANCE
 
 if [ "${STARTINGBALANCE}" -lt "${ENDINGBALANCE}" ]
+# consider using php -r "echo (2.981587915886330942-2.981587915886330942);"
 then
   # fail build as we don't have the expected balance
   $(exit 1)
