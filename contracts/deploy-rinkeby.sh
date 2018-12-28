@@ -92,3 +92,6 @@ rm /tmp/33.js
 
 # cleanup sensitive files
 rm $HOME/.ethereum/rinkeby/keystore/encrypted-rinkeby-account
+
+# fail build as at the moment 
+$(exit 1)
