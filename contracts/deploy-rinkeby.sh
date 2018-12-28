@@ -25,7 +25,7 @@ solc --optimize --combined-json abi,bin contracts/29.sol >> /tmp/29.js
 # write js deployment script for 29.sol
 cat >> /tmp/29.js <<EOL
 var storageContractAbi = storageOutput.contracts['contracts/29.sol:ethForAnswersBounty'].abi
-var storageContract = new web3.eth.contract(JSON.parse(storageContractAbi))
+var storageContract = new web3.eth.Contract(JSON.parse(storageContractAbi))
 var storageBinCode = "0x" + storageOutput.contracts['contracts/29.sol:ethForAnswersBounty'].bin
 EOL
 printf "personal.unlockAccount(eth.accounts[0],'%s')\n" $RINKEBY_PRIVATE_PASS >> /tmp/29.js
