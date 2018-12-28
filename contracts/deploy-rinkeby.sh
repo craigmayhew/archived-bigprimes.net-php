@@ -2,9 +2,9 @@
 # TODO: Consider rewriting the js elements of this as nodejs rather than entirely through geth console
 
 # TODO: perhaps we ditch solc binary and entirely switch to the npm version
-apt-get install -y solc geth nodejs
-npm install --save web3@1.0.0-beta.37
-npm install --save solc@0.5.0
+sudo apt-get install -y solc geth nodejs
+sudo npm install --save web3@1.0.0-beta.37
+sudo npm install --save solc@0.5.0
 
 # output versions for any future debugging
 geth version
