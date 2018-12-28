@@ -23,7 +23,7 @@ geth --rinkeby --exec '"gas price: " + eth.gasPrice' attach
 geth --rinkeby --exec '"last block: " + eth.blockNumber' attach
 
 #unlock wallet
-geth --rinkeby --exec "personal.unlockAccount(eth.accounts[0],$RINKEBY_PRIVATE_PASS" attach
+geth --rinkeby --exec "personal.unlockAccount(eth.accounts[0],$RINKEBY_PRIVATE_PASS)" attach
 
 # compile 29.sol
 printf "%s" 'storageOutput = ' > /tmp/29.js
