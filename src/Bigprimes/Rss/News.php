@@ -5,6 +5,10 @@ class News extends \Bigprimes\Rss
 {
     public static $news = [
         [
+            'description' => '<a class="link" href="https://github.com/craigmayhew/ethereum-contracts">Ethereum bounty contracts</a> have now been added for anyone that would like to try to push the boundaries of human knowledge. Tweet me if you need assistance using these!',
+            'date' => '28th December 2018'
+        ],
+        [
             'description' => 'Added torrents for the <a class="link" href="//static.bigprimes.net/archive/one-million-primes.7z.torrent">first million primes</a> and <a class="link" href="//static.bigprimes.net/archive/one-billion-primes.7z.torrent">first billion prime numbers</a>.',
             'date' => '10th March 2018'
         ],

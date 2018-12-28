@@ -7,7 +7,6 @@ dist: xenial
 cache:
   directories:
     - $HOME/.composer/cache
-    - $HOME/.ethereum/
 
 php:
   - 7.1
@@ -31,8 +30,6 @@ before_script:
   - travis_retry composer update --no-interaction --no-ansi --no-dev --no-progress --no-suggest --optimize-autoloader --prefer-dist --prefer-stable
   - git config --global user.name travis-ci
   - git config --global user.email travis@example.com
-  # install ethereum so we can compile .sol files with solc
-  - sudo add-apt-repository ppa:ethereum/ethereum -y
   - sudo apt-get update
 
 script:
@@ -40,10 +37,6 @@ script:
   - chmod 755 src/Bigprimes/bin/factors
   - ./vendor/bin/phpunit --coverage-clover=coverage.xml
   - echo "Running {} tests"; ./vendor/bin/phpunit -c phpunit.xml --testsuite tests --colors=always || (echo -e "\e[41mFAILED\e[0m {}" && $(exit 1));
-  # build and deploy ethereum contracts
-  # only for one php version of our build, no point creating contracts for every parallel run of travis
-  # TODO: Only deploy on change to contracts directory
-  - if [[ $(phpenv version-name) == '7.1' ]]; then chmod +x ./contracts/deploy-rinkeby.sh && ./contracts/deploy-rinkeby.sh ; fi
 
 git:
   depth: 3
