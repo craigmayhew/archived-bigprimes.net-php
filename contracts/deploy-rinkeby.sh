@@ -70,10 +70,8 @@ geth --rinkeby --exec 'loadScript("/tmp/29.js")' attach
 # TODO: Check the before/after balances on wallet
 ENDINGBALANCE="$(geth --rinkeby --exec 'web3.fromWei(eth.getBalance(eth.accounts[0]))' attach)"
 
-echo "Starting balance:"
-echo $STARTINGBALANCE
-echo "Final balance:"
-echo $ENDINGBALANCE
+printf "Starting balance: %s" $STARTINGBALANCE
+printf "Final balance: %s" $ENDINGBALANCE
 
 if [ "${STARTINGBALANCE}" -lt "${ENDINGBALANCE}" ]
   # fail build as we don't have the expected balance
