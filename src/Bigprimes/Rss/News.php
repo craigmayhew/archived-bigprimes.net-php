@@ -5,7 +5,7 @@ class News extends \Bigprimes\Rss
 {
     public static $news = [
         [
-            'description' => '<a class="link" href="https://github.com/craigmayhew/ethereum-contracts">Ethereum bounty contracts</a> have now been added for anyone that would like to try to push the boundaries of human knowledge. Tweet me if you need assistance using these!',
+            'description' => '<a class="link" href="https://github.com/craigmayhew/ethereum-contracts">Ethereum bounty contracts</a> have now been added for anyone that would like to try to push the boundaries of human knowledge. The first contract is a competition for the correct solution to a³+b³+c³ = 33. Tweet me if you need assistance using these contracts!',
             'date' => '28th December 2018'
         ],
         [
