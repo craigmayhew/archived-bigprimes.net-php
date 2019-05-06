@@ -28,27 +28,25 @@ make sure you have your aws credentials in your home directory and you have terr
 
 Developing & Running Tests
 ===
-
 run tests and/or build project in docker
 `docker build -t bigprimestest .`
 `docker run bigprimestest`
 
+Project Roadmap
+===
+Convert to serverless, reactjs and rust.
+- Use serverless to deploy reactjs to an s3 bucket.
+- Use serverless to deploy a basic rust lambda with a unit test.
+- Deploy a reactjs html/css theme for the site
+- Write a replacement for the home page and repoint cloudfront just for the home page using distribution "behaviours".
+- Repeat for each page type, choosing pure reactjs or supplement with rust as needed.
+
 Related projects
 ===
-
 - https://github.com/craigmayhew/primes
 - https://github.com/craigmayhew/static.bigprimes.net
 
-Goals
-===
-
-- ~~Remove redundent code.~~
-- ~~Organise code into logical folders.~~
-- ~~Get code to the point where we can run unit tests.~~
-- 100% test coverage.
-
 Fun Facts
 ===
-
 - there are 1.4\*10<sup>297</sup> primes smaller than 300 digits
 - there is always a prime between n^2 and (n+1)^2.
