@@ -635,12 +635,9 @@ class Cruncher extends \Bigprimes\Pages
                     } else {
                       $return .= 'It is not a prime number.<br />';
                     }
-                } elseif ($primes->prob_prime($number)){
-                    $is_prime = true;
-                    $return .= 'It is almost certainly a prime number.<br />';
                 } else {
                     $is_prime = false;
-                    $return .= 'It is not a prime number.<br />';
+                    $return .= 'It is too large for us to check primality at this time.<br />';
                 }
                 //mersenne prime or not?
                 if ($num_len <= strlen(end($this->array_mersenne))) {
